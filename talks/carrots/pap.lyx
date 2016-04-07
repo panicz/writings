@@ -1,0 +1,2981 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{qtree}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{.55\textwidth}
+\end_preamble
+\use_default_options true
+\begin_modules
+linguistics
+\end_modules
+\maintain_unincluded_children false
+\language polish
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Poetyckie aspekty programowania
+\end_layout
+
+\begin_layout Author
+
+\noun on
+Panicz Maciej Godek
+\noun default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph on
+godek.maciek@gmail.com
+\end_layout
+
+\begin_layout Abstract
+Niniejszy tekst stanowi rekonstrukcję i uzupełnienie prezentacji wygłoszonej
+ przeze mnie 14 listopada 2014 na spotkaniu Geek Girls Carrots w Pomorskim
+ Parku Naukowo-Technologicznym w Gdyni.
+ Prezentuję w nim najogólniejsze rozważania dotyczące programowania z perspektyw
+y filozofii języka i teorii literatury, starając się przy tym wyciągać wnioski
+ natury praktycznej.
+\end_layout
+
+\begin_layout Section
+Wprowadzenie
+\end_layout
+
+\begin_layout Standard
+Nazwa 
+\begin_inset Quotes pld
+\end_inset
+
+poetyka
+\begin_inset Quotes prd
+\end_inset
+
+ wywodzi się od greckiego słowa 
+\emph on
+poiesis
+\emph default
+, oznaczającego wytwór, wytwarzanie lub po prostu twórczość.
+ W tradycji przyjęło się za Arystotelesem używać tego słowa na określenie
+ teorii dzieła literackiego.
+ Podążając za tą tradycją, wybitny literaturoznawca dwudziestowieczny Roman
+ Jakobson w ramach swojej teorii komunikatu określił mianem 
+\begin_inset Quotes pld
+\end_inset
+
+funkcji poetyckiej
+\begin_inset Quotes prd
+\end_inset
+
+ tę funkcję komunikatu, która polega na skupianiu uwagi na sobie, w przeciwieńst
+wie do innych funkcji, polegających m.in.
+ na skupianiu uwagi na nadawcy (funkcja ekspresywna), odbiorcy (funkcja
+ impresywna) czy kontekście (funkcja referencyjna).
+\end_layout
+
+\begin_layout Standard
+W szczególności nie należy mylić poetyki (jako teorii) z poezją (jako wytworem
+ działalności poetów).
+ Przykładowo, kod we wstawce 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "alg:Poemat-w-perlu"
+
+\end_inset
+
+ jest wierszem napisanym w języku Perl
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Perl jest bardzo ciekawym językiem programowania, stworzonym przez amerykańskieg
+o lingwistę i informatyka (w klasycznym sensie, tzn.
+ noszącego sweterki i wąsy) Larry'ego Walla.
+ Osoby zainteresowane tą jakże barwną postacią mogą dowiedzieć się więcej
+ ze strony internetowej 
+\emph on
+http://wall.org/~larry/
+\end_layout
+
+\end_inset
+
+.
+ Jest to wprawdzie poprawny kod Perla, jednak z punktu widzenia języka Perl
+ nie ma w nim nic ciekawego -- jego jedyną wartością jest wrażenie, jakie
+ wywiera na czytelniku -- owo wrażenie zawdzięcza jednak jedynie temu, że
+ jest wypowiedzią w języku angielskim.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Verbatim
+
+#!/usr/bin/perl
+\end_layout
+
+\begin_layout Verbatim
+
+APPEAL:
+\end_layout
+
+\begin_layout Verbatim
+
+listen (please, please);
+\end_layout
+
+\begin_layout Verbatim
+
+    open yourself, wide;
+\end_layout
+
+\begin_layout Verbatim
+
+         join (you, me),
+\end_layout
+
+\begin_layout Verbatim
+
+    connect (us, together),
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+  tell me.
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+   do something if distressed;
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+           @dawn, dance;
+\end_layout
+
+\begin_layout Verbatim
+
+           @evening, sing;
+\end_layout
+
+\begin_layout Verbatim
+
+           read (books, $poems, stories) until peacful;
+\end_layout
+
+\begin_layout Verbatim
+
+           study if able;
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+sort your feelings, reset goals, seek (friends, family, anyone);
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+             do*not*die (like this)
+\end_layout
+
+\begin_layout Verbatim
+
+             if sin abounds;
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+keys (hidden), open (locks, doors), tell secrets;
+\end_layout
+
+\begin_layout Verbatim
+
+   do not, I-beg-you, close them, yet.
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+                                    accept (yourself, changes),
+\end_layout
+
+\begin_layout Verbatim
+
+                                    bind (grief, despair);
+\end_layout
+
+\begin_layout Verbatim
+
+      require truth, goodness if-you-will, each moment;
+\end_layout
+
+\begin_layout Verbatim
+
+select (always), length(of-days)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Poemat-w-perlu"
+
+\end_inset
+
+Poemat w języku Perl autorstwa Sharon Hopkins
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Istnieją dużo ciekawsze formy poetyckie wyrażane w językach programowania.
+ Przykładowo, wstawka 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "alg:Quine-w-języku-C"
+
+\end_inset
+
+ zawiera kod programu (napisany w języku C), którego wykonanie generuje
+ ten sam kod.
+ Programy tego rodzaju noszą nazwę 
+\emph on
+quine'ów
+\emph default
+, na cześć amerykańskiego filozofa Willarda van Ormana Quine'a.
+ Nimi również nie będziemy się jednak zajmować, ponieważ -- jakkolwiek rozwijają
+ce intelektualnie -- jako czyste formy poetyckie są one bezużyteczne dla
+ codziennej praktyki programistycznej.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+char*f="char*f=%c%s%c;main()
+\end_layout
+
+\begin_layout Verbatim
+
+{printf(f,34,f,34,10);}%c";
+\end_layout
+
+\begin_layout Verbatim
+
+main(){printf(f,34,f,34,10);}
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Quine-w-języku-C"
+
+\end_inset
+
+
+\emph default
+Przykładowy 
+\emph on
+quine
+\emph default
+ języku C
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zagadnieniem, które pragnę podjąć w niniejszej rozprawce, jest spojrzenie
+ na program komputerowy jako na tekst, w taki sposób, w jaki na tekst patrzą
+ strukturaliści, oraz rozważenie języków programowania w taki sposób, w
+ jaki rozważa się inne języki -- tzn.
+ jako media komunikacji i ekspresji myśli.
+\end_layout
+
+\begin_layout Standard
+Moją motywacją jest silne przekonanie dotyczące tego, że programy komputerowe
+ nie tylko pozwalają nam robić wiele rzeczy szybciej i dokładniej, ale również
+ -- a może przede wszystkim -- mają duży wpływ na nasz sposób myślenia.
+ Jest bowiem faktem udowodnionym naukowo
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+przez amerykańskich naukowców
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gleick2011"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, że już nawet sama umiejętność pisania i czytania ma istotny wpływ na nasz
+ sposób myślenia.
+\end_layout
+
+\begin_layout Section
+Struktura
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+epigraph{Myślisz, że wiesz, gdy się nauczysz,
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+masz większą pewność, gdy zdasz egzamin,
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+jeszcze większą nawet, gdy nauczasz innych,
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+lecz całkowitą dopiero wtedy,
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+gdy potrafisz to zaprogramować}{Alan Perlis}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Niezależnie od tego, z jakim językiem programowania nie mielibyśmy do czynienia,
+ każdy program jest tekstem i posiada pewne własności inherentne dla tekstu.
+ Każdy tekst jest zaś pewnym skończonym ciągiem znaków zbudowanym w oparciu
+ o pewne reguły.
+ W szczególności, wszelki inteligibilny tekst zorganizowany jest w pewną
+ strukturę: z pierwotnych znaków budujemy większe całościowe struktury,
+ będące elementarnymi składnikami jeszcze większych struktur (dla przykładu,
+ z liter budujemy słowa, ze słów zdania, ze zdań akapity itd.)
+\end_layout
+
+\begin_layout Standard
+Oprócz pełnienia roli jednostek bazowych dla większych struktur, złożone
+ struktury posiadają swoją 
+\emph on
+strukturę wewnętrzną
+\emph default
+, czyli to, 
+\emph on
+w jaki sposób
+\emph default
+ są złożone.
+ To, jakie sposoby składania są dopuszczalne, określają odpowiednie reguły
+ -- na przykład reguły gramatyczne albo logiczne.
+\end_layout
+
+\begin_layout Standard
+Znajomość reguł kompozycji tekstu pozwala nam nie tylko budować zdania,
+ ale również analizować je, a tym samym -- rozumieć (to znaczy: sprowadzać
+ z postaci złożonej do postaci prostej i zrozumiałej).
+\end_layout
+
+\begin_layout Standard
+Reguły gramatyczne w szczególności służą do określania relacji między słowami.
+ Tekst wzięty sam w sobie jest po prostu sekwencją słów.
+ Relacje gramatyczne kodują jednak pewną tajemniczą własność, która nie
+ dałaby się wywnioskować z samego położenia słów względem siebie.
+ Rozważmy zdanie
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+Samochód, który został skradziony dziś rano, stoi na parkingu.
+\end_layout
+
+\begin_layout Standard
+Jasne jest, że słowo 
+\begin_inset Quotes pld
+\end_inset
+
+stoi
+\begin_inset Quotes prd
+\end_inset
+
+ odnosi się do słowa 
+\begin_inset Quotes pld
+\end_inset
+
+samochód
+\begin_inset Quotes prd
+\end_inset
+
+, i to pomimo tego, że słowa te znajdują się dość daleko od siebie.
+ Z tego powodu gramatycy (nawet nauczyciele w szkołach podstawowych) posługują
+ się nieco inną reprezentacją zdań, mianowicie -- drzewami rozbioru składniowego.
+\end_layout
+
+\begin_layout Standard
+Przykładowo, dla zdania
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "Zły-policjant-kazał"
+
+\end_inset
+
+Zły policjant kazał przerażonemu świadkowi zdjąć odzienie wierzchnie.
+\end_layout
+
+\begin_layout Standard
+struktura rozbioru składniowego mogłaby wyglądać następująco:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mbox{\mbox{\Tree[.kazał [.policjant zły ] [.świadkowi przerażonemu ] [.zdjąć [.odzienie wierzchnie ] ] ]}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+trzeba dać jakiś przykład drzewa i odpowiadającego mu kodu w lispie, np.
+\end_layout
+
+\begin_layout Plain Layout
+Zły policjant kazał przerażonemu świadkowi zdjąć odzienie wierzchnie.
+\end_layout
+
+\begin_layout Plain Layout
+(kazał #;kto? (policjant #:jaki? zły) #;komu? (świadkowi #:jakiemu? przerażonemu
+) #;co? (zdjąć #;co? (odzienie #:jakie? wierzchnie))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Struktura składniowa zdania nie zawsze jest jednoznaczna.
+ Na przykład w zdaniu
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+Zwiedziłem wieś koleżanki, która przywiązana była do tradycji.
+\end_layout
+
+\begin_layout Standard
+nie wiadomo, czy wyraz 
+\begin_inset Quotes pld
+\end_inset
+
+która
+\begin_inset Quotes prd
+\end_inset
+
+ odnosi się do wyrazu 
+\begin_inset Quotes pld
+\end_inset
+
+wieś
+\begin_inset Quotes prd
+\end_inset
+
+, czy 
+\begin_inset Quotes pld
+\end_inset
+
+koleżanka
+\begin_inset Quotes prd
+\end_inset
+
+.
+ Jasne jest za to, że do zdekodowania struktury zdania niezbędna jest wiedza
+ niezawarta w tekście.
+\end_layout
+
+\begin_layout Standard
+Można byłoby jednak przyjąć odpowiednie konwencje notacyjne, dzięki którym
+ struktura tekstu byłaby możliwa do wyczytania z samego tekstu, bez znajomości
+ żadnych dodatkowych reguł gramatycznych.
+ Na przykład, drzewo rozbioru zdania 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Zły-policjant-kazał"
+
+\end_inset
+
+ moglibyśmy zakodować następująco:
+\end_layout
+
+\begin_layout Verbatim
+(kazał (policjant zły)
+\end_layout
+
+\begin_layout Verbatim
+       (świadkowi przerażonemu)
+\end_layout
+
+\begin_layout Verbatim
+       (zdjąć (odzienie wierzchnie)))
+\end_layout
+
+\begin_layout Standard
+W tekście tym użyłem wcięć, żeby uzyskać większą czytelność.
+ Nic nie stałoby jednak na przeszkodzie, żeby zapisać ową sekwencję znaków
+ ciurkiem -- struktura zdania 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Zły-policjant-kazał"
+
+\end_inset
+
+ byłaby w dalszym ciągu zachowana.
+\end_layout
+
+\begin_layout Standard
+Zastosowana tu konwencja notacyjna pozwala zakodować dowolne drzewo.
+ Czytelnik z pewnością zdążył już zauważyć ogólną prawidłowość, że każdy
+ węzeł albo jest liściem (tak jak słowa 
+\begin_inset Quotes pld
+\end_inset
+
+zły
+\begin_inset Quotes prd
+\end_inset
+
+, 
+\begin_inset Quotes pld
+\end_inset
+
+przerażonemu
+\begin_inset Quotes prd
+\end_inset
+
+ i 
+\begin_inset Quotes pld
+\end_inset
+
+wierzchnie
+\begin_inset Quotes prd
+\end_inset
+
+), albo rozgałęzieniem, i w tym ostatnim przypadku ma postać:
+\end_layout
+
+\begin_layout Verbatim
+(nazwa węzeł-1 węzeł-2 ...)
+\end_layout
+
+\begin_layout Standard
+gdzie poszczególne węzły same mogą być albo liśćmi, albo rozgałęzieniami.
+\end_layout
+
+\begin_layout Standard
+Nie jest to jedyna możliwa konwencja.
+ W istocie, niemal wszystkie języki programowania stosują różne konwencje,
+ np.
+ Python używa zamiennie wcięć i różnego rodzaju nawiasów; języki, których
+ składnia wywodzi się z C (np.
+ C++, Java, JavaScript, PHP) używają w różnych kontekstach różnego rodzaju
+ nawiasów (
+\begin_inset Formula $\{\}$
+\end_inset
+
+, 
+\begin_inset Formula $()$
+\end_inset
+
+, 
+\begin_inset Formula $[]$
+\end_inset
+
+, 
+\begin_inset Formula $<>$
+\end_inset
+
+), a niektóre z nich dodatkowo pozwalają w pewnych kontekstach je opuszczać.
+ Takie komplikacje nie są jednak potrzebne, i w pewnym sensie mogą nawet
+ być szkodliwe.
+ Jedną z zalet wprowadzonej przez nas konwencji jest niewątpliwie prostota.
+ Można się jej łatwo nauczyć, i można też łatwo nauczyć jej komputera.
+\end_layout
+
+\begin_layout Section
+Interpretacja
+\end_layout
+
+\begin_layout Standard
+Żaden tekst nie miałby jakiejkolwiek wartości, gdyby nie wyrażał jakiegoś
+ znaczenia.
+ Czym jednak miałoby być owo mistyczne znaczenie?
+\end_layout
+
+\begin_layout Standard
+Filozofia obfituje w różne próby odpowiedzi na to pytanie.
+ Próby takie noszą nazwę 
+\emph on
+teoryj znaczenia
+\emph default
+.
+ Niektóre z nich próbują twierdzić, że znaczeniami wyrażeń są różne rzeczywiste
+ obiekty, do których te wyrażenia miałyby się odnosić.
+ Inne postulują, że owymi znaczeniami są myśli, które wspomniane wypowiedzi
+ inspirują w umysłach ich odbiorców.
+ Jeszcze inne -- że są nimi zamieszkujące 
+\begin_inset Quotes pld
+\end_inset
+
+platoński świat
+\begin_inset Quotes prd
+\end_inset
+
+ idee.
+ Na potrzeby niniejszej pracy przyjmiemy jednak dużo prostszą teorię znaczenia,
+ kojarzoną z nurtem strukturalizmu, mianowicie -- że znaczeniami tekstów
+ są inne teksty.
+\end_layout
+
+\begin_layout Standard
+Warto się zastanowić, czy przyjmując taką koncepcję znaczenia, nie popadamy
+ w błędne koło: czy mianowicie nie zakładamy tego, co chcemy wyjaśnić.
+\end_layout
+
+\begin_layout Standard
+Nasz domniemany strukturalista mógłby jednak bronić swojej teorii następująco.
+ Wiemy z doświadczenia, że pewne wypowiedzi są proste i niejako zrozumiałe
+ same przez się, zaś te bardziej złożone możemy wyjaśnić w oparciu o te
+ prostsze -- w rzeczy samej, na tym właśnie polega definiowanie! Rozumienie
+ wypowiedzi będzie zatem polegało na sprowadzeniu jej do najprostszych terminów.
+\end_layout
+
+\begin_layout Standard
+Z samej tej koncepcji wynika już kilka ważnych dla nas wniosków.
+ Mianowicie, do budowania znaczenia tekstu będziemy potrzebować jakichś
+ środków kompozycji, oraz -- analogicznie -- do analizowania znaczenia będziemy
+ potrzebowali odpowiednich środków dekompozycji.
+ Zanim zajmiemy się samymi tymi środkami, warto się przyjrzeć pewnym ogólnym
+ własnościom semantycznym wypowiedzi językowych.
+\end_layout
+
+\begin_layout Standard
+Jedną z bardziej zdumiewających cech języka było dla lingiwstów XX-wiecznych
+ to, że my, ludzie, potrafimy wypowiadać i rozumieć nieskończenie wiele
+ wypowiedzi językowych, których nigdy wcześniej nie słyszeliśmy.
+\end_layout
+
+\begin_layout Standard
+Wśród hipotez starających się wyjaśnić ten fenomen warto wymienić tezę o
+ 
+\emph on
+kompozycjonalności
+\emph default
+ języka.
+ Głosi ona mianowicie, że 
+\end_layout
+
+\begin_layout Quote
+znaczenia wyrażeń językowych zależą od (i) znaczeń ich elementów składowych
+ oraz (ii) sposobów połączenia tych elementów.
+\end_layout
+
+\begin_layout Standard
+Wprawdzie można wskazać na wyrażenia językowe (tzw.
+ idiomy) do których owa teza się nie stosuje -- na przykład znaczenia zwrotu
+ 
+\begin_inset Quotes pld
+\end_inset
+
+świnka morska
+\begin_inset Quotes prd
+\end_inset
+
+ nie sposób wydedukować z samej znajomości słów 
+\begin_inset Quotes pld
+\end_inset
+
+świnka
+\begin_inset Quotes prd
+\end_inset
+
+ i 
+\begin_inset Quotes pld
+\end_inset
+
+morska
+\begin_inset Quotes prd
+\end_inset
+
+ -- jednak wydaje się, że w przypadku bardzo wielu wyrażeń ów postulat nie
+ budzi większych zastrzeżeń (np.
+ w sformułowaniu 
+\begin_inset Quotes pld
+\end_inset
+
+zielony balon
+\begin_inset Quotes prd
+\end_inset
+
+ wystarczy, że wiemy, czym jest balon i jak wygląda kolor zielony).
+\end_layout
+
+\begin_layout Standard
+Tym niemniej, nawet jeśli pominiemy idiomy, w naszym języku będziemy mogli
+ znaleźć wyrażenia w pewien sposób zaburzające owej zasadzie kompozycjonalności.
+\end_layout
+
+\begin_layout Standard
+Rozważmy na przykład zdanie:
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+\begin_inset CommandInset label
+LatexCommand label
+name "Louis-Lane-wie,"
+
+\end_inset
+
+
+\emph on
+Louis Lane wie, że Superman umie latać.
+\end_layout
+
+\begin_layout Standard
+Wiemy przy tym, że Superman i Klark Kent to dwie nazwy odnoszące się do
+ tej samej osoby.
+ Stąd też gotowi jesteśmy potraktować następująze zdania jako równowazne:
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "Superman-mieszka-w"
+
+\end_inset
+
+Superman mieszka w Smallville.
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "Klark-Kent-mieszka"
+
+\end_inset
+
+Klark Kent mieszka w Smallville.
+\end_layout
+
+\begin_layout Standard
+Mimo tego, nie możemy uznać zdania 
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "Louis-Lane-wie,-1"
+
+\end_inset
+
+Louis Lane wie, że Klark Kent umie latać.
+\end_layout
+
+\begin_layout Standard
+za zdanie równoważne zdaniu 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-wie,"
+
+\end_inset
+
+.
+ Wynika to stąd, że nazwy 
+\begin_inset Quotes pld
+\end_inset
+
+Superman
+\begin_inset Quotes prd
+\end_inset
+
+ i 
+\begin_inset Quotes pld
+\end_inset
+
+Klark Kent
+\begin_inset Quotes prd
+\end_inset
+
+ występują w nich w tzw.
+ kontekście 
+\emph on
+intensjonalnym
+\emph default
+ (w przeciwieństwie do tzw.
+ kontekstu 
+\emph on
+ekstensjonalnego
+\emph default
+, w którym owe nazwy pojawiają się w zdaniach 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Superman-mieszka-w"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Klark-Kent-mieszka"
+
+\end_inset
+
+).
+ Mówiąc w skrócie -- chodzi o to, że w zdaniach 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-wie,"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-wie,-1"
+
+\end_inset
+
+ nie mówimy o rzeczywistym Supermanie i Klarku Kencie, tylko o przekonaniach
+ Louis Lane dotyczących tych (potencjalnie różnych) osób.
+\end_layout
+
+\begin_layout Standard
+Innymi słowy, nazwy 
+\begin_inset Quotes pld
+\end_inset
+
+Superman
+\begin_inset Quotes prd
+\end_inset
+
+ i 
+\begin_inset Quotes pld
+\end_inset
+
+Klark Kent
+\begin_inset Quotes prd
+\end_inset
+
+ zostały użyte w zdaniach 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-wie,"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-wie,-1"
+
+\end_inset
+
+ w sposób przypominający tzw.
+ mowę zależną.
+ Moglibyśmy np.
+ sparafrazować zdanie 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-wie,"
+
+\end_inset
+
+ do następującej postaci:
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "Louis-Lane-byłaby"
+
+\end_inset
+
+Louis Lane byłaby gotowa uznać zdanie 
+\begin_inset Quotes pld
+\end_inset
+
+Superman umie latać
+\begin_inset Quotes prd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+W zdaniu tym użyliśmy cudzysłowu, dzięki czemu mogliśmy zaakcentować to,
+ że słowo 
+\begin_inset Quotes pld
+\end_inset
+
+Superman
+\begin_inset Quotes prd
+\end_inset
+
+ nie jest w nim użyte w normalnej supozycji, tylko jest wzmiankowane, czy
+ inaczej -- użyte w tzw.
+ supozycji materialnej
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Teoria supozycji pochodzi od XIII-wiecznego filozowa angielskiego, Williama
+ Ockhama, znanego szerzej dzięki postulatowi minimalizmu ontologicznego
+ teorii naukowych, zwanemu 
+\begin_inset Quotes pld
+\end_inset
+
+brzytwą Ockhama
+\begin_inset Quotes prd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ktoś, kto zna się nieco na rzeczy, mógłby jednak zakwestionować poprawność
+ zdania 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-byłaby"
+
+\end_inset
+
+, ponieważ przytoczona w niej fraza 
+\begin_inset Quotes pld
+\end_inset
+
+Superman umie latać
+\begin_inset Quotes prd
+\end_inset
+
+ jest wyrażona w języku polskim, zaś Louis Lane umie mówić jedynie po amerykańsk
+u.
+ Moglibyśmy poradzić sobie z tym problemem, pisząc:
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "Louis-Lane-byłaby-1"
+
+\end_inset
+
+Louis Lane byłaby gotowa uznać zdanie 
+\begin_inset Quotes pld
+\end_inset
+
+Superman can fly
+\begin_inset Quotes prd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Zdanie to jednak może być trudne do zrozumienia dla osób nie posługujących
+ się językiem amerykańskim.
+ Również ten problem dałoby się jakoś obejść:
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "Louis-Lane-byłaby-2"
+
+\end_inset
+
+Louis Lane byłaby gotowa uznać zdanie 
+\begin_inset Quotes pld
+\end_inset
+
+Superman umie latać
+\begin_inset Quotes prd
+\end_inset
+
+ wyrażone w języku amerykańskim.
+\end_layout
+
+\begin_layout Standard
+Tym, co jest znamienne dla zdań 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-byłaby"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-byłaby-1"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Louis-Lane-byłaby-2"
+
+\end_inset
+
+ jest to, że stanowią one zdania o zdaniach, zatem pełnią one funkcję metajęzyko
+wą względem zacytowanych w nich zdań.
+\end_layout
+
+\begin_layout Standard
+Owa możliwość odnoszenia się do wyrażeń językowych (w opozycji do ich normalnego
+ użycia) nosi nazwę 
+\emph on
+abstrakcji metajęzykowej
+\emph default
+, i stanowi warunek możliwości uprawiania poetyki i filozofii języka.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Jest też fundamentem dla teorii prawdy sformułowanej przez wybitnego polskiego
+ logika Alfreda Tarskiego w rozprawie 
+\emph on
+Pojęcie prawdy w językach nauk dedukcyjncyh
+\emph default
+ z 1933 roku
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tarski"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+Alfed Tarski rozpoczął swoją uwagę od następującego spostrzeżenia:
+\end_layout
+
+\begin_layout Quotation
+Zdanie 
+\begin_inset Quotes pld
+\end_inset
+
+Śnieg jest biały
+\begin_inset Quotes prd
+\end_inset
+
+ jest prawdziwe wtedy i tylko wtedy, gdy śnieg jest biały.
+\end_layout
+
+\begin_layout Plain Layout
+Następnie przeszedł do sformułowania ogólnego schematu, pod który podpadają
+ wszystkie zdania tego typu (schemat ten nazywany jest w literaturze 
+\begin_inset Quotes pld
+\end_inset
+
+T-schematem
+\begin_inset Quotes prd
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Quotation
+Zdanie 
+\begin_inset Formula $\text{«}\phi\text{»}$
+\end_inset
+
+ jest prawdziwe wtedy i tylko wtedy, gdy 
+\begin_inset Formula $\phi$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+Owe rozważania miały doprowadzić Tarskiego do pewnych wniosków dotyczących
+ definiowalności prawdy w językach formalnych, jednak przytaczam je tutaj
+ tylko w celu zilustrowania tego, jakie możliwości daje abstrakcja metajęzykowa.
+\end_layout
+
+\end_inset
+
+ Stanowi też wyjasnienie tego, dlaczego niektóre wyrażenia językowe nie
+ zachowują się kompozycjonalnie.
+\end_layout
+
+\begin_layout Standard
+Z pojęciem kompozycjonalności związane jest inne, na swój sposób dualne
+ pojęcie -- mianowicie pojęcie 
+\begin_inset Quotes pld
+\end_inset
+
+przezroczystości odniesieniowej
+\begin_inset Quotes prd
+\end_inset
+
+ (
+\begin_inset Quotes pld
+\end_inset
+
+referential transparency
+\begin_inset Quotes prd
+\end_inset
+
+).
+ Jest to idea, według której pewne złożone wyrażenie językowe możemy zastąpić
+ jego desygnatem (rozumianym tutaj jednak znów -- w świetle przyjętej przez
+ nas teorii znaczenia -- jako inne wyrażenie językowe).
+ Na przykład w zdaniu
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+Suma liczb dwa i trzy jest nieparzysta.
+\end_layout
+
+\begin_layout Standard
+moglibyśmy zastąpić wyrażenie 
+\begin_inset Quotes pld
+\end_inset
+
+suma liczb dwa i trzy
+\begin_inset Quotes prd
+\end_inset
+
+ wyrażeniem 
+\begin_inset Quotes pld
+\end_inset
+
+liczba 
+\emph on
+pięć
+\emph default
+
+\begin_inset Quotes prd
+\end_inset
+
+, ponieważ to właśnie do liczby 5 odnosi się to pierwsze wyrażenie.
+\end_layout
+
+\begin_layout Standard
+Pojęcie przezroczystości odniesieniowej jest szczególnie istotne przy rozważaniu
+ języków programowania -- głównie z tego powodu, że wyrażenia w językach
+ etnicznych są przezroczyste odniesieniowo ze swojej natury.
+ Najlepszym przykładem nieprzezroczystości odniesieniowej w języku naturalnym,
+ jaki udało mi się znaleźć, jest zdanie:
+\end_layout
+
+\begin_layout Numbered Examples (consecutive)
+
+\emph on
+Ty, ty i ty -- do dyrektorki!
+\end_layout
+
+\begin_layout Standard
+Zakładamy przy tym, że osoba, która wypowiada to zdanie, przy każdym wypowiedzen
+iu słowa 
+\begin_inset Quotes pld
+\end_inset
+
+ty
+\begin_inset Quotes prd
+\end_inset
+
+ wskazuje palcem inną osobę.
+ W takim przypadku użyte kilkukrotnie słowo 
+\begin_inset Quotes pld
+\end_inset
+
+ty
+\begin_inset Quotes prd
+\end_inset
+
+ przy każdym użyciu odnosi się do innego obiektu.
+\end_layout
+
+\begin_layout Section
+Programy komputerowe
+\end_layout
+
+\begin_layout Standard
+W przypadku programów komputerowych wyrażenia językowe mogą jednocześnie
+ wykonywać pewne operacje, które modyfikują kontekst wykonania programu.
+ Takie operacje nazywane są skutkami ubocznymi.
+\end_layout
+
+\begin_layout Standard
+Rozważmy definicję funkcji wyrażoną w pseudo-kodzie we wstawce 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "alg:Funkcja-nieprzezroczysta-odniesi"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+globalValue = 0;
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+integer function rq(integer x)
+\end_layout
+
+\begin_layout Verbatim
+
+begin
+\end_layout
+
+\begin_layout Verbatim
+
+   globalValue = globalValue + 1;
+\end_layout
+
+\begin_layout Verbatim
+
+   return x + globalValue;
+\end_layout
+
+\begin_layout Verbatim
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Funkcja-nieprzezroczysta-odniesi"
+
+\end_inset
+
+Funkcja nieprzezroczysta odniesieniowo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gdybyśmy chcieli policzyć wartość wyrażenia
+\end_layout
+
+\begin_layout Verbatim
+rq(2) + (rq(2) * rq(2))
+\end_layout
+
+\begin_layout Standard
+napotkalibyśmy na pewną trudność -- mianowicie każde wywołanie 
+\family typewriter
+rq(2)
+\family default
+ dawałoby w wyniku inną wartość -- za pierwszym razem byłoby to 3, za drugim
+ 4, a za trzecim 5.
+ Dodatkowo, ostateczny wynik zależy od kolejności ewaluacji.
+ Gdybyśmy liczyli wartości wyrażeń od lewej do prawej, wynikiem byłoby 3
+ + (4 * 5), czyli 23.
+ Gdybyśmy jednak liczyli wartości w odwrotnej kolejności, otrzymalibyśmy
+ 5 + (4 * 3), czyli 17.
+\end_layout
+
+\begin_layout Standard
+Dla odmiany, analiza działania kodu używającego funkcji ze wstawki 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "alg:Funkcja-przezroczysta-odniesieni"
+
+\end_inset
+
+ byłaby dużo prostsza, ponieważ funkcja 
+\family typewriter
+rt
+\family default
+ wywołana z tym samym argumentem daje zawsze ten sam wynik, dlatego w wyrażeniu
+\end_layout
+
+\begin_layout Verbatim
+rt(2) + (rt(2) * rt(2))
+\end_layout
+
+\begin_layout Standard
+możemy po prostu za kazde z wystąpień 
+\family typewriter
+rt(2)
+\family default
+ podstawić wartość 3.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+integer function rt(integer x)
+\end_layout
+
+\begin_layout Verbatim
+
+begin
+\end_layout
+
+\begin_layout Verbatim
+
+   return x + 1;
+\end_layout
+
+\begin_layout Verbatim
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Funkcja-przezroczysta-odniesieni"
+
+\end_inset
+
+Funkcja przezroczysta odniesieniowo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Programy, w których nie występują skutki uboczne, nazywa się 
+\emph on
+programami funkcyjnymi
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Dysponując tą wiedzą, możemy spróbować scharakteryzować nieco bardziej formalnie
+ to, czym jest znaczenie programu:
+\begin_inset Formula 
+\[
+\left\langle v,c^{*}\right\rangle =m(e,c).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Powyższy prosty wzór stwierdza tyle, że znaczenie (
+\begin_inset Formula $m$
+\end_inset
+
+ -- od 
+\begin_inset Quotes pld
+\end_inset
+
+meaning
+\begin_inset Quotes prd
+\end_inset
+
+) jest funkcją od dwóch zmiennych, 
+\begin_inset Formula $e$
+\end_inset
+
+ -- kodu programu oraz 
+\begin_inset Formula $c$
+\end_inset
+
+ -- kontekstu (środowiska) wykonania.
+ Wartością tej funkcji jest zaś para uporządkowana, której pierwszy element,
+ 
+\begin_inset Formula $v$
+\end_inset
+
+, jest wartością wyrażenia 
+\begin_inset Formula $e$
+\end_inset
+
+, zaś drugi element -- 
+\begin_inset Formula $c^{*}$
+\end_inset
+
+ -- jest nowym kontekstem (po wykonaniu programu).
+\end_layout
+
+\begin_layout Standard
+W szczególności, jeżeli mamy do czynienia z programem funkcyjnym, ów wzór
+ redukuje się do postaci:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left\langle v,c\right\rangle =m(e,c).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Z drugiej strony, jeżeli mamy do czynienia z programem czysto imperatywnym,
+ w którym wartości wyrażeń są nieistotne, bo wykonanie programu stanowi
+ wyłącznie serię skutków ubocznych
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sytuacja taka ma miejsce głównie w przypadku języka 
+\emph on
+asembler
+\emph default
+ albo tzw.
+ programów na maszynę Turinga.
+ Wówczas poszczególne wyrażenia interpretujemy jako 
+\begin_inset Quotes pld
+\end_inset
+
+instrukcje
+\begin_inset Quotes prd
+\end_inset
+
+ bądź 
+\begin_inset Quotes pld
+\end_inset
+
+rozkazy
+\begin_inset Quotes prd
+\end_inset
+
+ dla komputera.
+\end_layout
+
+\end_inset
+
+, możemy zapisać
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Symbol 
+\begin_inset Formula $\varoslash$
+\end_inset
+
+ oznacza, że dana wartość jest ignorowana, albo że jej po prostu nie ma.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left\langle \varoslash,c^{*}\right\rangle =m(e,c).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jednak większość programów znajduje się gdzieś pomiędzy tymi dwiema skrajnościam
+i.
+\end_layout
+
+\begin_layout Standard
+Jeżeli przywołamy nasze wcześniejsze rozważania dotyczące tekstu, przypomnimy
+ sobie, że każdy tekst stanowi (wewnętrznie ustrukturyzowany) ciąg słów.
+ Żebyśmy mogli ów tekst rozumieć, użyte w nim słowa muszą być nam znane.
+ Jedynym wyjątkiem są słowa, które wzmiankujemy (np.
+ w formie cytatu) albo takie, które dopiero definiujemy.
+\end_layout
+
+\begin_layout Standard
+Doszliśmy też do wniosku, że interpretacja tekstu programu będzie polegała
+ na wyrażeniu go w prostszych terminach -- czyli na zredukowaniu go, bądź
+ też sprowadzeniu do innej postaci.
+\end_layout
+
+\begin_layout Standard
+Chcielibyśmy zatem jako programiści mieć możliwość budowania rzeczy złożonych
+ z rzeczy prostych, nazywania tych nowych złożonych rzeczy (definiowania)
+ oraz komponowania tych rzeczy (zarówno prostych jak i złożonych) w taki
+ sposób, żeby wyrażały to, co chcemy wyrażać.
+ Z drugiej strony, oczekiwalibyśmy, żeby zbudowane w ten sposób wypowiedzi
+ dało się zrozumieć -- to znaczy żeby istniały jakieś środki analizy (czy
+ to intelektualne, czy mechaniczne), które pozwalałyby redukować terminy
+ złożone do prostych.
+\end_layout
+
+\begin_layout Standard
+Okazuje się, że istnieje pewien prosty system formalny, który spełnia wszystkie
+ te wymagania.
+ Nazywa się on 
+\emph on
+rachunkiem
+\emph default
+ 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ (lambda), choć być może lepszą nazwą byłby 
+\begin_inset Quotes pld
+\end_inset
+
+rachunek podstawieniowy
+\begin_inset Quotes prd
+\end_inset
+
+.
+ Wyrażenia rachunku 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ mogą przyjmować postać stałych, zmiennych, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcji albo kombinacji.
+\end_layout
+
+\begin_layout Standard
+Przykładowa 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcja może mieć postać:
+\begin_inset Formula 
+\[
+(\lambda\underbrace{(x\; y)}_{argumenty}\underbrace{x\quad\mathrm{ma}\quad y}_{ciało})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcja składa się z trzech elementów: specjalnego symbolu 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, listy dowolnie wielu zmiennych (którymi zasadniczo mogą być dowolne różne
+ symbole) oraz ciała, które również może stanowić dowolne 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-wyrażenie.
+ W ciele wyrażenia w powyższym przykładzie występują dwie zmienne, 
+\begin_inset Formula $x$
+\end_inset
+
+ i 
+\begin_inset Formula $y$
+\end_inset
+
+, które zostają związane argumentami 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcji.
+\end_layout
+
+\begin_layout Standard
+Kombinacje zapisujemy w postaci
+\begin_inset Formula 
+\[
+(wyrażenie\; argumenty\;...),
+\]
+
+\end_inset
+
+ gdzie 
+\begin_inset Formula $wyrażenie$
+\end_inset
+
+ jest dowolnym 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-wyrażeniem redukującym się do 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcji (może być zatem albo 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcją, albo kombinacją, która -- być może po wielu krokach redukcji
+ -- redukuje się do 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcji).
+\end_layout
+
+\begin_layout Standard
+Reguły redukcji możemy określić następująco: stałe, zmienne i 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcje redukują się do samych siebie (czyli nie redukują się wcale),
+ natomiast w przypadku kombinacji najpierw dokonujemy redukcji 
+\begin_inset Formula $wyrażenia$
+\end_inset
+
+, a kiedy zostanie ono zredukowane do 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcji, zastępujemy całą kombinację ciałem tej 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcji, w którym za wszystkie zmienne podstawiamy wartości odpowiednich
+ argumentów.
+\end_layout
+
+\begin_layout Standard
+Jakkolwiek skomplikowanie by to nie brzmiało, reguła ta jest całkiem prosta.
+ Oto przykładowa redukcja kombinacji:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+((\lambda\;(x\; y)\; x\;\mathrm{ma}\; y)\;\mathrm{Dorota}\;\mathrm{kota})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To, że wyrażenie jest kombinacją, nie powinno budzić zastrzeżeń.
+ 
+\begin_inset Formula $Wyrażenie$
+\end_inset
+
+ kombinacji jest 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcją, w związku z czym redukuje się do siebie samego.
+ Ciałem wyrażenia jest 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $x\;\mathrm{ma}\; y$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+.
+ Występują w nim dwie zmienne, 
+\begin_inset Formula $x$
+\end_inset
+
+ oraz 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Odpowiadają im kolejno argumenty 
+\begin_inset Formula $\mathrm{Dorota}$
+\end_inset
+
+ oraz 
+\begin_inset Formula $\mathrm{kota}$
+\end_inset
+
+.
+ W wyniku redukcji kombinacji otrzymamy zatem wyrażenie
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Uważna czytelniczka z pewnością zwróciła uwagę, że wynik redukcji nie jest
+ już 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-wyrażeniem: nie jest bowiem ani stałą, ani zmienną, ani 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcją, ani kombinacją -- jest za to układem trzech stałych.
+ Nie powinno to jednak przeszkadzać w zrozumieniu przykładu.
+ Wystarczy, że uznamy wynik redukcji za nieredukowalny, czyli wyrażony w
+ pierwotnych terminach.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathrm{Dorota\; ma\; kota}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Chociaż prosta operacja podstawiania argumentów za zmienne w ciałach 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcji może wydać się czymś banalnym, pozwala ona na zdefiniowanie
+ działań arytmetycznych na liczbach naturalnych oraz instrukcji warunkowej
+ 
+\family typewriter
+if-then-else
+\family default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Tak naprawdę, rachunek 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ pozwala na zakodowanie dowolnej funkcji obliczalnej -- jego moc wyrazu
+ jest zatem równoważna Uniwersalnej Maszynie Turinga albo maszynie RAM.
+ Przewagą rachunku 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ jest jednak to, że oprócz wyrażania różnych pojęć i operacji, pozwala także
+ na uchwycenie ich, ponieważ obecność argumentów w 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcjach umożliwia nam dodatkowo nadawanie nazw różnym wartościom.
+\end_layout
+
+\end_inset
+
+.
+ Osoby zainteresowane odsyłam do znakomitego skryptu Johna Harrisona dotyczącego
+ programowania funkcyjnego 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Harrison1997"
+
+\end_inset
+
+.
+ W ramach zachęty proponuję zaś dokonanie redukcji następującej kombinacji
+ (sugerowałbym jednak nie próbować zbyt długo!):
+\begin_inset Formula 
+\[
+\left((\lambda\;(x)\;(x\; x))\quad(\lambda\;(x)\;(x\; x))\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dla naszych potrzeb wprowadzimy do naszego języka jeszcze dwie specjalne
+ konstrukcje
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Konstrukcje te wprawdzie daje się wyrazić w rachunku 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, ale jest to dość skomplikowane, i z tego powodu na potrzeby prezentacji
+ wygodniej uznać je za wyrażenia pierwotne.
+ Przytoczę tutaj -- bez uzasadnienia ani żadnych wyjaśnień -- wyrażenie
+ służące do uzyskania efektowi równoważnemu użyciu 
+\family typewriter
+define
+\family default
+.
+ Jest to tzw.
+ kombinator paradoksalny albo 
+\begin_inset Formula $Y$
+\end_inset
+
+-kombinator, i przytaczam go tu ze względu na jego osobliwe piękno:
+\begin_inset Formula 
+\[
+\left(\lambda\;\left(f\right)\;\left(\left(\lambda\;\left(x\right)\;\left(f\;\left(x\; x\right)\right)\right)\;\left(\lambda\;\left(x\right)\;\left(f\;\left(x\; x\right)\right)\right)\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Verbatim
+(define symbol wartość)
+\end_layout
+
+\begin_layout Standard
+działa w ten sposób, że wiąże 
+\family typewriter
+wartość
+\family default
+ z 
+\family typewriter
+symbolem
+\family default
+ -- od tej pory każdy 
+\family typewriter
+symbol
+\family default
+ (niebędący argumentem 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcji) będzie redukował się do swojej 
+\family typewriter
+wartości
+\family default
+;
+\end_layout
+
+\begin_layout Verbatim
+(if warunek działanie alternatywa)
+\end_layout
+
+\begin_layout Standard
+działa w ten sposób, że najpierw dokonuje redukcji 
+\family typewriter
+warunku
+\family default
+.
+ Jeżeli 
+\family typewriter
+warunek
+\family default
+ redukuje się do specjalnej wartości logicznej 
+\begin_inset Quotes pld
+\end_inset
+
+fałsz
+\begin_inset Quotes prd
+\end_inset
+
+, to cała instrukcja redukuje się do 
+\family typewriter
+alternatywy
+\family default
+.
+ W przeciwnym razie instrukcja redukuje się do 
+\family typewriter
+działania
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Oprócz tych środków łączenia potrzebujemy również jakichś pojęć pierwotnych.
+ Tradycyjnie za pojęcia pierwotne w informatyce teoretycznej uznaje się
+ liczby i podstawowe działania na nich
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Chociaż nie chciałbym, żeby użycie przykładu matematycznego mogło kogokolwiek
+ zniechęcić -- istnieje wiele programów, które w ogóle nie stosują działań
+ arytmetycznych -- przyznam, że trudno mi zerwać z tą tradycją -- głównie
+ dlatego, że przykłady odnoszące się do liczb są prostsze w analizie od
+ innych przykładów, jakie mógłbym podać.
+\end_layout
+
+\end_inset
+
+ -- dodawanie, odejmowanie, mnożenie i dzielenie.
+ Dla spójności, nasz język będzie stosował onawiasowaną notację polską --
+ działania arytmetyczne będziemy zawsze pisać przed argumentami.
+ Przykładowo, zamiast pisać
+\begin_inset Formula 
+\[
+2+2,
+\]
+
+\end_inset
+
+ zapiszemy
+\end_layout
+
+\begin_layout Verbatim
+(+ 2 2)
+\end_layout
+
+\begin_layout Standard
+-- dzięki temu możemy traktować działania arytmetyczne tak, jak do tej pory
+ traktowaliśmy kombinacje i 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcje.
+\end_layout
+
+\begin_layout Standard
+Opisanego w ten sposób języka możemy użyć do zdefiniowania funkcji 
+\emph on
+silnia
+\emph default
+.
+ Silnię z liczby 
+\begin_inset Formula $n$
+\end_inset
+
+ zapisujemy 
+\begin_inset Formula $n!$
+\end_inset
+
+ i czytamy 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $n$
+\end_inset
+
+-silnia
+\begin_inset Quotes prd
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Jeżeli mamy w danym pokoju 
+\begin_inset Formula $n$
+\end_inset
+
+ krzeseł, to 
+\begin_inset Formula $n!$
+\end_inset
+
+ oznacza np.
+ ilość sposobów, na które możemy posadzić na tych krzesłach 
+\begin_inset Formula $n$
+\end_inset
+
+ osób (zakładając, że każda z tych osób będzie siedzieć).
+\end_layout
+
+\end_inset
+
+.
+ Funkcję tę można zdefiniować nieformalnie jako
+\begin_inset Formula 
+\[
+n!=1\cdot2\cdot...\cdot(n-1)\cdot n
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dla dowolnego naturalnego 
+\begin_inset Formula $n>0$
+\end_inset
+
+.
+ Można też zdefiniować silnię rekurencyjnie:
+\begin_inset Formula 
+\[
+n!=\begin{cases}
+1 & dla\; n=0\\
+n\cdot(n-1)! & dla\; n>0
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definicję tę możemy bezpośrednio przełożyć na 
+\begin_inset Quotes pld
+\end_inset
+
+naš jezik
+\begin_inset Quotes prd
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+widać, że symbol 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ zastąpiliśmy słowem 
+\begin_inset Quotes pld
+\end_inset
+
+lambda
+\begin_inset Quotes prd
+\end_inset
+
+.
+ To dlatego, że niepostrzeżenie przeszliśmy już od czystego rachunku 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ do języka programowania Scheme.
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Verbatim
+(define ! (lambda (n)
+\end_layout
+
+\begin_layout Verbatim
+            (if (= n 0)
+\end_layout
+
+\begin_layout Verbatim
+                1
+\end_layout
+
+\begin_layout Verbatim
+                (* n (! (- n 1))))))
+\end_layout
+
+\begin_layout Standard
+Możemy sprawdzić, czy ta definicja w świetle naszej reguły redukcji rzeczywiście
+ działa.
+ Spróbujmy zobaczyć, co się stanie, jeśli napiszemy
+\end_layout
+
+\begin_layout Verbatim
+(! 5)
+\end_layout
+
+\begin_layout Standard
+Zgodnie z regułą podstawiania wartości za symbole, powyższe wyrażenie zostanie
+ 
+\begin_inset Quotes pld
+\end_inset
+
+zredukowane
+\begin_inset Quotes prd
+\end_inset
+
+ do postaci:
+\end_layout
+
+\begin_layout Verbatim
+((lambda(n)(if (= n 0) 1 (* n (! (- n 1))))) 5)
+\end_layout
+
+\begin_layout Standard
+W dalszym kroku, zgodnie z opisaną wcześniej regułą redukcji dla kombinacji,
+ zastępujemy 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-abstrakcję jej ciałem, w którym za wszystkie użycia zmiennej 
+\family typewriter
+n
+\family default
+ podstawiamy wartość 5:
+\end_layout
+
+\begin_layout Verbatim
+(if (= 5 0) 1 (* 5 (! (- 5 1))))
+\end_layout
+
+\begin_layout Standard
+Teraz zgodnie z regułą redukcji wyrażenia warunkowego, najpierw dokonujemy
+ ewaluacji 
+\family typewriter
+warunku
+\family default
+.
+ Ponieważ liczba 5 jest różna od liczby 0, wartością 
+\family typewriter
+warunku
+\family default
+ jest fałsz logiczny.
+ W związku z tym całe wyrażenie redukuje się do 
+\family typewriter
+alternatywy
+\family default
+ wyrażenia 
+\family typewriter
+if
+\family default
+:
+\end_layout
+
+\begin_layout Verbatim
+(* 5 (! (- 5 1)))
+\end_layout
+
+\begin_layout Standard
+Zgodnie z regułą redukcji kombinacji, musimy najpierw dokonać redukcji wszystkic
+h argumentów.
+ Jedynym argumentem jest wyrażenie 
+\family typewriter
+(! (- 5 1))
+\family default
+.
+ Jest ono kombinacją, zatem aby dokonać jego redukcji, musimy najpierw dokonać
+ redukcji wszystkich argumentów.
+ Jedynym argumentem jest wyrażenie 
+\family typewriter
+(- 5 1)
+\family default
+.
+ Jest ono działaniem pierwotnym, które -- zgodnie z tym, czego uczono nas
+ w szkole -- redukuje się do liczby 
+\family typewriter
+4
+\family default
+.
+ Ostatnie wyrażenie możemy zatem przepisać jako:
+\end_layout
+
+\begin_layout Verbatim
+(* 5 (! 4))
+\end_layout
+
+\begin_layout Standard
+Wyrażenie 
+\family typewriter
+(! 4)
+\family default
+ możemy zredukować analogicznie do tego, w jaki sposób redukowaliśmy wyrażenie
+ 
+\family typewriter
+(! 5)
+\family default
+.
+ W wyniku dostaniemy:
+\end_layout
+
+\begin_layout Verbatim
+(* 5 (* 4 (! 3)))
+\end_layout
+
+\begin_layout Standard
+Następnie, po redukcji wyrażenia 
+\family typewriter
+(! 3)
+\family default
+:
+\end_layout
+
+\begin_layout Verbatim
+(* 5 (* 4 (* 3 (! 2))))
+\end_layout
+
+\begin_layout Standard
+Następnie, po redukcji wyrażenia 
+\family typewriter
+(! 2)
+\family default
+:
+\end_layout
+
+\begin_layout Verbatim
+(* 5 (* 4 (* 3 (* 2 (! 1)))))
+\end_layout
+
+\begin_layout Standard
+Następnie, po redukcji wyrażenia 
+\family typewriter
+(! 1)
+\family default
+:
+\end_layout
+
+\begin_layout Verbatim
+(* 5 (* 4 (* 3 (* 2 (* 1 (! 0))))))
+\end_layout
+
+\begin_layout Standard
+Wyrażenie 
+\family typewriter
+(! 0)
+\family default
+ zostanie zredukowane pośrednio do wyrażenia 
+\family typewriter
+(if (= 0 0) 1 ...)
+\family default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+Alternatywa
+\family default
+ wyrażenia warunkowego została zastąpiona symbolem 
+\family typewriter
+...
+\family default
+, ponieważ jej postaćnie ma w tym kontekście znaczenia.
+\end_layout
+
+\end_inset
+
+, warunek 
+\family typewriter
+(= 0 0)
+\family default
+ przyjmie wartość prawdy logicznej, w związku z czym wartością tego wyrażenia
+ będzie ostatecznie liczba 
+\family typewriter
+1
+\family default
+.
+ Ostatecznie nasze wyrażenie w najbardziej rozwiniętej postaci przyjmie
+ wartość:
+\end_layout
+
+\begin_layout Verbatim
+(* 5 (* 4 (* 3 (* 2 (* 1 1)))))
+\end_layout
+
+\begin_layout Standard
+Przeprowadzając mnożenia (od środka do zewnątrz) uzyskamy pożądany wynik.
+\end_layout
+
+\begin_layout Standard
+Zaprezentowane powyżej rozumowanie stanowi przykład tzw.
+ podstawieniowego modelu obliczeń 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SICP"
+
+\end_inset
+
+.
+ Tym, co jest dla niego charakterystyczne, jest to, że wykonanie programu
+ polega na transformacji wystepujących w nim wyrażeń pierwotnych.
+\end_layout
+
+\begin_layout Standard
+Nie jest to jedyny model obliczeń, jednak posiada taką zaletę, że ewaluację
+ programu można z łatwością przeprowadzić na papierze.
+ Inne popularne modele obliczeń wymagają od osoby analizującej kod zapamiętania
+ całego stanu środowiska w każdym kroku wykonania obliczenia, co jest bardzo
+ obciążające kognitywnie.
+\end_layout
+
+\begin_layout Standard
+Powyższy program dokonywał operacji na liczbach.
+ Oczywiście, liczby nie są jedynym typem danych, na których programy mogą
+ operować.
+ W szczególności -- tak jak wcześniej przedstawialiśmy przykłady wypowiedzi
+ odnoszących się do innych wypowiedzi -- programy mogą manipulować kodem
+ innych programów.
+ Na przykład, wyrażenie
+\end_layout
+
+\begin_layout Verbatim
+(lambda (n) (if (= n 0) 1 (* n (! (- n 1)))))
+\end_layout
+
+\begin_layout Standard
+możemy traktować jako program, ale moglibyśmy też potraktować je jako listę
+ trójelementową, której pierwszym elementem jest symbol 
+\family typewriter
+lambda
+\family default
+, drugim lista jednoelementowa 
+\family typewriter
+(n)
+\family default
+, a trzecim lista czteroelementowa, której pierwszym elementem jest symbol
+ 
+\family typewriter
+if
+\family default
+, i tak dalej.
+\end_layout
+
+\begin_layout Standard
+Do zapobiegania redukcji (czy też interpretacji) wyrażenia służy specjalny
+ operator 
+\family typewriter
+quote
+\family default
+.
+ Działa w taki sposób, że wyrażenie
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+(quote x)
+\end_layout
+
+\begin_layout Standard
+redukuje się do 
+\family typewriter
+x
+\family default
+ (przy czym 
+\family typewriter
+x
+\family default
+ uprzednio nie zostaje poddane redukcji).
+ Uświadamia nam to, że program, który wykonujemy, w istocie stanowi szczególne
+ spojrzenie na dane, zaś wszelkie dane -- jeśli tylko spojrzeć na nie odpowiedni
+o -- są również programami.
+\end_layout
+
+\begin_layout Section
+Czy programowanie jest literaturą?
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+W sekcji tej prezentuję pewne ogólne wnioski odnoszące się do zagadnień,
+ o których wcześniej nie wspominałem.
+ Z tego powodu będą one zrozumiałe raczej dla osób, które miały styczność
+ z tekstami matematycznymi, systemami dowodowymi oraz statycznie typowanymi
+ językami programowania.
+ Mam jednak nadzieję, że zdołam przynajmniej podsycić ciekawość pozostałych
+ osób.
+ W szczególności polecam podręcznik 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Harrison2009"
+
+\end_inset
+
+, ponieważ spełnia wszystkie powyższe kryteria.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pomimo zaproponowanego tu przeze mnie nieco teorioliterackiego spojrzenia
+ na programy komputerowe, naiwnością byłoby twierdzenie, że programowanie
+ to taka sama literatura, jak każda inna.
+ Z drugiej strony, to stwierdzenie w podobnym stopniu dotyczy każdej innej
+ literatury, ponieważ każda literatura jest inna.
+ Być może więc lepszym pytaniem byłoby: 
+\begin_inset Quotes pld
+\end_inset
+
+do jakiego innego rodzaju literatury programowanie jest najbardziej podobne?
+\begin_inset Quotes prd
+\end_inset
+
+.
+ Pytanie to również jest kłopotliwe, ponieważ nawet wśród programów komputerowyc
+h występuje spora różnorodność.
+\end_layout
+
+\begin_layout Standard
+Tym, co odróżnia programy komputerowe od form fabularnych, jest stosunek
+ ilości definicji do stwierdzeń.
+ W formach beletrystycznych definicji pojęć jest albo bardzo mało, albo
+ nie ma ich wcale -- stanowią one po prostu różne użycia pojęć powszechnie
+ znanych.
+ Programy komputerowe składają się zaś głównie z definicji pojęć, a stwierdzeń
+ (czyli użyć pojęć poza kontekstem definicji) jest w nich stosunkowo mało
+ albo nie ma ich wcale.
+\end_layout
+
+\begin_layout Standard
+Pod tym względem programy komputerowe są najbardziej podobne do tekstów
+ matematycznych albo logicznych.
+ Celem tekstów matematycznych jest przede wszystkim prezentacja pojęć i
+ twierdzeń dotyczących tych pojęć.
+ Z tego względu teksty matematyczne składają się z definicji, przykładów,
+ twierdzeń, dowodów (rozumowań) i ćwiczeń, a niekiedy również aksjomatów.
+ (Twierdzenie w tym różni się od stwierdzenia, że ma charakter ogólny, a
+ nie jednostkowy.
+ W kontekście tekstu matematycznego za przykłady stwierdzeń można uznać
+ przykłady użycia definicji)
+\end_layout
+
+\begin_layout Standard
+Spojrzenie na program jako na tekst matematyczny wydaje się najbardziej
+ obiecującym kierunkiem pod względem możliwości dalszego rozwoju.
+ O ile jednak w dobrze napisanym programie definicje funkcji bądź obiektów
+ można traktować po prostu jako definicje pojęć, testy jednostkowe -- jako
+ przykłady użycia pojęć, zaś asercje -- jako swego rodzaju cząstkowe twierdzenia
+ bądź aksjomaty -- o tyle całkowicie brakuje w nich reprezentacji rozumowań,
+ na podstawie których programiści dochodzą do określonych sformułowań.
+\end_layout
+
+\begin_layout Standard
+Być może użycie jakiegoś systemu dowodowego do dowodzenia różnych własności
+ programów, na których programista polega, mogłoby zwiększyć niezawodność
+ wytwarzanego oprogramowania, w podobny sposób, w jaki użycie statycznego
+ systemu typów (w językach takich, jak C, Java, ML czy Haskell) pozwala
+ wyeliminować całe klasy błędów, na jakie narażone są języki dynamicznie
+ typowane.
+\end_layout
+
+\begin_layout Standard
+Warto przy tej okazji zwrócić uwagę na jedną rzecz.
+ Niekiedy programiści uważają, że sposobem na poprawienie czytelności kodu
+ jest umieszczenie w nim komentarzy i tzw.
+ docstringów.
+ Chociaż tego rodzaju działania mogą stanowić doraźną pomoc i na przykład
+ generować z kodu źródłowego użyteczną dokumentację, na dłuższą metę takie
+ rozwiązanie wydaje się wadliwe, ponieważ jest sposobem obejścia niedostatków
+ języków programowania.
+ Komentarz w kodzie źródłowym świadczy o tym, że programista nie jest w
+ stanie przekazać tej samej informacji w języku programowania.
+\end_layout
+
+\begin_layout Standard
+Z drugiej strony, istnieje cały nurt tzw.
+ programowania piśmiennego (literate programming), zapoczątkowany przez
+ prominentnego amerykańskiego matematyka i programistę, Donalda Knutha.
+ Polega on na tym, że przeznaczony do czytania przez człowieka tekst wyjaśniając
+y istotę programu przeplata się z kodem zrozumiałym dla komputera.
+ W taki sposób został napisany m.in.
+ system składania tekstu TeX (z którego pośrednio korzystałem przy tworzeniu
+ niniejszego dokumentu).
+\end_layout
+
+\begin_layout Standard
+Podejście takie budzi jednak pewne kontrowersje.
+ Wprawdzie każdy artykuł wyjasniający działanie jakiegoś programu można
+ postrzegać jako 
+\begin_inset Quotes pld
+\end_inset
+
+program piśmienny
+\begin_inset Quotes prd
+\end_inset
+
+, wydaje się, że poza sferą dydaktyki styl ten raczej się nie przyjął.
+\end_layout
+
+\begin_layout Standard
+Inny ciekawy nurt w programowaniu związany jest z tworzeniem tzw.
+ interaktywnej fikcji, czyli swego rodzaju gier przygodowych opartych na
+ tekście.
+ Pomimo pozornej archaiczności interfejsu, istnieją całe środowiska autorów
+ tworzących tego typu programy.
+ Powstały również interesujące narzędzia ułatwiające autorom pracę.
+ Jednym z najciekawszych takich narzędzi jest język programowania Inform
+ 7, skonstruowany w ten sposób, że programy w nim same przypominają prozę.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+To decide what number is the factorial of (n - a number):
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+if n is zero, decide on one;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+otherwise decide on the factorial of (n minus one) times n.
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Funkcja-implementująca-silnię"
+
+\end_inset
+
+Funkcja implementująca silnię w języku Inform 7
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wstawka 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "alg:Funkcja-implementująca-silnię"
+
+\end_inset
+
+ zawiera definicję funkcji implementującej silnię w tym języku
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Źródło: 
+\emph on
+http://stackoverflow.com/questions/23930/factorial-algorithms-in-different-langua
+ges/91001#91001
+\end_layout
+
+\end_inset
+
+.
+ Z pewnością wygląda ona interesująco, choć niewątpliwą wadą upodobniania
+ języka programowania do języka naturalnego jest to, że ludzie są raczej
+ przyzwyczajeni do tego, że język naturalny jest nieprecyzyjny i wieloznaczny
+ -- własnie z tych powodów chętniej używają w różnych sytuacjach notacji
+ formalnych.
+\end_layout
+
+\begin_layout Section
+Podsumowanie
+\end_layout
+
+\begin_layout Standard
+W prezentacji niniejszej chciałem przedstawić alternatywę wobec utartego
+ poglądu, jakoby programowanie było równoznaczne warunkowaniu i wydawaniu
+ komputerowi rozkazów.
+ Moim celem było wykazanie, że programowanie w istocie rzeczy polega na
+ tworzeniu, nazywaniu i używaniu pojęć -- na fabrykacji i inhabitacji świata
+ idei.
+ Pod tym względem programowanie może stanowić jedną z najszlachetniejszych
+ form ludzkiego myślenia, ponieważ uczy systematyczności i klarownego formułowan
+ia myśli.
+ Zaakcentowanie aspektu programowania związanego z myśleniem -- pomysł,
+ żeby w kodzie źródłowym zapisywać nie tylko wyniki rozumowań, ale również
+ same rozumowania -- tak, jak w podręcznikach matematyki, w których obok
+ definicji prezentuje się przykłady, twierdzenia i dowody -- może wpłynąć
+ pozytywnie zarówno na zrozumiałość, jak i niezawodność oraz wydajność tworzoneg
+o kodu.
+\end_layout
+
+\begin_layout Standard
+Ważne jest przy tym, żeby programowanie -- podobnie jak wszelkie inne formy
+ pisarstwa -- było traktowane jako aktywność społeczna.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "SICP"
+
+\end_inset
+
+Abelson Harold, Sussman Gerald, 
+\emph on
+Struktura i Interpretacja Programów Komputerowych, 
+\emph default
+WNT, Warszawa 2002.
+ Pełny tekst książki w języku angielskim dostępny jest na stronie: 
+\emph on
+http://mitpress.mit.edu/sicp/full-text/book/book.html
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Frege"
+
+\end_inset
+
+Frege Gottlob, 
+\emph on
+Pisma Semantyczne
+\emph default
+, PWN, Warszawa 1977
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Gleick2011"
+
+\end_inset
+
+Gleick James, 
+\emph on
+Informacja.
+ Bit, wszechświat, rewolucja.
+
+\emph default
+ Wydawnictwo Znak, Kraków 2012
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Harrison1997"
+
+\end_inset
+
+Harrison John, 
+\emph on
+Introduction to Functional Programming
+\emph default
+, skrypt do wykładu na uniwersytecie Cambridge.
+ Tekst dostępny pod adresem: 
+\emph on
+http://www.cl.cam.ac.uk/teaching/Lectures/funprog-jrh-1996/all.pdf
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Harrison2009"
+
+\end_inset
+
+Harrison John, 
+\emph on
+Handbook of Practical Logic and Automated Reasoning
+\emph default
+, Cambridge University Press, Cambridge 2009
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Tarski"
+
+\end_inset
+
+Tarski Alfred, 
+\emph on
+Pisma logiczno-filozoficzne
+\emph default
+, PWN, Warszawa 1995
+\end_layout
+
+\end_body
+\end_document

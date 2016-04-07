@@ -1,0 +1,5235 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass amsbook
+\begin_preamble
+\usepackage{proof}
+\newcommand{\expose}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\dash}{$\text{-}$}
+\let\xca\@undefined
+\theoremstyle{plain}
+\newtheorem{xca}{\protect\exercisename}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language american
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Inductive Sets of Data
+\end_layout
+
+\begin_layout Section
+Recursively Specified Data
+\end_layout
+
+\begin_layout Subsection
+Inductive Specification (definitions excerpt)
+\end_layout
+
+\begin_layout Definition
+A natural number 
+\begin_inset Formula $n$
+\end_inset
+
+ is in 
+\begin_inset Formula $S$
+\end_inset
+
+ if and only if
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $n=0$
+\end_inset
+
+, or
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $n-3\in S$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{in-S?}:N\rightarrow Bool$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+usage:
+\series default
+ 
+\family typewriter
+(in-S? n) = #t if n is in S, #f otherwise
+\end_layout
+
+\begin_layout LyX-Code
+(define (in-S? n)
+\end_layout
+
+\begin_layout LyX-Code
+  (or (zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+      (and (>= (- n 3) 0)
+\end_layout
+
+\begin_layout LyX-Code
+           (in-S? (- n 3)))))
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:3*n bottom-up"
+
+\end_inset
+
+Define the set 
+\begin_inset Formula $S$
+\end_inset
+
+ to be the smallest set contained in 
+\begin_inset Formula $N$
+\end_inset
+
+ and satisfying the following two properties:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $0\in S$
+\end_inset
+
+, and
+\end_layout
+
+\begin_layout Enumerate
+if 
+\begin_inset Formula $n\in S$
+\end_inset
+
+, then 
+\begin_inset Formula $n+3\in S$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{0 
+\backslash
+in S}{}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{(n+3) 
+\backslash
+in S}{n 
+\backslash
+in S}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+(list of integers, top-down) A Scheme list is a list of integers if and
+ only if either
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+it is the empty list, or
+\end_layout
+
+\begin_layout Enumerate
+it is a pair whose car is an integer and whose cdr is a list of integers.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We use 
+\emph on
+Int
+\emph default
+ to denote the set of all integers and 
+\emph on
+List-of-Int
+\emph default
+ to denote the set of lists of integers.
+\end_layout
+
+\begin_layout Definition
+(list of integers, bottom-up) The set List-of-Int is the smallest set of
+ Scheme lists satisfying the following two properties:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $()\in List\text{‑}of\text{‑}Int$
+\end_inset
+
+, and
+\end_layout
+
+\begin_layout Enumerate
+if 
+\begin_inset Formula $n\in Int$
+\end_inset
+
+ and 
+\begin_inset Formula $l\in List\text{‑}of\text{‑}Int$
+\end_inset
+
+, then 
+\begin_inset Formula $(n\;.\; l)\in List\text{‑}of\text{‑}Int$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here we use the infix 
+\begin_inset Quotes eld
+\end_inset
+
+.
+\begin_inset Quotes erd
+\end_inset
+
+ to denote the result of cons operation in Scheme.
+ The phrase 
+\begin_inset Formula $(n\;.\; l)$
+\end_inset
+
+ denotes a Scheme pair whose car is 
+\begin_inset Formula $n$
+\end_inset
+
+ and whose cdr is 
+\begin_inset Formula $l$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+(list of integers, rules of inference)
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+()\in List\text{‑}of\text{‑}Int
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{(n 
+\backslash
+; .
+ 
+\backslash
+; l)
+\backslash
+in List 
+\backslash
+dash of 
+\backslash
+dash Int}{n 
+\backslash
+in Int & () 
+\backslash
+in List 
+\backslash
+dash of 
+\backslash
+dash Int}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+\begin_inset CommandInset label
+LatexCommand label
+name "exer:Write-inductive-definitions"
+
+\end_inset
+
+Write inductive definitions of the following sets.
+ Write each definition in all three styles (top-down, bottom-up, and rules
+ of inference).
+ Using your rules show the derivation of some sample elements of each set.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\{3n+2|n\in N\}$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:3n+2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\{2n+3m+1|n,m\in N\}$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:2n+3m+1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\{(n,2n+1)|n\in N\}$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:n,2n+1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\{(n,n^{2})|n\in N\}$
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:n,n^2"
+
+\end_inset
+
+Do not mention squaring in your rules.
+ As a hint, remember the equation 
+\begin_inset Formula $(n+1)^{2}=n^{2}+2n+1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Definition*
+(top-down solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:3n+2"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+): 
+\begin_inset Formula $x\in\{3n+2|n\in N\}$
+\end_inset
+
+ if and only if either:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x$
+\end_inset
+
+ is 
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x-3\in\{3n+2|n\in N\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For example, 
+\begin_inset Formula $\{2,5,8,11,14,17\}\subset\{3n+2|n\in N\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+(bottom-up solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:3n+2"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+)
+\begin_inset space ~
+\end_inset
+
+The set 
+\begin_inset Formula $A=\{3n+2|n\in N\}$
+\end_inset
+
+ is the smallest set of natural numbers satisfying the following two properties:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $2\in A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+if 
+\begin_inset Formula $n\in A$
+\end_inset
+
+, then 
+\begin_inset Formula $n+3\in A$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+(rules of inference solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:3n+2"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{2 
+\backslash
+in A}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{(n+3) 
+\backslash
+in A}{n 
+\backslash
+in A}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $2\in A$
+\end_inset
+
+ by virtue of the axiom
+\end_layout
+
+\begin_layout Enumerate
+therefore 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+infer{2+3=5 
+\backslash
+in A}{2 
+\backslash
+in A}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+likewise, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+infer{5+3=8 
+\backslash
+in A}{5 
+\backslash
+in A}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and so on.
+\end_layout
+
+\begin_layout Definition*
+(top-down solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:2n+3m+1"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+) 
+\begin_inset Formula $x\in B=\{2n+3m+1|n,m\in N\}$
+\end_inset
+
+ if and only if either:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x=1$
+\end_inset
+
+, or
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x-2\in B$
+\end_inset
+
+, or
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x-3\in B$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+E.g.
+ 
+\begin_inset Formula $B\supset\{1,3,4,7,9,10\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+(bottom-up solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:2n+3m+1"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+) The set 
+\begin_inset Formula $B$
+\end_inset
+
+ is the smallest set of natural numbers satisfying the following three propertie
+s:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $1\in B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+if 
+\begin_inset Formula $n\in B$
+\end_inset
+
+, then 
+\begin_inset Formula $n+2\in B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+if 
+\begin_inset Formula $n\in B$
+\end_inset
+
+, then 
+\begin_inset Formula $n+3\in B$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+(rules of inference solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:2n+3m+1"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{1 
+\backslash
+in B}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{(n+2) 
+\backslash
+in B}{n 
+\backslash
+in B}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{infer{(n+3) 
+\backslash
+in B}{n 
+\backslash
+in B}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $1\in B$
+\end_inset
+
+ by virtue of the axiom,
+\end_layout
+
+\begin_layout Enumerate
+therefore 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{1+2=3 
+\backslash
+in B}{1 
+\backslash
+in B}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+and similarly 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{1+3=4 
+\backslash
+in B}{1 
+\backslash
+in B}}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+and so on.
+\end_layout
+
+\begin_layout Definition*
+(top-down solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:n,2n+1"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+) 
+\begin_inset Formula $(a,b)=x\in C=\{(n,2n+1)|n\in N\}$
+\end_inset
+
+, where 
+\begin_inset Formula $a,b\in N$
+\end_inset
+
+, if and only if either:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x=(0,1)$
+\end_inset
+
+, or
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(a-1,b-2)\in C$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For example, 
+\begin_inset Formula $C\supset\{(0,1),(1,3),(2,5),(3,7)\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition*
+(bottom-up solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:n,2n+1"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+) The set 
+\begin_inset Formula $C$
+\end_inset
+
+ is the smallest set of natural numbers satisfying the following three propertie
+s:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(0,1)\in C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+if 
+\begin_inset Formula $(a,b)\in C$
+\end_inset
+
+, then 
+\begin_inset Formula $(a+1,b+2)\in C$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+(rules of inference solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:n,2n+1"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{(0,1) 
+\backslash
+in C}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{(a+1,b+2) 
+\backslash
+in C}{(a,b) 
+\backslash
+in C}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+(top-down solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:n,n^2"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+) 
+\begin_inset Formula $(a,b)=x\in D=\{(n,n^{2})|n\in N\}$
+\end_inset
+
+, where 
+\begin_inset Formula $(a,b)\in N$
+\end_inset
+
+, if and only if either:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x=(0,0)$
+\end_inset
+
+, or
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(a-1,b-2(a-1)-1)\in D$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+E.g.
+ 
+\begin_inset Formula $D\supset\{(0,0),(1,1),(2,4),(3,9),(4,16)\}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(1,1)\in D,$
+\end_inset
+
+ because 
+\begin_inset Formula $(1-1,1-2\cdot0-1)=(0,0)\in D$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(2,4)\in D$
+\end_inset
+
+, because 
+\begin_inset Formula $(2-1,4-2\cdot1-1)=(1,1)\in D$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(3,9)\in D$
+\end_inset
+
+, because 
+\begin_inset Formula $(3-1,9-2\cdot2-1)=(2,4)\in D$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+And so on.
+\end_layout
+
+\begin_layout Definition*
+(bottom-up solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:n,n^2"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+) The set 
+\begin_inset Formula $D$
+\end_inset
+
+ is the smallest set of natural numbers satisfying the following three propertie
+s:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(0,0)\in D$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+if 
+\begin_inset Formula $(a,b)\in D$
+\end_inset
+
+, then 
+\begin_inset Formula $(a+1,b+2a+1)\in D$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+(rules of inference solution to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:n,n^2"
+
+\end_inset
+
+ from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:Write-inductive-definitions"
+
+\end_inset
+
+) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{(0,0) 
+\backslash
+in D}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+expose{
+\backslash
+infer{(a+1,b+2a+1) 
+\backslash
+in D}{(a,b) 
+\backslash
+in D}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+What sets are defined by the following rules? Explain why.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(0,1)\in S$
+\end_inset
+
+
+\size largest
+
+\begin_inset Formula $\;\;\;\frac{(n,k)\in S}{(n+1,k+7)\in S}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\size default
+Answer: 
+\begin_inset Formula $\{(n,7n+1)|n,k\in N\}=\{(0,1),(1,8),(2,15),...\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(0,1)\in S$
+\end_inset
+
+
+\size largest
+
+\begin_inset Formula $\;\;\;\frac{(n,k)\in S}{(n+1,2k)\in S}$
+\end_inset
+
+
+\size default
+
+\begin_inset Newline newline
+\end_inset
+
+Answer: 
+\begin_inset Formula $\{(n,2^{n})|n\in N\}=\{(0,1),(1,2),(2,4),(3,8),...\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(0,0,1)\in S$
+\end_inset
+
+
+\size largest
+
+\begin_inset Formula $\;\;\;\frac{(n,i,j)\in S}{(n+1,j,i+j)}$
+\end_inset
+
+
+\size default
+
+\begin_inset Newline newline
+\end_inset
+
+Answer: 
+\begin_inset Formula $\{(0,0,1),(1,1,1),(2,1,2),(3,2,3),(4,3,5),(5,5,8),...\}=\{(n,fib_{n},fib_{n+1})|n\in N\}$
+\end_inset
+
+, where 
+\begin_inset Formula $fib_{n}$
+\end_inset
+
+ designates 
+\begin_inset Formula $n$
+\end_inset
+
+-th fibonacci number.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[\star\star\star]$
+\end_inset
+
+ 
+\begin_inset Formula $(0,1,0)\in S$
+\end_inset
+
+
+\size largest
+
+\begin_inset Formula $\;\;\;\frac{(n,i,j)\in S}{(n+1,i+2,i+j)\in S}$
+\end_inset
+
+
+\size default
+
+\begin_inset Newline newline
+\end_inset
+
+Answer: 
+\begin_inset Formula $\{(0,1,0),(1,3,1),(2,5,4),(3,7,9),(4,9,16),(5,11,25),...\}=\{(n,2n+1,n^{2})|n\in N\}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+Find a set 
+\begin_inset Formula $T$
+\end_inset
+
+ of natural numbers such that 
+\begin_inset Formula $0\in T$
+\end_inset
+
+, and whenever 
+\begin_inset Formula $n\in T,$
+\end_inset
+
+ then 
+\begin_inset Formula $n+3\in T$
+\end_inset
+
+, but 
+\begin_inset Formula $T\neq S$
+\end_inset
+
+, where 
+\begin_inset Formula $S$
+\end_inset
+
+ is the set defined in definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:3*n bottom-up"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Exercise
+Answer: there are three such sets.
+ The maximal one is the set of all the natural numbers.
+ The two remaining ones are 
+\begin_inset Formula $S\cup\{3n+1|n\in N\}$
+\end_inset
+
+ and 
+\begin_inset Formula $S\cup\{3n+2|n\in N\}$
+\end_inset
+
+, where 
+\begin_inset Formula $S=\{3n|n\in N\}$
+\end_inset
+
+.
+ One can show that if 
+\begin_inset Formula $n\in N,$
+\end_inset
+
+ then 
+\begin_inset Formula $\{3n\}\cup\{3n+1\}\cup\{3n+2\}=N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Defining sets using grammars
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}[t]{ccc}
+List\text{‑}of\text{‑}Int & ::= & \mathtt{()}\\
+ & ::= & \mathtt{(\mathit{Int}\quad.\quad\mathit{List\text{‑}of\text{‑}Int})}
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+Write a derivation from List-of-Int to 
+\family typewriter
+(-7 .
+ (3 .
+ (14 .
+ ())))
+\family default
+.
+\end_layout
+
+\begin_layout Exercise
+Answer: 
+\begin_inset Formula $List\text{‑}of-Int$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow(Int\quad.\quad List\text{‑}of\text{‑}Int)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow(Int\quad.\quad(Int\quad.\quad List\text{‑}of\text{‑}Int))$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow(Int\quad.\quad(Int\quad.\quad(Int\quad.\quad List\text{‑}of\text{‑}Int))$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow(Int\quad.\quad(Int\quad.\quad(Int\quad.\quad()))$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow(Int\quad.\quad(Int\quad.\quad(14\quad.\quad()))$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow(Int\quad.\quad(3\quad.\quad(14\quad.\quad()))$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow(-7\quad.\quad(3\quad.\quad(14\quad.\quad()))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+(s-list, s-exp)
+\end_layout
+
+\begin_layout Definition
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="right" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S\text{‑}list$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $::=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(\{S\text{‑}exp\}*)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S\text{‑}exp$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $::=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Symbol\quad|\quad S\text{‑}list$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+We may occasionally use an expanded definition of s-list with integers allowed,
+ as well as symbols.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:(binary-tree)"
+
+\end_inset
+
+(binary tree)
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula $Bintree::=Int\quad|\quad(Symbol\quad Bintree\quad Bintree)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+(lambda expression)
+\end_layout
+
+\begin_layout Definition
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="right" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $LcExp$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $::=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $identifier$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $::=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(\mathtt{lambda}\quad(identifier)\quad LcExp)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $::=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(LcExp\quad LcExp)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+where 
+\begin_inset Formula $identifier$
+\end_inset
+
+ is any symbol other than 
+\family typewriter
+lambda
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+Induction
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Proof by structural induction
+\end_layout
+
+\begin_layout Plain Layout
+To prove that a proposition 
+\begin_inset Formula $IH(s)$
+\end_inset
+
+ is true for all structures 
+\begin_inset Formula $s$
+\end_inset
+
+, prove the following:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $IH$
+\end_inset
+
+ is true on simple structures (those without substructures)
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $IH$
+\end_inset
+
+ is true on the substructures of 
+\begin_inset Formula $s$
+\end_inset
+
+, then it is true on 
+\begin_inset Formula $s$
+\end_inset
+
+ itself.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+\begin_inset Formula $[\star\star]$
+\end_inset
+
+ Prove that if 
+\begin_inset Formula $e\in LcExp$
+\end_inset
+
+, then there are the same number of left and right parentheses in 
+\begin_inset Formula $e$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+The proof is by induction on formula structures.
+ The induction hypothesis is that any 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-calculus expression contains the same number of left and right parentheses.
+ Let's introduce two functions, 
+\begin_inset Formula $count_{(}(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $count_{)}(x)$
+\end_inset
+
+, which give the number of opening and closing parentheses in an expression
+ 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ The hypothesis can be written as 
+\begin_inset Formula $IH(x)\equiv count_{(}(x)=count_{)}(x)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:LcExp-evenparens-initial"
+
+\end_inset
+
+Symbols are not allowed to contain any parentheses.
+ Therefore for each 
+\begin_inset Formula $identifier\in Symbols/\{\mathtt{lambda}\}$
+\end_inset
+
+, 
+\begin_inset Formula $IH(identifier)$
+\end_inset
+
+ holds, because 
+\begin_inset Formula $\forall_{s\in Symbols}count_{(}(s)=count_{)}(s)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $e_{1},e_{2}$
+\end_inset
+
+ be expressions from 
+\begin_inset Formula $LcExp$
+\end_inset
+
+ such that 
+\begin_inset Formula $IH(e_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $IH(e_{2})$
+\end_inset
+
+ hold, i.e.
+ 
+\begin_inset Formula $count_{(}(e_{1})=count_{)}(e_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $count_{(}(e_{2})=count_{)}(e_{2})$
+\end_inset
+
+.
+ We can create more complex expressions in the following way:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $e^{'}=(\mathtt{lambda}\quad(identifier)\quad e_{1})$
+\end_inset
+
+.
+ 
+\begin_inset Formula $count_{(}(e')=count_{(}(e_{1})+2$
+\end_inset
+
+, but 
+\begin_inset Formula $count_{)}(e')=count_{)}(e_{1})+2$
+\end_inset
+
+ as well, so 
+\begin_inset Formula $count_{(}(e')=count_{)}(e')$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $e'=(e_{1}\quad e_{2})$
+\end_inset
+
+.
+ Here 
+\begin_inset Formula $count_{(}(e')=count_{(}(e_{1})+count_{(}(e_{2})+1$
+\end_inset
+
+, and similarly 
+\begin_inset Formula $count_{)}(e')=count_{)}(e_{1})+count_{)}(e_{2})+1$
+\end_inset
+
+, so again 
+\begin_inset Formula $count_{(}(e')=count_{)}(e')$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section
+Deriving Recursive Programs
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+list-length
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $List::=()\quad|\quad(Scheme\, value\quad.\quad List)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+nth-element
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $nth\text{‑}element\quad:\quad List\times List\mapsto Scheme\, value$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (nth-element lst n)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (null? lst)
+\end_layout
+
+\begin_layout LyX-Code
+    (error 
+\begin_inset Quotes eld
+\end_inset
+
+list too short by ~s elements~%
+\begin_inset Quotes erd
+\end_inset
+
+ (+ n 1))
+\end_layout
+
+\begin_layout LyX-Code
+    (if (zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+      (car lst)
+\end_layout
+
+\begin_layout LyX-Code
+      (nth-element (cdr lst) (- n 1)))))
+\end_layout
+
+\begin_layout Exercise
+If we reversed the order of the tests in 
+\family typewriter
+nth-element
+\family default
+, what would go wrong?
+\end_layout
+
+\begin_layout Exercise
+Answer: It would be possible that we tried to get a car of an empty list.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+The error message from 
+\family typewriter
+nth-element
+\family default
+ is uninformative.
+ Rewrite nth-element so that it produces a more informative error message,
+ such as 
+\begin_inset Quotes eld
+\end_inset
+
+(a b c) does not have 8 elements
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+Answer: no (you can't always be obedient)
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+remove-first
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Formula $List\text{‑}of\text{‑}Symbol::=()\quad|\quad(Symbol\quad.\quad List\text{‑}of\text{‑}Symbol)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (remove-first s los)
+\end_layout
+
+\begin_layout LyX-Code
+  (match los
+\end_layout
+
+\begin_layout LyX-Code
+    (() '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     (if (eqv? first s)
+\end_layout
+
+\begin_layout LyX-Code
+       rest
+\end_layout
+
+\begin_layout LyX-Code
+       `(,s .
+ ,(remove-first s rest))))))
+\end_layout
+
+\begin_layout Exercise
+In the definition of 
+\family typewriter
+remove-first
+\family default
+, if the last line were replaced by 
+\family typewriter
+(remove-first s (cdr los))
+\family default
+, what function would the resulting procedure compute? Give the contract,
+ including the usage statement, for the revised procedure.
+\end_layout
+
+\begin_layout Exercise
+Answer: the contract would remain the same.
+ The difference would be that the function would skip prefix of 
+\family typewriter
+los
+\family default
+ until the first occurrence of 
+\family typewriter
+s
+\family default
+ (inclusive).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+Define 
+\family typewriter
+remove
+\family default
+, which is like 
+\family typewriter
+remove-first
+\family default
+, except that it removes all occurrences of a given symbol from a list of
+ symbols, not just the first.
+\end_layout
+
+\begin_layout LyX-Code
+(define (remove s los)
+\end_layout
+
+\begin_layout LyX-Code
+  (match los
+\end_layout
+
+\begin_layout LyX-Code
+    (() '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     (if (eqv? first s)
+\end_layout
+
+\begin_layout LyX-Code
+       (remove s rest)
+\end_layout
+
+\begin_layout LyX-Code
+       `(,s .
+ ,(remove s rest))))))
+\end_layout
+
+\begin_layout Subsection
+Occurs-free?
+\end_layout
+
+\begin_layout Exercise
+We typically use “or” to mean “inclusive or.” What other meanings can “or”
+ have? 
+\end_layout
+
+\begin_layout Exercise
+Answer: uhm...
+ exclusive or?
+\end_layout
+
+\begin_layout Exercise
+\begin_inset Formula $\mathbf{occurs-free?}\quad:\quad Sym\times LcExp\mapsto Bool$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (occurs-free? var exp)
+\end_layout
+
+\begin_layout LyX-Code
+  (match exp
+\end_layout
+
+\begin_layout LyX-Code
+    ((? symbol?)
+\end_layout
+
+\begin_layout LyX-Code
+     (eqv? var exp))
+\end_layout
+
+\begin_layout LyX-Code
+    (('lambda (argument) sub)
+\end_layout
+
+\begin_layout LyX-Code
+     (and (not (eqv? var argument))
+\end_layout
+
+\begin_layout LyX-Code
+          (occurs-free? var sub)))
+\end_layout
+
+\begin_layout LyX-Code
+    ((operator argument)
+\end_layout
+
+\begin_layout LyX-Code
+     (or (occurs-free? var operator)
+\end_layout
+
+\begin_layout LyX-Code
+         (occurs-free? var argument)))))
+\end_layout
+
+\begin_layout Subsection
+subst
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{subst}\quad:\quad Sym\quad\times\quad Sym\quad\times S\text{‑}list\quad\mapsto S\text{‑}list$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (subst new old slist)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (null? slist)
+\end_layout
+
+\begin_layout LyX-Code
+    '()
+\end_layout
+
+\begin_layout LyX-Code
+    `(,(subst-in-s-exp new old (first slist))
+\end_layout
+
+\begin_layout LyX-Code
+      ,@(subst new old (rest slist)))))
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{subst\text{‑}in\text{‑}s\text{‑}exp}\quad:\quad Sym\quad\times Sym\quad\times S\text{‑}exp\mapsto S\text{‑}exp$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (subst-in-s-exp new old sexp)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (symbol? sexp)
+\end_layout
+
+\begin_layout LyX-Code
+    (if (eq? sexp old)
+\end_layout
+
+\begin_layout LyX-Code
+      new
+\end_layout
+
+\begin_layout LyX-Code
+      sexp)
+\end_layout
+
+\begin_layout LyX-Code
+    (subst new old sexp)))
+\end_layout
+
+\begin_layout Exercise
+In the last line of subst-in-s-exp, the recursion is on sexp and not a smaller
+ substructure.
+ Why is the recursion guaranteed to halt? 
+\end_layout
+
+\begin_layout Standard
+Answer: because 
+\family typewriter
+subst
+\family default
+ always decomposes its argument -- a list -- to its head and tail, and 
+\family typewriter
+subst-in-s-exp
+\family default
+ calls 
+\family typewriter
+subst
+\family default
+.
+\end_layout
+
+\begin_layout Exercise
+Eliminate the one call to subst-in-s-exp in subst by replacing it by its
+ definition and simplifying the resulting procedure.
+ The result will be a version of subst that does not need subst-in-s-exp.
+ This technique is called inlining, and is used by optimizing compilers.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+(define (subst new old sexp)
+\end_layout
+
+\begin_layout LyX-Code
+  (match sexp
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     `(,(subst new old first) ,@(subst new old rest)))
+\end_layout
+
+\begin_layout LyX-Code
+    (else
+\end_layout
+
+\begin_layout LyX-Code
+     (if (eq? sexp old)
+\end_layout
+
+\begin_layout LyX-Code
+       new
+\end_layout
+
+\begin_layout LyX-Code
+       sexp))))
+\end_layout
+
+\begin_layout Exercise
+In our example, we began by eliminating the Kleene star in the grammar for
+ 
+\begin_inset Formula $S\text{‑}list$
+\end_inset
+
+.
+ Write subst following the original grammar by using 
+\family typewriter
+map
+\family default
+.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+(define (subst new old sexp)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (list? sexp)
+\end_layout
+
+\begin_layout LyX-Code
+    (map (lambda(sexp)(subst new old sexp)) sexp)
+\end_layout
+
+\begin_layout LyX-Code
+    (if (eq? sexp old)
+\end_layout
+
+\begin_layout LyX-Code
+      new
+\end_layout
+
+\begin_layout LyX-Code
+      sexp)))
+\end_layout
+
+\begin_layout Standard
+Note however that this version fails for improper lists.
+\end_layout
+
+\begin_layout Section
+Auxiliary Procedures and Context Arguments
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{number\text{‑}elements\text{‑}from}\quad:\quad Listof(SchemeVal)\quad\times\quad Int\quad\mapsto\quad Listof(List(Int,\, SchemeVal))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (number-elements-from l n)
+\end_layout
+
+\begin_layout LyX-Code
+  (match l
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((head .
+ tail)
+\end_layout
+
+\begin_layout LyX-Code
+     `((,n ,head) ,@(number-elements-from tail (+ n 1)))))))
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Formula $\mathbf{number\text{‑}elements}\quad:\quad List\quad\mapsto\quad Listof(List(Int,\, SchemeVal))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (number-elements l)
+\end_layout
+
+\begin_layout LyX-Code
+  (number-elements-from l 0))
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{partial\text{‑}vector\text{‑}sum}\quad:\quad Vectorof(Int)\quad\times\quad Int\quad\mapsto Int$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (partial-vector-sum v n)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+    (vector-ref v 0)
+\end_layout
+
+\begin_layout LyX-Code
+    (+ (vector-ref v n)
+\end_layout
+
+\begin_layout LyX-Code
+       (partial-vector-sum v (- n 1)))))
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{vector\text{‑}sum}\quad:\quad Vectorof(Int)\quad\mapsto\quad Int$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (vector-sum v)
+\end_layout
+
+\begin_layout LyX-Code
+  (let ((n (vector-length v)))
+\end_layout
+
+\begin_layout LyX-Code
+    (if (zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+      0
+\end_layout
+
+\begin_layout LyX-Code
+      (partial-vector-sum v (- n 1)))))
+\end_layout
+
+\begin_layout Exercise
+Given the assumption 0 ≤ n < length(v), prove that partial- vector-sum is
+ correct.
+ 
+\end_layout
+
+\begin_layout Section
+Exercises
+\end_layout
+
+\begin_layout Description
+s -- symbol
+\end_layout
+
+\begin_layout Description
+n -- nonnegative integer
+\end_layout
+
+\begin_layout Description
+lst -- a list
+\end_layout
+
+\begin_layout Description
+loi -- list of integers
+\end_layout
+
+\begin_layout Description
+los -- list of symbols
+\end_layout
+
+\begin_layout Description
+slist -- an s-list
+\end_layout
+
+\begin_layout Description
+x -- any value
+\end_layout
+
+\begin_layout Description
+pred -- a predicate 
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(duple n x)
+\family default
+ returns a list containing 
+\family typewriter
+n
+\family default
+ copies of 
+\family typewriter
+x
+\family default
+.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+(define (duple n x)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+    '()
+\end_layout
+
+\begin_layout LyX-Code
+    `(,x ,@(duple (- n 1) x))))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(invert lst)
+\family default
+, where lst is a list of 2-lists (lists of length two), returns a list with
+ each 2-list reversed.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+> (invert ’((a 1) (a 2) (1 b) (2 b)))
+\end_layout
+
+\begin_layout LyX-Code
+((1 a) (2 a) (b 1) (b 2)) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (invert l)
+\end_layout
+
+\begin_layout LyX-Code
+  (map (lambda ((a b)) `(,b ,a)) l))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+\begin_inset CommandInset label
+LatexCommand label
+name "exer:(down-lst)"
+
+\end_inset
+
+(down lst)
+\family default
+ wraps parentheses around each top-level element of lst.
+\end_layout
+
+\begin_layout LyX-Code
+> (down ’(1 2 3)) 
+\end_layout
+
+\begin_layout LyX-Code
+((1) (2) (3)) 
+\end_layout
+
+\begin_layout LyX-Code
+> (down ’((a) (fine) (idea))) 
+\end_layout
+
+\begin_layout LyX-Code
+(((a)) ((fine)) ((idea))) 
+\end_layout
+
+\begin_layout LyX-Code
+> (down ’(a (more (complicated)) object)) 
+\end_layout
+
+\begin_layout LyX-Code
+((a) ((more (complicated))) (object))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (down lst)
+\end_layout
+
+\begin_layout LyX-Code
+  (map list lst))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(swapper s1 s2 slist)
+\family default
+ returns a list the same as 
+\family typewriter
+slist
+\family default
+, but with all occurrences of 
+\family typewriter
+s1
+\family default
+ replaced by 
+\family typewriter
+s2
+\family default
+ and all occurrences of 
+\family typewriter
+s2
+\family default
+ replaced by 
+\family typewriter
+s1
+\family default
+.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+> (swapper ’a ’d ’(a b c d)) 
+\end_layout
+
+\begin_layout LyX-Code
+(d b c a) 
+\end_layout
+
+\begin_layout LyX-Code
+> (swapper ’a ’d ’(a d () c d)) 
+\end_layout
+
+\begin_layout LyX-Code
+(d a () c a) 
+\end_layout
+
+\begin_layout LyX-Code
+> (swapper ’x ’y ’((x) y (z (x)))) 
+\end_layout
+
+\begin_layout LyX-Code
+((y) x (z (y))) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (swapper x y sexp)
+\end_layout
+
+\begin_layout LyX-Code
+  (match sexp
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((a .
+ b)
+\end_layout
+
+\begin_layout LyX-Code
+     `(,(swapper x y a) ,@(swapper x y b)))
+\end_layout
+
+\begin_layout LyX-Code
+    (,x
+\end_layout
+
+\begin_layout LyX-Code
+      y)
+\end_layout
+
+\begin_layout LyX-Code
+    (,y
+\end_layout
+
+\begin_layout LyX-Code
+      x)))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(list-set lst n x)
+\family default
+ returns a list like 
+\family typewriter
+lst
+\family default
+, except that the 
+\family typewriter
+n
+\family default
+-th element, using zero-based indexing, is 
+\family typewriter
+x
+\family default
+.
+\end_layout
+
+\begin_layout LyX-Code
+> (list-set ’(a b c d) 2 ’(1 2)) 
+\end_layout
+
+\begin_layout LyX-Code
+(a b (1 2) d) 
+\end_layout
+
+\begin_layout LyX-Code
+> (list-ref (list-set ’(a b c d) 3 ’(1 5 10)) 3)
+\end_layout
+
+\begin_layout LyX-Code
+(1 5 10) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (list-set lst n x)
+\end_layout
+
+\begin_layout LyX-Code
+  (match lst
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((a .
+ b)
+\end_layout
+
+\begin_layout LyX-Code
+     (if (zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+       `(,x ,@b)
+\end_layout
+
+\begin_layout LyX-Code
+       `(,a ,@(list-set b (- n 1) x))))))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(count-occurrences s slist)
+\family default
+ returns the number of occurrences of 
+\family typewriter
+s
+\family default
+ in 
+\family typewriter
+slist
+\family default
+.
+\end_layout
+
+\begin_layout LyX-Code
+> (count-occurrences ’x ’((f x) y (((x z) x))))
+\end_layout
+
+\begin_layout LyX-Code
+3
+\end_layout
+
+\begin_layout LyX-Code
+> (count-occurrences ’x ’((f x) y (((x z) () x))))
+\end_layout
+
+\begin_layout LyX-Code
+3
+\end_layout
+
+\begin_layout LyX-Code
+> (count-occurrences ’w ’((f x) y (((x z) x))))
+\end_layout
+
+\begin_layout LyX-Code
+0 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (count-occurrences s sexp)
+\end_layout
+
+\begin_layout LyX-Code
+  (match sexp
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     0)
+\end_layout
+
+\begin_layout LyX-Code
+    ((a .
+ b)
+\end_layout
+
+\begin_layout LyX-Code
+     (+ (count-occurrences s a)
+\end_layout
+
+\begin_layout LyX-Code
+        (count-occurrences s b)))
+\end_layout
+
+\begin_layout LyX-Code
+    (else
+\end_layout
+
+\begin_layout LyX-Code
+     (if (eq? sexp s)
+\end_layout
+
+\begin_layout LyX-Code
+       1
+\end_layout
+
+\begin_layout LyX-Code
+       0))))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(product sos1 sos2)
+\family default
+, where 
+\family typewriter
+sos1
+\family default
+ and 
+\family typewriter
+sos2
+\family default
+ are each a list of symbols without repetitions, returns a list of 2-lists
+ that represents the Cartesian product of 
+\family typewriter
+sos1
+\family default
+ and 
+\family typewriter
+sos2
+\family default
+.
+ The 2-lists may appear in any order.
+ 
+\end_layout
+
+\begin_layout Standard
+Answer: here's a generalized version that operates on any number of arguments:
+\end_layout
+
+\begin_layout LyX-Code
+(define (product .
+ lists)
+\end_layout
+
+\begin_layout LyX-Code
+  (match lists
+\end_layout
+
+\begin_layout LyX-Code
+    (() '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((only) (map list only))
+\end_layout
+
+\begin_layout LyX-Code
+    ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     (append-map (lambda(x)
+\end_layout
+
+\begin_layout LyX-Code
+                   (map (lambda(y) (cons y x)) first))
+\end_layout
+
+\begin_layout LyX-Code
+                 (apply product rest))))) 
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(filter-in pred lst)
+\family default
+ returns the list of those elements in 
+\family typewriter
+lst
+\family default
+ that satisfy the predicate 
+\family typewriter
+pred
+\family default
+.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+> (filter-in number? ’(a 2 (1 3) b 7))
+\end_layout
+
+\begin_layout LyX-Code
+(2 7) 
+\end_layout
+
+\begin_layout LyX-Code
+> (filter-in symbol? ’(a (b c) 17 foo))
+\end_layout
+
+\begin_layout LyX-Code
+(a foo) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (filter-in pred lst)
+\end_layout
+
+\begin_layout LyX-Code
+  (match lst
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     (if (pred first)
+\end_layout
+
+\begin_layout LyX-Code
+        `(,first ,@(filter-in pred rest))
+\end_layout
+
+\begin_layout LyX-Code
+        (filter-in pred rest)))))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(list-index pred lst)
+\family default
+ returns the 0-based position of the first element of 
+\family typewriter
+lst
+\family default
+ that satisfies the predicate 
+\family typewriter
+pred
+\family default
+.
+ If no element of 
+\family typewriter
+lst
+\family default
+ satisfies the predicate, then 
+\family typewriter
+list-index
+\family default
+ returns 
+\family typewriter
+#f
+\family default
+.
+\end_layout
+
+\begin_layout LyX-Code
+> (list-index number? ’(a 2 (1 3) b 7))
+\end_layout
+
+\begin_layout LyX-Code
+1 
+\end_layout
+
+\begin_layout LyX-Code
+> (list-index symbol? ’(a (b c) 17 foo))
+\end_layout
+
+\begin_layout LyX-Code
+0
+\end_layout
+
+\begin_layout LyX-Code
+> (list-index symbol? ’(1 2 (a b) 3)) 
+\end_layout
+
+\begin_layout LyX-Code
+#f 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (list-index pred lst)
+\end_layout
+
+\begin_layout LyX-Code
+  (define (list-index-from n pred lst)
+\end_layout
+
+\begin_layout LyX-Code
+    (match lst
+\end_layout
+
+\begin_layout LyX-Code
+      (()
+\end_layout
+
+\begin_layout LyX-Code
+       #f)
+\end_layout
+
+\begin_layout LyX-Code
+      ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+       (if (pred first)
+\end_layout
+
+\begin_layout LyX-Code
+         n
+\end_layout
+
+\begin_layout LyX-Code
+         (list-index-from (+ n 1) pred rest)))))
+\end_layout
+
+\begin_layout LyX-Code
+  (list-index-from 0 pred lst))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(every? pred lst)
+\family default
+ returns 
+\family typewriter
+#f
+\family default
+ if any element of 
+\family typewriter
+l
+\family default
+st fails to satisfy 
+\family typewriter
+pred
+\family default
+, and returns 
+\family typewriter
+#t
+\family default
+ otherwise.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+> (every? number? ’(a b c 3 e)) 
+\end_layout
+
+\begin_layout LyX-Code
+#f 
+\end_layout
+
+\begin_layout LyX-Code
+> (every? number? ’(1 2 3 5 4)) 
+\end_layout
+
+\begin_layout LyX-Code
+#t 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (every? pred lst)
+\end_layout
+
+\begin_layout LyX-Code
+  (match lst
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     #t)
+\end_layout
+
+\begin_layout LyX-Code
+    ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     (and (pred first) (every? pred rest)))))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(exists? pred lst)
+\family default
+ returns 
+\family typewriter
+#t
+\family default
+ if any element of 
+\family typewriter
+lst
+\family default
+ satisfies 
+\family typewriter
+pred
+\family default
+, and returns 
+\family typewriter
+#f
+\family default
+ otherwise.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+> (exists? number? ’(a b c 3 e)) 
+\end_layout
+
+\begin_layout LyX-Code
+#t 
+\end_layout
+
+\begin_layout LyX-Code
+> (exists? number? ’(a b c d e)) 
+\end_layout
+
+\begin_layout LyX-Code
+#f
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (exists? pred lst)
+\end_layout
+
+\begin_layout LyX-Code
+  (match lst
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     #f)
+\end_layout
+
+\begin_layout LyX-Code
+    ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     (or (pred first) (exists? pred rest)))))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(up lst)
+\family default
+ removes a pair of parentheses from each top-level element of 
+\family typewriter
+ls
+\family default
+t.
+ If a top-level element is not a list, it is included in the result, as
+ is.
+ The value of 
+\family typewriter
+(up (down lst))
+\family default
+ is equivalent to 
+\family typewriter
+lst
+\family default
+, but 
+\family typewriter
+(down (up lst))
+\family default
+ is not necessarily lst.
+ (See exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exer:(down-lst)"
+
+\end_inset
+
+.) 
+\end_layout
+
+\begin_layout LyX-Code
+> (up ’((1 2) (3 4))) 
+\end_layout
+
+\begin_layout LyX-Code
+(1 2 3 4) 
+\end_layout
+
+\begin_layout LyX-Code
+> (up ’((x (y)) z)) 
+\end_layout
+
+\begin_layout LyX-Code
+(x (y) z)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (up lst)
+\end_layout
+
+\begin_layout LyX-Code
+  (match lst
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     '())
+\end_layout
+
+\begin_layout LyX-Code
+    (((first ...) .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     `(,@first ,@(up rest)))
+\end_layout
+
+\begin_layout LyX-Code
+    ((first .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     `(,first ,@(up rest)))))
+\end_layout
+
+\begin_layout LyX-Code
+    
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(flatten slist)
+\family default
+ returns a list of the symbols contained in 
+\family typewriter
+slist
+\family default
+ in the order in which they occur when 
+\family typewriter
+slist
+\family default
+ is printed.
+ Intuitively, flatten removes all the inner parentheses from its argument.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+> (flatten ’(a b c)) 
+\end_layout
+
+\begin_layout LyX-Code
+(a b c) 
+\end_layout
+
+\begin_layout LyX-Code
+> (flatten ’((a) () (b ()) () (c))) 
+\end_layout
+
+\begin_layout LyX-Code
+(a b c) 
+\end_layout
+
+\begin_layout LyX-Code
+> (flatten ’((a b) c (((d)) e))) 
+\end_layout
+
+\begin_layout LyX-Code
+(a b c d e) 
+\end_layout
+
+\begin_layout LyX-Code
+> (flatten ’(a b (() (c)))) 
+\end_layout
+
+\begin_layout LyX-Code
+(a b c) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (flatten l)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (list? l)
+\end_layout
+
+\begin_layout LyX-Code
+    (append-map flatten l)
+\end_layout
+
+\begin_layout LyX-Code
+    (list l)))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(merge loi1 loi2)
+\family default
+, where 
+\family typewriter
+loi1
+\family default
+ and 
+\family typewriter
+loi2
+\family default
+ are lists of integers that are sorted in ascending order, returns a sorted
+ list of all the integers in 
+\family typewriter
+loi1
+\family default
+ and 
+\family typewriter
+loi2
+\family default
+.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+> (merge '(1 4) '(1 2 8))
+\end_layout
+
+\begin_layout LyX-Code
+(1 1 2 4 8)
+\end_layout
+
+\begin_layout LyX-Code
+> (merge (35 62 81 90 91) ’(3 83 85 90))
+\end_layout
+
+\begin_layout LyX-Code
+(3 35 62 81 83 85 90 90 91) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (merge loi1 loi2)
+\end_layout
+
+\begin_layout LyX-Code
+  (cond
+\end_layout
+
+\begin_layout LyX-Code
+    ((null? loi1)
+\end_layout
+
+\begin_layout LyX-Code
+     loi2)
+\end_layout
+
+\begin_layout LyX-Code
+    ((null? loi2)
+\end_layout
+
+\begin_layout LyX-Code
+     loi1)
+\end_layout
+
+\begin_layout LyX-Code
+    (else
+\end_layout
+
+\begin_layout LyX-Code
+      (if (< (first loi1) (first loi2))
+\end_layout
+
+\begin_layout LyX-Code
+        `(,(first loi1) ,@(merge (rest loi1) loi2))
+\end_layout
+
+\begin_layout LyX-Code
+        `(,(first loi2) ,@(merge loi1 (rest loi2)))))))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(sort loi)
+\family default
+ returns a list of the elements of 
+\family typewriter
+loi
+\family default
+ in ascending order.
+\end_layout
+
+\begin_layout LyX-Code
+> (sort ’(8 2 5 2 3)) 
+\end_layout
+
+\begin_layout LyX-Code
+(2 2 3 5 8) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (sort loi)
+\end_layout
+
+\begin_layout LyX-Code
+  (match loi
+\end_layout
+
+\begin_layout LyX-Code
+    (() '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((this .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     (let-values (((smaller greater) 
+\end_layout
+
+\begin_layout LyX-Code
+                  (partition (lambda(x)(< x this)) rest)))
+\end_layout
+
+\begin_layout LyX-Code
+       `(,@(sort smaller) ,this ,@(sort greater))))))
+\end_layout
+
+\begin_layout Exercise
+
+\family typewriter
+(sort/predicate pred loi)
+\family default
+ returns a list of elements sorted by the predicate.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+> (sort/predicate < ’(8 2 5 2 3)) 
+\end_layout
+
+\begin_layout LyX-Code
+(2 2 3 5 8) 
+\end_layout
+
+\begin_layout LyX-Code
+> (sort/predicate > ’(8 2 5 2 3)) 
+\end_layout
+
+\begin_layout LyX-Code
+(8 5 3 2 2) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (sort/predicate < loi)
+\end_layout
+
+\begin_layout LyX-Code
+  (match loi
+\end_layout
+
+\begin_layout LyX-Code
+    (() '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((this .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+     (let-values (((smaller greater) 
+\end_layout
+
+\begin_layout LyX-Code
+                  (partition (lambda(x)(< x this)) rest)))
+\end_layout
+
+\begin_layout LyX-Code
+       `(,@(sort/predicate < smaller) 
+\end_layout
+
+\begin_layout LyX-Code
+         ,this 
+\end_layout
+
+\begin_layout LyX-Code
+         ,@(sort/predicate < greater))))))
+\end_layout
+
+\begin_layout Exercise
+Write the following procedures for calculating on a bintree (definition
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:(binary-tree)"
+
+\end_inset
+
+): 
+\family typewriter
+\strikeout on
+leaf
+\family default
+ and 
+\family typewriter
+interior-node
+\family default
+, which build bintrees,
+\strikeout default
+ 
+\family typewriter
+leaf?
+\family default
+, which tests whether a bintree is a leaf, and 
+\family typewriter
+lson
+\family default
+, 
+\family typewriter
+rson
+\family default
+, and 
+\family typewriter
+contents-of
+\family default
+, which extract the components of a node.
+ 
+\family typewriter
+contents-of
+\family default
+ should work on both leaves and interior nodes.
+\end_layout
+
+\begin_layout Exercise
+\begin_inset Formula $Bintree::=Int\quad|\quad(Symbol\quad Bintree\quad Bintree)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (leaf? bintree)
+\end_layout
+
+\begin_layout LyX-Code
+  (integer? bintree))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (lson node)
+\end_layout
+
+\begin_layout LyX-Code
+  (match node
+\end_layout
+
+\begin_layout LyX-Code
+    ((name left right)
+\end_layout
+
+\begin_layout LyX-Code
+     left)))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (rson node)
+\end_layout
+
+\begin_layout LyX-Code
+  (match node
+\end_layout
+
+\begin_layout LyX-Code
+    ((name left right)
+\end_layout
+
+\begin_layout LyX-Code
+      right)))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (contents-of bintree)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (leaf? bintree)
+\end_layout
+
+\begin_layout LyX-Code
+    `(,bintree)
+\end_layout
+
+\begin_layout LyX-Code
+    `(,@(contents-of (lson bintree)) ,@(contents-of (rson bintree)))))
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Exercise
+Write a procedure 
+\family typewriter
+double-tree
+\family default
+ that takes a bintree, as represented in definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:(binary-tree)"
+
+\end_inset
+
+, and produces another bintree like the original, but with all the integers
+ in the leaves doubled.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+(define (double-tree bintree)
+\end_layout
+
+\begin_layout LyX-Code
+  (match bintree
+\end_layout
+
+\begin_layout LyX-Code
+    ((node left right)
+\end_layout
+
+\begin_layout LyX-Code
+     `(,node ,(double-tree left) ,(double-tree right)))
+\end_layout
+
+\begin_layout LyX-Code
+    (leaf
+\end_layout
+
+\begin_layout LyX-Code
+     (* leaf 2))))
+\end_layout
+
+\begin_layout Exercise
+Write a procedure 
+\family typewriter
+mark-leaves-with-red-depth
+\family default
+ that takes a bintree (definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:(binary-tree)"
+
+\end_inset
+
+), and produces a bintree of the same shape as the original, except that
+ in the new tree, each leaf contains the integer of nodes between it and
+ the root that contain the symbol 
+\family typewriter
+red
+\family default
+.
+ For example, the expression 
+\end_layout
+
+\begin_layout LyX-Code
+(mark-leaves-with-red-depth
+\end_layout
+
+\begin_layout LyX-Code
+  '(red (bar 26 12) 
+\end_layout
+
+\begin_layout LyX-Code
+        (red 11 (quux 117 14))))
+\end_layout
+
+\begin_layout Standard
+should return the bin- tree 
+\end_layout
+
+\begin_layout LyX-Code
+(red (bar 1 1) 
+\end_layout
+
+\begin_layout LyX-Code
+     (red 2 (quux 2 2)))
+\end_layout
+
+\begin_layout Exercise
+Write a procedure 
+\family typewriter
+path
+\family default
+ that takes an integer 
+\family typewriter
+n
+\family default
+ and a binary search tree 
+\family typewriter
+bst
+\family default
+ that contains the integer 
+\family typewriter
+n
+\family default
+, and returns a list of lefts and rights showing how to find the node containing
+ 
+\family typewriter
+n
+\family default
+.
+ If 
+\family typewriter
+n
+\family default
+ is found at the root, it returns the empty list.
+ 
+\end_layout
+
+\begin_layout Exercise
+\begin_inset Formula 
+\[
+Binary\text{‑}search\text{‑}tree\quad::=()\quad|\quad(Int\quad Binary\text{‑}search\text{‑}tree\quad Binary\text{‑}search\text{‑}tree)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+> (path 17 ’(14 (7 () (12 () ())) 
+\end_layout
+
+\begin_layout LyX-Code
+                (26 (20 (17 () ()) 
+\end_layout
+
+\begin_layout LyX-Code
+                        ())
+\end_layout
+
+\begin_layout LyX-Code
+                    (31 () ()))))
+\end_layout
+
+\begin_layout LyX-Code
+(right left left) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (path n bst)
+\end_layout
+
+\begin_layout LyX-Code
+  (match bst
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     #f)
+\end_layout
+
+\begin_layout LyX-Code
+    ((node left right)
+\end_layout
+
+\begin_layout LyX-Code
+     (if (= node n)
+\end_layout
+
+\begin_layout LyX-Code
+         '()
+\end_layout
+
+\begin_layout LyX-Code
+         (let ((sub (path n left)))
+\end_layout
+
+\begin_layout LyX-Code
+           (if sub
+\end_layout
+
+\begin_layout LyX-Code
+               `(left ,@sub)
+\end_layout
+
+\begin_layout LyX-Code
+               (let ((sub (path n right)))
+\end_layout
+
+\begin_layout LyX-Code
+                 (if sub
+\end_layout
+
+\begin_layout LyX-Code
+                     `(right ,@sub)
+\end_layout
+
+\begin_layout LyX-Code
+                     #f))))))))
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Standard
+Here's a function that takes a path and a tree and returns an element indicated
+ by the path:
+\end_layout
+
+\begin_layout LyX-Code
+(define (follow path bst)
+\end_layout
+
+\begin_layout LyX-Code
+  (match path
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     (match bst
+\end_layout
+
+\begin_layout LyX-Code
+       ((node left right)
+\end_layout
+
+\begin_layout LyX-Code
+        node)))
+\end_layout
+
+\begin_layout LyX-Code
+       (('left .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+        (match bst
+\end_layout
+
+\begin_layout LyX-Code
+          ((node left right)
+\end_layout
+
+\begin_layout LyX-Code
+           (follow rest left))))
+\end_layout
+
+\begin_layout LyX-Code
+       (('right .
+ rest)
+\end_layout
+
+\begin_layout LyX-Code
+        (match bst
+\end_layout
+
+\begin_layout LyX-Code
+          ((node left right)
+\end_layout
+
+\begin_layout LyX-Code
+           (follow rest right))))))
+\end_layout
+
+\begin_layout Exercise
+Write a procedure number-leaves that takes a bintree, and produces a bintree
+ like the original, except the contents of the leaves are numbered starting
+ from 0.
+ For example, 
+\end_layout
+
+\begin_layout LyX-Code
+(number-leaves '(foo (bar 26 12) (baz 11 (quux 117 14)))) 
+\end_layout
+
+\begin_layout Standard
+should return
+\end_layout
+
+\begin_layout LyX-Code
+(foo (bar 0 1) (baz 2 (quux 3 4))) 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (number-of-leaves bintree)
+\end_layout
+
+\begin_layout LyX-Code
+  (match bintree
+\end_layout
+
+\begin_layout LyX-Code
+    ((name left right)
+\end_layout
+
+\begin_layout LyX-Code
+     (+ (number-of-leaves left)
+\end_layout
+
+\begin_layout LyX-Code
+      	(number-of-leaves right)))
+\end_layout
+
+\begin_layout LyX-Code
+    (else
+\end_layout
+
+\begin_layout LyX-Code
+     1)))
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (number-leaves tree)
+\end_layout
+
+\begin_layout LyX-Code
+  (define (number-leaves-from n tree)
+\end_layout
+
+\begin_layout LyX-Code
+    (match tree
+\end_layout
+
+\begin_layout LyX-Code
+      ((node left right)
+\end_layout
+
+\begin_layout LyX-Code
+       (let ((left-leaves (number-of-leaves left)))
+\end_layout
+
+\begin_layout LyX-Code
+         `(,node ,(number-leaves-from n left)
+\end_layout
+
+\begin_layout LyX-Code
+                 ,(number-leaves-from (+ n left-leaves) right))))
+\end_layout
+
+\begin_layout LyX-Code
+      (leaf
+\end_layout
+
+\begin_layout LyX-Code
+       n)))
+\end_layout
+
+\begin_layout LyX-Code
+ (number-leaves-from 0 tree))
+\end_layout
+
+\begin_layout Exercise
+Write a procedure 
+\family typewriter
+g
+\family default
+ such that 
+\family typewriter
+number-elements
+\end_layout
+
+\begin_layout LyX-Code
+(define (number-elements-from l n)
+\end_layout
+
+\begin_layout LyX-Code
+  (match l
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((head .
+ tail)
+\end_layout
+
+\begin_layout LyX-Code
+     `((,n ,head) ,@(number-elements-from tail (+ n 1)))))))
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (number-elements l)
+\end_layout
+
+\begin_layout LyX-Code
+  (number-elements-from l 0))
+\end_layout
+
+\begin_layout Standard
+could be defined as 
+\end_layout
+
+\begin_layout LyX-Code
+(define (number-elements lst)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (null? lst) 
+\end_layout
+
+\begin_layout LyX-Code
+    ’() 
+\end_layout
+
+\begin_layout LyX-Code
+    (g (list 0 (car lst)) 
+\end_layout
+
+\begin_layout LyX-Code
+       (number-elements (cdr lst))))))
+\end_layout
+
+\begin_layout Standard
+First we need to perform a short analysis:
+\end_layout
+
+\begin_layout LyX-Code
+> (number-elements '(a b c))
+\end_layout
+
+\begin_layout LyX-Code
+(g (list 0 'a) (number-elements '(b c)))
+\end_layout
+
+\begin_layout LyX-Code
+(g (list 0 'a) (g (list 0 'b) (number-elements '(c))))
+\end_layout
+
+\begin_layout LyX-Code
+(g (list 0 'a) (g (list 0 'b) (g (list 0 'c) '())))
+\end_layout
+
+\begin_layout Standard
+Since we want the result to be
+\end_layout
+
+\begin_layout LyX-Code
+((0 a) (1 b) (2 c))
+\end_layout
+
+\begin_layout Standard
+we assume that
+\end_layout
+
+\begin_layout LyX-Code
+(g '(0 c) '())
+\end_layout
+
+\begin_layout Standard
+produces
+\end_layout
+
+\begin_layout LyX-Code
+((0 c))
+\end_layout
+
+\begin_layout Standard
+and
+\end_layout
+
+\begin_layout LyX-Code
+(g '(0 b) '((0 c)))
+\end_layout
+
+\begin_layout Standard
+produces
+\end_layout
+
+\begin_layout LyX-Code
+((0 b) (1 c))
+\end_layout
+
+\begin_layout Standard
+and
+\end_layout
+
+\begin_layout LyX-Code
+(g '(0 a) '((0 b) (1 c)))
+\end_layout
+
+\begin_layout Standard
+produces
+\end_layout
+
+\begin_layout LyX-Code
+((0 a) (1 b) (2 c))
+\end_layout
+
+\begin_layout Standard
+and in general
+\end_layout
+
+\begin_layout LyX-Code
+(define (g head tail)
+\end_layout
+
+\begin_layout LyX-Code
+  `(,head .
+ ,@(map (lambda((n x))`(,(+ n 1) ,x)) tail)))
+\end_layout
+
+\begin_layout Chapter
+Data Abstraction
+\end_layout
+
+\begin_layout Standard
+A set of procedures will be acceptable as implementations of 
+\family typewriter
+zero
+\family default
+, 
+\family typewriter
+is-zero?
+\family default
+, 
+\family typewriter
+successor
+\family default
+, and 
+\family typewriter
+predecessor
+\family default
+ only if they satisfy the four equations:
+\begin_inset Formula 
+\[
+\mathtt{(zero)}=\left\lceil 0\right\rceil 
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathtt{(is-zero?\left\lceil \mathit{n}\right\rceil )=}\begin{cases}
+\mathtt{\#t} & n=0\\
+\mathtt{\#f} & n\neq0
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathtt{(successor\left\lceil \mathit{n}\right\rceil )}=\left\lceil n+1\right\rceil \quad(n\geq0)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathtt{(predecessor\left\lceil \mathit{n+1}\right\rceil )}=\left\lceil n\right\rceil \quad(n\geq0)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the bignum representation, numbers are represented in base 
+\begin_inset Formula $N$
+\end_inset
+
+, for some large integer 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ The representation becomes a list consisting of numbers between 
+\begin_inset Formula $0$
+\end_inset
+
+ and 
+\begin_inset Formula $N-1$
+\end_inset
+
+ (sometimes called 
+\emph on
+bigits
+\emph default
+ rather than digits).
+ This representation makes it easy to represent integers that are much larger
+ than can be represented in a machine word.
+ For our purposes, it is convenient to keep the list with least-significant
+ bigit first.
+ We can define the representation inductively by 
+\begin_inset Formula 
+\[
+\left\lceil n\right\rceil =\begin{cases}
+() & n=0\\
+(r\quad.\quad\left\lceil q\right\rceil ) & n=qN+r,0\leq r<N
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So if 
+\begin_inset Formula $N=16$
+\end_inset
+
+, then 
+\begin_inset Formula $\left\lceil 33\right\rceil =\mathtt{(1\quad2)}$
+\end_inset
+
+ and 
+\begin_inset Formula $\left\lceil 258\right\rceil =\mathtt{(2\quad0\quad1)}$
+\end_inset
+
+, since 
+\begin_inset Formula 
+\[
+258=2\times16^{0}+0\times16^{1}+1\times16^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+Implement the four required operations for bigits.
+ Then use your implementation to calculate the factorial of 10.
+ How does the execution time vary as this argument changes? How does the
+ execution time vary as the base changes? Explain why.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+(define (zero)
+\end_layout
+
+\begin_layout LyX-Code
+  '())
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (is-zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+  (null? n))
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+(define (successor n)
+\end_layout
+
+\begin_layout LyX-Code
+  (match n
+\end_layout
+
+\begin_layout LyX-Code
+    (()
+\end_layout
+
+\begin_layout LyX-Code
+     1)
+\end_layout
+
+\begin_layout LyX-Code
+    ((least-significant .
+ more-significant)
+\end_layout
+
+\begin_layout LyX-Code
+     (let ((next (+ least-significant 1)))
+\end_layout
+
+\begin_layout LyX-Code
+       (if (= next N)
+\end_layout
+
+\begin_layout LyX-Code
+        `(0 .
+ ,(successor more-significanxot))
+\end_layout
+
+\begin_layout LyX-Code
+        `(,next .
+ ,more-significant))))))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (predecessor n)
+\end_layout
+
+\begin_layout LyX-Code
+  (match n
+\end_layout
+
+\begin_layout LyX-Code
+    ((1)
+\end_layout
+
+\begin_layout LyX-Code
+     '())
+\end_layout
+
+\begin_layout LyX-Code
+    ((least-significant .
+ more-significant)
+\end_layout
+
+\begin_layout LyX-Code
+     (if (= least-significant 0)
+\end_layout
+
+\begin_layout LyX-Code
+         `(,(- N 1) .
+ ,(predecessor more-significant))
+\end_layout
+
+\begin_layout LyX-Code
+         `(,(- least-significant 1) .
+ ,more-significant)))))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (number->bigits n)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (= n 0)
+\end_layout
+
+\begin_layout LyX-Code
+      '()
+\end_layout
+
+\begin_layout LyX-Code
+      (successor (number->bigits (- n 1)))))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (bigits->number n)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (is-zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+      0
+\end_layout
+
+\begin_layout LyX-Code
+      (+ 1 (bigits->number (predecessor n))))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (is-one? n)
+\end_layout
+
+\begin_layout LyX-Code
+  (and (not (is-zero? n))
+\end_layout
+
+\begin_layout LyX-Code
+       (is-zero? (predecessor n))))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (plus x y)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (is-zero? x)
+\end_layout
+
+\begin_layout LyX-Code
+      y
+\end_layout
+
+\begin_layout LyX-Code
+      (plus (predecessor x) (successor y))))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (times x y)
+\end_layout
+
+\begin_layout LyX-Code
+  (cond
+\end_layout
+
+\begin_layout LyX-Code
+   ((is-zero? x)
+\end_layout
+
+\begin_layout LyX-Code
+    (zero))
+\end_layout
+
+\begin_layout LyX-Code
+   ((is-one? x)
+\end_layout
+
+\begin_layout LyX-Code
+    y)
+\end_layout
+
+\begin_layout LyX-Code
+   (else
+\end_layout
+
+\begin_layout LyX-Code
+    (plus y (times (predecessor x) y)))))
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(define (factorial n)
+\end_layout
+
+\begin_layout LyX-Code
+  (if (is-zero? n)
+\end_layout
+
+\begin_layout LyX-Code
+      (successor n)
+\end_layout
+
+\begin_layout LyX-Code
+      (times n (factorial (predecessor n)))))
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $100$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7!$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.015s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.009s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.009s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8!$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.03s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.024s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9!$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.4s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.25s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.228s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10!$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.2s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.4s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.2s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $11!$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+46.2s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+26.5s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24.2s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Execution times for 
+\family typewriter
+factorial
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the algorightms used are highly ineffective -- the multiplication
+ of the same single number needs to be repeated many times, and becomes
+ time consuming for large 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Perhaps some improvement could be achieved by replacing the recursive factorial
+ with the iterative one.
+\end_layout
+
+\begin_layout Standard
+It is plain that choosing a smaller number for 
+\begin_inset Formula $N$
+\end_inset
+
+ causes a significant gain in processing times, but once the 
+\begin_inset Formula $N$
+\end_inset
+
+ becomes large enough, the overhead of the complex implementation becomes
+ insignificant and close to the native number support.
+\end_layout
+
+\begin_layout Standard
+The biggest overhead is caused by the definitions of addition and multiplication.
+ It should be fairly easy to come up with the definition of addition that
+ would make use of the bignum representation, so that adding two numbers
+ would no longer be proportional to their size, but rather to the size of
+ their representation (length of the list).
+ The same applies to multiplication.
+\end_layout
+
+\begin_layout Standard
+Proper algorithms for efficient addition and multiplication in positional
+ systems were presented in the elementary school.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,473 @@
+\documentclass{beamer}
+
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+\mode<presentation>
+{
+  \usetheme{Copenhagen}
+  \usecolortheme[RGB={173,222,25}]{structure}
+  \setbeamertemplate{items}[circle]
+  \setbeamercovered{transparent}
+}
+
+\usepackage[polish]{babel}
+
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\title{\textbf{Programowanie funkcyjne w PHP}}
+
+\author{Maciek Godek}
+
+\institute{\{ \textbf{fido} : \emph{labs} \}\newline \newline
+\tiny{\href{mailto:godek.maciek@gmail.com}{\textbf{godek.maciek@gmail.com}}}}
+
+\date{\textbf{PHP3City Meetup\#4}, 06.12.2013}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Wprowadzenie}
+
+\subsection{Czym jest programowanie funkcyjne?}
+
+\begin{frame}{Czym jest programowanie funkcyjne?}
+
+  \textbf{Programowanie funkcyjne (FP) polega na:}
+  \pause
+  \begin{itemize}
+  \item
+    unikaniu skutków ubocznych,
+    \pause
+  \item
+    stosowaniu funkcji wyższego rzędu.
+  \end{itemize}
+\end{frame}
+
+\subsection{Dlaczego zainteresować się FP?}
+
+\begin{frame}{Sformułowanie problemu}
+
+  \textbf{Jaki problem chcemy rozwiązać?}\pause \newline
+  - Uczynić programowanie jak maksymalnie efektywnym, \pause czyli:
+  \begin{itemize}
+    \item
+      musieć jak najmniej pamiętać, \pause oraz
+    \item
+      móc jak najwięcej wnioskować.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sformułowanie problemu}
+  Innymi słowy: \pause \textbf{uczynić program jak najbardziej czytelnym}
+\end{frame}
+
+\begin{frame}{Sposoby na usprawnienie pracy z kodem}
+  
+  Pomysły:\pause
+  \begin{itemize}
+    \item
+      korzystanie z Integrated Development Environment\pause
+    \item
+      używanie statycznej kontroli typów\pause
+    \item
+      stosowanie konwencji w nazewnictwie obiektów\pause
+    \item
+      ogólniej: \textbf{przestrzeganie konwencji w sposobie użycja języka}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Konwencje w sposobie użycia języka}
+  Kilka popularnych konwencji:\pause
+  \begin{itemize}
+    \item
+      notacja węgierska\pause
+    \item
+      metodologia OOP (hermetyzacja, enkapsulacja, polimorfizm, 
+      dziedziczenie, ...)\pause
+    \item
+      \textbf{programowanie funkcyjne}
+  \end{itemize}
+\end{frame}
+
+\section{Przykłady}
+
+\subsection{Spójniki}
+
+\begin{frame}{Zagadka: co robi poniższy kod?}
+\pause
+\texttt{
+\begin{tabbing}
+\textbf{function} złoncz(\emph{\$słowa}) \{ \\
+\hspace{8 mm} \= \emph{\$wynik} = ''; \\
+\> \emph{\$n} = count(\emph{\$słowa}); \\
+\> \textbf{if}(\emph{\$n} < 1) \{ \textbf{return} \emph{\$wynik}; \} \\
+\> \emph{\$bieżące} = reset(\emph{\$słowa}); \\
+\> \textbf{for}(\emph{\$i} = 0; \emph{\$i} < \emph{\$n}; \emph{\$i}++) \{ \\
+\> \hspace{8 mm} \= \emph{\$wynik} .= \emph{\$bieżące}; \\
+\> \> \textbf{if}(\emph{\$i} < \emph{\$n}-2) \{ \emph{\$wynik} .= ', '; \} \\
+\> \> \textbf{elseif}(\emph{\$i} == \emph{\$n}-2) \{ \emph{\$wynik} .= ' i '; \} \\
+\> \> \emph{\$bieżące} = next(\emph{\$słowa}); \\
+\> \} \\
+\> \textbf{return} \emph{\$wynik}; \\
+\}
+\end{tabbing}
+}
+\end{frame}
+
+\begin{frame}{Rozwiązanie: łączenie słów naturalnymi spójnikami}
+\textbf{Rozwiązanie:} złącza słowa spójnikami, w taki sposób,
+w jaki łączymy słowa w mowie potocznej, tzn. sklejamy
+wszystkie słowa przecinkami, za wyjątkiem dwóch ostatnich,
+które sklejamy spójnikiem 'i'.
+\end{frame}
+
+\begin{frame}{Przykład użycia}
+\texttt{
+\begin{tabbing}
+złączenie([]) = ''; \\
+złączenie(['Ola']) = 'Ola'; \\
+złączenie(['Ola', 'Ala']) = 'Ola i Ala'; \\
+złączenie(['Ola', 'Ala', 'Ula']) = 'Ola, Ala i Ula'; \\
+złączenie(['Ola', 'Ala', 'Ula', 'Ela']) \\
+\hspace{8 mm}= 'Ola, Ala, Ula i Ela';
+\end{tabbing}
+}
+\end{frame}
+
+\begin{frame}{Abstrakcja!}
+\texttt{
+\begin{tabbing}
+złączenie([]) = ''; \\
+złączenie([\emph{\$a}]) = \emph{\$a}; \\
+złączenie([\emph{\$a}, \emph{\$b}]) = \emph{\$a} . ' i ' .\emph{\$b}; \\
+złączenie([\emph{\$a}, \emph{\$b}, \emph{\$c}, ...]) \\
+\hspace{8 mm}= \emph{\$a} . ', ' . złączenie([\emph{\$b}, \emph{\$c}, ...]);
+ \\
+\end{tabbing}
+}
+\end{frame}
+
+\begin{frame}{W stronę PHP}
+\texttt{
+\begin{tabbing}
+\textbf{function} złączone(\emph{\$słowa}) \{ \emph{// marzeń} \\
+\hspace{8 mm} \= \textbf{match}(\emph{\$słowa}) \{ \\
+\> \textbf{case} []: \\
+\> \hspace{8 mm} \= \textbf{return} ''; \\
+\> \textbf{case} [\emph{\$a}]: \\
+\> \> \textbf{return} \emph{\$a}; \\
+\> \textbf{case} [\emph{\$a}, \emph{\$b}]: \\
+\> \> \textbf{return} \emph{\$a} . ' i ' . \emph{\$b}; \\
+\> \textbf{case} [\emph{\$a}, \emph{\$b}, \emph{\$c}, ...]: \\
+\> \> \textbf{return} \emph{\$a} . ', ' \\
+\> \> \hspace{8 mm} . złączone([\emph{\$b}, \emph{\$c}, ...]); \\
+\> \} \\
+\}
+\end{tabbing}
+}
+\end{frame}
+
+\begin{frame}{Faktyczna implementacja w PHP}
+\texttt{
+\begin{tabbing}
+\textbf{function} złączone(\emph{\$słowa}) \{ \\
+\hspace{8 mm} \= \textbf{switch}(count(\emph{\$słowa})) \{ \\
+\> \textbf{case} 0: \\
+\> \hspace{8 mm} \= \textbf{return} ''; \\
+\> \textbf{case} 1: \\
+\> \> \textbf{return} array\_pop(\emph{\$a}); \\
+\> \textbf{default}: \\
+\> \> \emph{\$ostatnie} = array\_pop(\emph{\$słowa}); \\
+\> \> \textbf{return} implode(', ', \emph{\$słowa}) \\
+\> \> \hspace{8 mm} . ' i ' . \emph{\$ostatnie}; \\
+\> \} \\
+\} \\
+\end{tabbing}
+}
+\end{frame}
+
+
+\subsection{Sortowanie tablicy}
+
+\begin{frame}{Kolejna zagadka!}
+
+\Large{Jak posortować tablicę \uncover<2->{stringów}\newline
+w PHP \uncover<2->{według ich długości}?}
+\end{frame}
+
+\begin{frame}{Pierwsza próba:}
+\texttt{
+\begin{tabbing}
+usort(\emph{\$tablica}, \textbf{function}(\emph{\$a}, \emph{\$b}) \{ \\ 
+\hspace{8 mm}\textbf{return} length(\emph{\$a}) - length(\emph{\$b}); \\
+\});
+\end{tabbing}
+}
+\pause
+Pytanie: \textbf{czy powyższe wywołanie posortuje tablicę rosnąco,
+czy malejąco?}
+\end{frame}
+
+\begin{frame}{Druga próba:}
+\textbf{\texttt{usort(\emph{\$tablica}, ascending('length'))}}
+\pause , \newline \newline
+gdzie
+\texttt{
+\begin{tabbing}
+\textbf{function} ascending(\emph{\$property}) \{ \\
+\hspace{8 mm} \= \textbf{return} \textbf{function}(\emph{\$a}, \emph{\$b})
+ \textbf{use}(\emph{\$property}) \{ \\
+\> \hspace{8 mm} \= \textbf{return} \emph{\$property}(\emph{\$a})
+ - \emph{\$property}(\emph{\$b}); \\
+\> \}; \\
+\}
+\end{tabbing}
+}
+\end{frame}
+
+\begin{frame}{Sortowanie malejąco}
+\texttt{
+\begin{tabbing}
+\textbf{function} descending (\emph{\$prop}) \{ \\
+\hspace{8 mm} \= \textbf{return} \textbf{function}(\emph{\$a}, \emph{\$b}) 
+\textbf{use}(\emph{\$prop}) \{ \\
+\> \hspace{8 mm} \= \textbf{return} -call\_user\_func(ascending(\emph{\$prop}),\\
+\> \> \hspace{56 mm} \emph{\$a}, \emph{\$b}); \\
+\> \}; \\
+\}
+\end{tabbing}
+}
+\pause
+\begin{tabbing}
+jeżeli \texttt{is\_callable(\$f)}, \\
+\hspace{8 mm} \= to zapis \texttt{call\_user\_func(\$f, \$argumenty ...)} \\
+\> jest równoważny zapisowi \texttt{\$f(\$argumenty ...)}
+\end{tabbing}
+\end{frame}
+
+
+\subsection{Inne funkcje wyższego rzędu}
+\begin{frame}{Popularne funkcje wyższego rzędu}
+  \begin{itemize}
+  \item
+    \texttt{call\_user\_func\_array(\$function, \$array)}
+    \pause
+  \item
+    \texttt{array\_map(\$callback, \$a1, \$a2, ...)}
+    \pause
+  \item
+    \texttt{array\_filter(\$array, \$callback)}
+    \pause
+  \item
+    \texttt{array\_reduce(\$callback, \$array [, \$init])}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textbf{\texttt{call\_user\_func\_array}} -- synonimy 1}
+  Zastosowanie \texttt{call\_user\_func\_array} -- tworzenie synonimów:
+\pause
+\texttt{
+\begin{tabbing}
+\textbf{function} apply() \{ \\
+\hspace{8 mm} \= \textbf{return} call\_user\_func\_array( \\
+\> \hspace{8 mm} \= 'call\_user\_func\_array', \\
+\> \> func\_get\_args() \\
+\> ); \\
+\} \\
+ \\
+ \\
+ \\
+ \\
+ \\
+\end{tabbing}
+}
+\end{frame}
+
+
+\begin{frame}{\textbf{\texttt{call\_user\_func\_array}} -- synonimy 2}
+  Zastosowanie \texttt{call\_user\_func\_array} -- tworzenie synonimów:
+\pause
+\texttt{ \begin{tabbing} \textbf{function} map() \{ \\
+\hspace{8 mm} \textbf{return} apply('array\_map', func\_get\_args()); \\
+\} \end{tabbing} } \pause \texttt{ \begin{tabbing}
+\textbf{function} filter() \{ \\
+\hspace{8 mm} \textbf{return} apply('array\_filter', func\_get\_args()); \\
+\} \end{tabbing} } \pause \texttt{ \begin{tabbing}
+\textbf{function} reduce() \{ \\
+\hspace{8 mm} \textbf{return} apply('array\_reduce', func\_get\_args()); \\
+\}
+\end{tabbing}
+}
+\end{frame}
+
+\begin{frame}{\textbf{\texttt{call\_user\_func\_array}} -- synonimy 3}
+  Zastosowanie \texttt{call\_user\_func\_array} do tworzenia synonimów -- 
+\textbf{problemy}: \pause
+  \begin{itemize}
+  \item
+    \alert{brak argumentów formalnych} -- utrudnia współpracę z IDE
+    \pause
+  \item
+    \alert{brak obsługi referencji}
+    \pause
+    \texttt{ \begin{tabbing} \textbf{function} \alert{pop}() \{ \\
+        \hspace{8 mm} \textbf{return} apply('array\_pop', func\_get\_args()); \\
+        \} \textbf{\alert{// źle!!!}} \end{tabbing} } 
+    \pause
+    \item
+      \alert{generuje narzuty wywołań} (kod działa wolniej)
+      \pause
+      \item
+        a co z obsługą argumentów domyślnych?
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textbf{\texttt{call\_user\_func\_array}} -- synonimy 4}
+  Zagadka: \textbf{jak stworzyć synonim dla} \texttt{func\_get\_args}?
+\end{frame}
+
+
+\begin{frame}{\textbf{\texttt{array\_map}} -- przykład}
+\texttt{map}: odwzorowanie zbioru funkcją. \pause Na przykład, chcąc 
+usunąć białe znaki ze stringów będących elementami tablicy przy pomocy
+funkcji trim, możemy napisać: \newline \newline
+\texttt{\$ogolone\_napisy = map('trim', \$napisy)}
+\end{frame}
+
+\begin{frame}{\textbf{\texttt{array\_map}} -- zagadka}
+Zagadka: \textbf{Chcemy wiedzieć, jaka jest największa długość
+stringu w danej tablicy (stringów).}
+\end{frame}
+
+\begin{frame}{\textbf{\texttt{array\_map}} -- rozwiązanie}
+Rozwiązanie: \texttt{max(map('length', \emph{\$tablica}))}
+\newline \newline \pause
+\textbf{Uwaga!} To jest po prostu zdanie ,,największa spośród długości
+elementów w \texttt{\$tablicy}'' wyrażone w PHP!
+\end{frame}
+
+
+\begin{frame}{\textbf{\texttt{array\_map}} -- ciekawostka}
+\textbf{Ciekawostka:} \newline 
+\texttt{map('f', map('g', \$a)) = map('f' $\circ$ 'g', \$a)}, gdzie
+symbol $\circ$ oznacza złożenie funkcji, tj. $f(g(x))$
+\newline \newline \pause
+\textbf{Zadanie:} napisz funkcję 'compose', która pobiera jako
+argumenty funkcje jednoargumentowe i zwraca funkcję będącą ich 
+złożeniem
+\end{frame}
+
+\begin{frame}{\textbf{\texttt{array\_filter}} -- przykład}
+\texttt{filter}: odsiewanie elementów spełniających dane kryterium\pause, 
+np. chcemy znaleźć wszystkie liczby z danej tablicy, mieszczące się
+w przedziale (2, 5) \pause
+\texttt{
+\begin{tabbing}
+\$liczby\_2\_5 = filter(\$różne\_liczby, \textbf{function}(\$x) \{ \\
+\hspace{8mm} \textbf{return} (2 < \$x) \&\& (\$x < 5); \\
+\});
+\end{tabbing}
+}
+\end{frame}
+
+\begin{frame}{\textbf{\texttt{array\_reduce}} -- wzmianka}
+\texttt{reduce}: funkcyjna bestia \newline \pause
+\textbf{zastosowanie}: uogólnianie dwuargumentowych działań łącznych na
+dowolną ilość argumentów
+\end{frame}
+
+\subsection{Łączenie OOP i FP}
+\begin{frame}{Składnia \textbf{\texttt{\$\_}}}
+\textbf{Problem:} mamy tablicę obiektów. Chcielibyśmy mieć tablicę rzutów 
+tych obiektów na ich pewne własności, które możemy otrzymać przez wywołanie
+odpowiedniej metody. \newline \pause
+Klasyczne rozwiązanie:
+\texttt{
+\begin{tabbing}
+\$rzuty = []; \\
+foreach(\$obiekty as \$obiekt) \{ \\
+\hspace{8 mm} \$rzuty[] = \$obiekt->pobierzWłasność(); \\
+\}
+\end{tabbing}
+} \pause 
+Funkcyjne rozwiązanie:
+\texttt{
+\begin{tabbing}
+\uncover<4->{global \$\_; // drobne oszustwo} \\
+\$rzuty = map(\$\_->pobierzWłasność(), \$obiekty);
+\end{tabbing}
+}
+\end{frame}
+
+\begin{frame}{Składnia \textbf{\texttt{\$\_}}}
+\textbf{Inny problem:} sortowanie tablicy tablic względem danej kolumny:\newline
+\pause
+\texttt{usort(\$array, ascending(\$\_['column']));}
+\end{frame}
+
+\section*{Podsumowanie}
+
+\begin{frame}{Podsumowanie}
+  \pause
+  Zalety FP:
+  \pause
+  \begin{itemize}
+  \item
+    łatwiejsza analiza kodu
+    \pause
+  \item
+    dobra kompozycjonalność (nie trzeba się przejmować kopiowaniem i referencjami)
+    \pause
+  \item
+    bardzo naturalne testowanie
+    \pause
+  \item
+    uproszczona paralelizacja
+  \end{itemize}
+  \pause
+  Wady FP:
+  \pause
+  \begin{itemize}
+  \item
+    nie wszędzie daje się stosować
+    \pause
+  \item
+    brak wsparcia ze strony narzędzi
+    \pause
+  \item
+    kod może działać niewydajnie
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Lektury}
+  Wpiszcie sobie w Google: \newline
+  \emph{John Carmack Functional Programming}\newline
+  \newline \pause
+  
+  Książki: \newline
+  ,,Struktura i Interpretacja Programów Komputerowych'', H.~Abelson, G.~Sussman
+\end{frame}
+
+
+\begin{frame}{Dziękuję!}
+\begin{tightcenter}
+\large{\emph{https://joind.in/10258}}\newline
+\tiny{\textbf{godek.maciek@gmail.com}}
+\end{tightcenter}
+\end{frame}
+
+
+\end{document}
