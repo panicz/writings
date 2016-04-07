@@ -899,7 +899,7 @@ zielony balon
 
 \begin_layout Standard
 Tym niemniej, nawet jeśli pominiemy idiomy, w naszym języku będziemy mogli
- znaleźć wyrażenia w pewien sposób zaburzające owej zasadzie kompozycjonalności.
+ znaleźć wyrażenia w pewien sposób zaburzające ową zasadę kompozycjonalności.
 \end_layout
 
 \begin_layout Standard
@@ -1800,7 +1800,7 @@ Przykładowa
 -abstrakcja może mieć postać:
 \begin_inset Formula 
 \[
-(\lambda\underbrace{(x\; y)}_{argumenty}\underbrace{x\quad\mathrm{ma}\quad y}_{ciało})
+(\lambda\underbrace{(x\;y)}_{argumenty}\underbrace{x\quad\mathrm{ma}\quad y}_{ciało})
 \]
 
 \end_inset
@@ -1841,7 +1841,7 @@ Przykładowa
 Kombinacje zapisujemy w postaci
 \begin_inset Formula 
 \[
-(wyrażenie\; argumenty\;...),
+(wyrażenie\;argumenty\;...),
 \]
 
 \end_inset
@@ -1900,7 +1900,7 @@ Jakkolwiek skomplikowanie by to nie brzmiało, reguła ta jest całkiem prosta.
 \begin_layout Standard
 \begin_inset Formula 
 \[
-((\lambda\;(x\; y)\; x\;\mathrm{ma}\; y)\;\mathrm{Dorota}\;\mathrm{kota})
+((\lambda\;(x\;y)\;x\;\mathrm{ma}\;y)\;\mathrm{Dorota}\;\mathrm{kota})
 \]
 
 \end_inset
@@ -1924,7 +1924,7 @@ To, że wyrażenie jest kombinacją, nie powinno budzić zastrzeżeń.
 \end_inset
 
 
-\begin_inset Formula $x\;\mathrm{ma}\; y$
+\begin_inset Formula $x\;\mathrm{ma}\;y$
 \end_inset
 
 
@@ -1975,7 +1975,7 @@ Uważna czytelniczka z pewnością zwróciła uwagę, że wynik redukcji nie jes
 
 \begin_inset Formula 
 \[
-\mathrm{Dorota\; ma\; kota}
+\mathrm{Dorota\;ma\;kota}
 \]
 
 \end_inset
@@ -2033,7 +2033,7 @@ key "Harrison1997"
  (sugerowałbym jednak nie próbować zbyt długo!):
 \begin_inset Formula 
 \[
-\left((\lambda\;(x)\;(x\; x))\quad(\lambda\;(x)\;(x\; x))\right)
+\left((\lambda\;(x)\;(x\;x))\quad(\lambda\;(x)\;(x\;x))\right)
 \]
 
 \end_inset
@@ -2068,7 +2068,7 @@ define
 -kombinator, i przytaczam go tu ze względu na jego osobliwe piękno:
 \begin_inset Formula 
 \[
-\left(\lambda\;\left(f\right)\;\left(\left(\lambda\;\left(x\right)\;\left(f\;\left(x\; x\right)\right)\right)\;\left(\lambda\;\left(x\right)\;\left(f\;\left(x\; x\right)\right)\right)\right)\right)
+\left(\lambda\;\left(f\right)\;\left(\left(\lambda\;\left(x\right)\;\left(f\;\left(x\;x\right)\right)\right)\;\left(\lambda\;\left(x\right)\;\left(f\;\left(x\;x\right)\right)\right)\right)\right)
 \]
 
 \end_inset
@@ -2258,8 +2258,8 @@ dla dowolnego naturalnego
 \begin_inset Formula 
 \[
 n!=\begin{cases}
-1 & dla\; n=0\\
-n\cdot(n-1)! & dla\; n>0
+1 & dla\;n=0\\
+n\cdot(n-1)! & dla\;n>0
 \end{cases}
 \]
 
