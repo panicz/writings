@@ -1,0 +1,394 @@
+\documentclass{beamer}
+
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+\mode<presentation>
+{
+  \usetheme{Copenhagen}
+  %%\usecolortheme[RGB={173,222,25}]{structure}
+  \usecolortheme[RGB={255,0,0}]{structure}
+  \setbeamertemplate{items}[circle]
+  \setbeamercovered{transparent}
+}
+
+\usepackage[polish]{babel}
+\usepackage{chessfss}
+\usepackage{hyperref}
+\usepackage{qtree}
+\usepackage{mathtools}
+\usepackage{dirtytalk}
+\usepackage{epigraph}
+\usepackage{textgreek}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{ulem}
+\usepackage{adjustbox}
+
+\newenvironment{Snippet}{\Verbatim[samepage=true]}{\endVerbatim}
+
+\title{\textbf{Czym do diaska jest programowanie funkcyjne?}}
+
+\author{Panicz Maciej Godek}
+
+\institute{
+  \tiny{\href{mailto:godek.maciek@gmail.com}{\textbf{godek.maciek@gmail.com}}}
+}
+
+\date{\textbf{Hackerspace Trójmiasto}, 07.02.2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Wprowadzenie}
+
+\begin{frame}{Definicja}
+  \textbf{Czym jest programowanie?}
+  \pause
+  \begin{itemize}
+  \item stosunkowo młoda dziedzina ludzkiej działalności
+    \pause
+    \\ ale czy na pewno?
+    \pause
+    \begin{displayquote}
+      ,,Nauczyciele, generałowie, dietetycy, psychologowie i rodzice programują.
+      Działania wojska, studentów i niektórych społeczności są programowane.
+      Zmierzenie się z dużym problemem wymaga wielu programów, z których
+      większość jest powoływana do życia w trakcie tych zmagań.''
+    \end{displayquote}
+    -- Alan Perlis
+    
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Analogia}
+  \textbf{Do jakiej innej dziedziny ludzkiej działalności
+    można porównać programowanie?}
+  \pause
+  \begin{itemize}
+  \item budowanie urządzeń\pause, które \\
+    przeprowadzając kolejne kroki \\
+    \pause zmieniają swój stan
+    \pause
+  \item logika, wyrażanie idei \\
+    \pause (definicje, twierdzenia, dowody, przykłady)
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Analogia}
+  \textbf{Do jakiej innej dziedziny ludzkiej działalności
+    można porównać programowanie?}
+  \begin{itemize}
+  \item budowanie urządzeń, które \\
+    przeprowadzając kolejne kroki \\
+    \sout{zmieniają swój stan}
+  \item logika, wyrażanie idei \\
+    (definicje, twierdzenia, dowody, przykłady)
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Analogia}
+  \textbf{Do jakiej innej dziedziny ludzkiej działalności
+    można porównać programowanie?}
+  \begin{itemize}
+  \item budowanie urządzeń\sout{, które \\
+    przeprowadzając kolejne kroki} \\
+    \sout{zmieniają swój stan}
+  \item logika, wyrażanie idei \\
+    (definicje, twierdzenia, dowody, przykłady)
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Analogia}
+  \textbf{Do jakiej innej dziedziny ludzkiej działalności
+    można porównać programowanie?}
+  \begin{itemize}
+  \item \sout{budowanie urządzeń}\sout{, które \\
+      przeprowadzając kolejne kroki} \\
+    \sout{zmieniają swój stan}
+  \item logika, wyrażanie idei \\
+    (definicje, twierdzenia, dowody, przykłady)
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Analogia}
+  \textbf{Inne punkty wyjścia}
+  \pause
+  \begin{itemize}
+  \item fizyka -- Joe Armstrong, Erlang
+    \pause
+  \item matematyka -- John Backus, FFP
+    \pause
+  \item językoznawstwo -- Noam Chomsky, gramatyka generatywna
+  \end{itemize}
+\end{frame}
+
+\section{Przykład}
+
+\begin{frame}{Przykład}
+
+  \textbf{Program, który liczy sumę kwadratów
+    początkowych siedmiu liczb pierwszych}
+
+  \pause
+  \texttt{licznik := 7\\*
+liczba := 0\\*
+suma := 0\\*
+dopóki(licznik > 0):\\*
+\ \ \ \ jeżeli jest\_pierwsza(liczba):\\*
+\ \ \ \ \ \ \ \ suma := suma + liczba\^{}2\\*
+\ \ \ \ \ \ \ \ licznik := licznik - 1\\*
+\ \ \ \ liczba := liczba + 1
+  }
+   
+\end{frame}
+
+\begin{frame}{Perspektywa lingwistyczna}
+  \textbf{suma kwardatów początkowych siedmiu liczb pierwszych} \\
+  \pause
+  ,,suma $X$''\pause, gdzie \\
+  $X$ = ,,kwardaty $Y$''\pause, gdzie \\
+  $Y$ = ,,$k$ początkowych liczb pierwszych''\pause, gdzie \\
+  $k$ = 7
+\end{frame}
+
+\begin{frame}{Drzewko}
+
+  \begin{center}
+    \Tree [.suma
+      [.kwadratów
+        [.liczb-pierwszych siedmiu początkowych ] ] ]
+  \end{center}
+  
+\end{frame}
+
+\begin{frame}
+  Do wyjaśnienia: \pause
+  \begin{itemize}
+  \item co znaczy ,,suma $X$''? \pause
+  \item co znaczy ,,kwadraty $Y$'' \pause
+  \item co znaczy ,,siedem początkowych liczb pierwszych''?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Znaczenie}
+  \textbf{Co znaczy ,,siedem początkowych liczb pierwszych''?} \\
+  \pause
+  \begin{center}
+    \begin{tabular}{ l c r }
+      denotacja & vs. & konotacja \pause\\
+    \end{tabular}
+  \end{center}
+  \begin{itemize}
+  \item denotacja (odniesienie): obiekt, do którego dane wyrażenie językowe się
+    \textit{odnosi}\pause, np. ciąg \texttt{(2 3 5 7 11 13 17)} \pause
+  \item konotacja (określenie): inne wyrażenie językowe równoważne danemu
+    (ale prostsze pojęciowo)
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Redukcja}
+  \textbf{Konotacja (definicja)}
+ 
+  Niech $N$ i $M$ oznaczają liczby naturalne. Rozważmy znaczenie wyrażenia \\
+  ,,$N$ najmniejszych liczb pierwszych większych od $M$'' \pause \\
+
+  \begin{enumerate}
+  \item wiemy, że znaczeniem tego wyrażenia (o ile jest sensowne)
+    jest \textbf{ciąg} $N$-elementowy \pause
+    
+  \item znaczenie wyrażenia ,,$0$ najmniejszych liczb pierwszych
+    większych od $M$'' jest \textbf{tożsame} (koekstensjonalne)
+    ze znaczeniem wyrażenia ,,pusty ciąg''
+  \end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{Redukcja}
+  \textbf{Konotacja (definicja)} 
+  Niech $N$ i $M$ oznaczają liczby naturalne. Rozważmy znaczenie wyrażenia \\
+  ,,$N+1$ najmniejszych liczb pierwszych większych od $M+1$'' \pause \\
+
+  \begin{enumerate}
+    \setcounter{enumi}{2}
+    \item jeżeli $M+1$ jest liczbą pierwszą, to znaczeniem wyrażenia
+    ,,$N+1$ najmniejszych liczb pierwszych większych od $M$'' jest \textbf{ciąg},
+    którego pierwszym elementem jest $M+1$, a którego pozostałe elementy
+    to ,,$N$ najmniejszych liczb pierwszych większych od $M+1$ \pause
+    
+  \item jeżeli $M+1$ nie jest liczbą pierwszą, to znaczenie wyrażenia
+    ,,$N+1$ najmniejszych liczb pierwszych większych od $M$'' jest
+    \textbf{takie samo}, jak znaczenie wyrażenia ,,$N+1$ liczb pierwszych większych
+    od $M+1$''.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \center{Uff...}
+\end{frame}
+
+\begin{frame}{Formalna notacja}
+
+  \textbf{suma kwadratów początkowych siedmiu liczb pierwszych}
+  \pause
+  sum of squares of initial seven prime numbers 
+  {\tiny (angielski nie ma deklinacji)} \\
+  \pause
+  \texttt{(sum (squares (initial seven prime numbers)))} {\tiny(złożone
+    deskrypcje bierzemy w nawiasy, \texttt{f} of \texttt{x} = \texttt{(f x)})} \\
+  \pause
+  \textbf{\texttt{(sum (squares (prime-numbers seven initial)))}}
+  {\tiny(słowa rządzące na początku)} \\
+
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if (equal? amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if (prime? lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(\textbf{define (prime-numbers amount lowest)}\\*
+\ \ (if (equal? amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if (prime? lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ \textbf{(if (equal? amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if (prime? lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1))))})\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if \textbf{(equal? amount 0)\\*
+\ \ \ \ '()}\\*
+\ \ \ \ (if (prime? lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
+  }
+\end{frame}
+
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if (equal? amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ \textbf{(if (prime? lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))}))\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if (equal? amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if \textbf{(prime? lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))}\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if (equal? amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if (prime? lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ \textbf{(prime-numbers amount (+ lowest 1))})))\\*
+  }
+\end{frame}
+
+\begin{frame}{Pojęcia pierwotne}
+  Użyte pojęcia pierwotne: \pause
+  \begin{itemize}
+  \item \texttt{(if <warunek> <wartość> <alternatywa>)} -- jeżeli
+    \texttt{<warunek>} jest spełniony, znaczeniem całego wyrażenia jest
+    \texttt{<wartość>}, a w przeciwnym razie jest nią \texttt{<alternatywa>}\pause
+  \item \texttt{(equal? a b)} -- \texttt{a} i \texttt{b} są równe\pause
+  \item \texttt{(+ a b)} -- suma \texttt{a} i \texttt{b}\pause
+  \item \texttt{(- a b)} -- różnica \texttt{a} i \texttt{b}\pause
+  \item \texttt{(cons element sequence)} -- sekwencja, której pierwszym
+    elementem jest \texttt{element}, zaś pozostałe elementy to elementy
+    sekwencji \texttt{sequence}\pause
+  \item \texttt{'()} -- sekwencja pusta
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Pojęcia wtórne}
+  Użyte pojęcia wtórne:\pause
+  \begin{itemize}
+  \item \texttt{prime-numbers} -- ale to je właśnie definiujemy
+    (rekurencyjnie) \pause
+  \item \texttt{(prime? n)} -- test, czy \texttt{n} jest liczbą pierwszą
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Pierwszość liczby}
+  $n$ jest liczbą pierwszą, jeśli jej jedyne podzielniki to $1$ oraz $n$\pause
+  \texttt{
+(define (prime? n)\\*
+\ \ (equal? (divisors n) (list 1 n)))\\*
+    }\pause
+  pojęcia pierwotne:\pause
+  
+  
+  
+\end{frame}
+
+
+\end{document}
