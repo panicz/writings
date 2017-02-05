@@ -17,6 +17,8 @@
   \setbeamercovered{transparent}
 }
 
+%% zooart binia85
+
 \usepackage[polish]{babel}
 \usepackage{chessfss}
 \usepackage{hyperref}
@@ -128,19 +130,6 @@
   \end{itemize}
 \end{frame}
 
-
-\begin{frame}{Analogia}
-  \textbf{Inne punkty wyjścia}
-  \pause
-  \begin{itemize}
-  \item fizyka -- Joe Armstrong, Erlang
-    \pause
-  \item matematyka -- John Backus, FFP
-    \pause
-  \item językoznawstwo -- Noam Chomsky, gramatyka generatywna
-  \end{itemize}
-\end{frame}
-
 \section{Przykład}
 
 \begin{frame}{Przykład}
@@ -159,6 +148,12 @@ dopóki(licznik > 0):\\*
 \ \ \ \ liczba := liczba + 1
   }
    
+\end{frame}
+
+\begin{frame}{Schemat blokowy}
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{pierwsze.pdf}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Perspektywa lingwistyczna}
@@ -181,6 +176,8 @@ dopóki(licznik > 0):\\*
 \end{frame}
 
 \begin{frame}
+  ,,suma kwadratów początkowych siedmiu liczb pierwszych'' \\
+  
   Do wyjaśnienia: \pause
   \begin{itemize}
   \item co znaczy ,,suma $X$''? \pause
@@ -226,7 +223,7 @@ dopóki(licznik > 0):\\*
 \begin{frame}{Redukcja}
   \textbf{Konotacja (definicja)} 
   Niech $N$ i $M$ oznaczają liczby naturalne. Rozważmy znaczenie wyrażenia \\
-  ,,$N+1$ najmniejszych liczb pierwszych większych od $M+1$'' \pause \\
+  ,,$N+1$ najmniejszych liczb pierwszych większych od $M$'' \pause \\
 
   \begin{enumerate}
     \setcounter{enumi}{2}
@@ -237,8 +234,8 @@ dopóki(licznik > 0):\\*
     
   \item jeżeli $M+1$ nie jest liczbą pierwszą, to znaczenie wyrażenia
     ,,$N+1$ najmniejszych liczb pierwszych większych od $M$'' jest
-    \textbf{takie samo}, jak znaczenie wyrażenia ,,$N+1$ liczb pierwszych większych
-    od $M+1$''.
+    \textbf{takie samo}, jak znaczenie wyrażenia ,,$N+1$ liczb pierwszych
+    większych od $M+1$''.
   \end{enumerate}
 \end{frame}
 
@@ -261,97 +258,7 @@ dopóki(licznik > 0):\\*
 
 \end{frame}
 
-\begin{frame}{Język Scheme}
-  \texttt{
-(define (prime-numbers amount lowest)\\*
-\ \ (if (equal? amount 0)\\*
-\ \ \ \ '()\\*
-\ \ \ \ (if (prime? lowest)\\*
-\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
-\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
-  }
-\end{frame}
-
-\begin{frame}{Język Scheme}
-  \texttt{
-(\textbf{define (prime-numbers amount lowest)}\\*
-\ \ (if (equal? amount 0)\\*
-\ \ \ \ '()\\*
-\ \ \ \ (if (prime? lowest)\\*
-\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
-\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
-  }
-\end{frame}
-
-\begin{frame}{Język Scheme}
-  \texttt{
-(define (prime-numbers amount lowest)\\*
-\ \ \textbf{(if (equal? amount 0)\\*
-\ \ \ \ '()\\*
-\ \ \ \ (if (prime? lowest)\\*
-\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
-\ \ \ \ \ \ (prime-numbers amount (+ lowest 1))))})\\*
-  }
-\end{frame}
-
-\begin{frame}{Język Scheme}
-  \texttt{
-(define (prime-numbers amount lowest)\\*
-\ \ (if \textbf{(equal? amount 0)\\*
-\ \ \ \ '()}\\*
-\ \ \ \ (if (prime? lowest)\\*
-\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
-\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
-  }
-\end{frame}
-
-
-\begin{frame}{Język Scheme}
-  \texttt{
-(define (prime-numbers amount lowest)\\*
-\ \ (if (equal? amount 0)\\*
-\ \ \ \ '()\\*
-\ \ \ \ \textbf{(if (prime? lowest)\\*
-\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
-\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))}))\\*
-  }
-\end{frame}
-
-\begin{frame}{Język Scheme}
-  \texttt{
-(define (prime-numbers amount lowest)\\*
-\ \ (if (equal? amount 0)\\*
-\ \ \ \ '()\\*
-\ \ \ \ (if \textbf{(prime? lowest)\\*
-\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))}\\*
-\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
-  }
-\end{frame}
-
-\begin{frame}{Język Scheme}
-  \texttt{
-(define (prime-numbers amount lowest)\\*
-\ \ (if (equal? amount 0)\\*
-\ \ \ \ '()\\*
-\ \ \ \ (if (prime? lowest)\\*
-\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
-\ \ \ \ \ \ \textbf{(prime-numbers amount (+ lowest 1))})))\\*
-  }
-\end{frame}
+\input{prime-numbers.tex}
 
 \begin{frame}{Pojęcia pierwotne}
   Użyte pojęcia pierwotne: \pause
@@ -374,21 +281,229 @@ dopóki(licznik > 0):\\*
   \begin{itemize}
   \item \texttt{prime-numbers} -- ale to je właśnie definiujemy
     (rekurencyjnie) \pause
-  \item \texttt{(prime? n)} -- test, czy \texttt{n} jest liczbą pierwszą
+  \item \texttt{(prime?\ n)} -- test, czy \texttt{n} jest liczbą pierwszą
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Pierwszość liczby}
-  $n$ jest liczbą pierwszą, jeśli jej jedyne podzielniki to $1$ oraz $n$\pause
+  $n$ jest \textit{liczbą pierwszą}, jeśli jej jedyne podzielniki
+  to $1$ oraz $n$\pause
   \texttt{
-(define (prime? n)\\*
+(define (prime?\ n)\\*
 \ \ (equal? (divisors n) (list 1 n)))\\*
     }\pause
   pojęcia pierwotne:\pause
-  
-  
+  \begin{itemize}
+  \item \texttt{(list arg1 arg2 ...)} -- lista (sekwencja) zawierająca argumenty
+    \texttt{arg1}, \texttt{arg2}, \texttt{...}\pause
+  \end{itemize}
+  pojęcia wtórne:\pause
+  \begin{itemize}
+  \item \texttt{(divisors n)} -- lista wszystkich podzielników liczby naturalnej
+    \texttt{n}
+  \end{itemize}
   
 \end{frame}
 
+\input{divisors.tex}
+
+\begin{frame}
+  \textbf{\texttt{(sum (squares (prime-numbers 7 0)))}}\\
+
+  Do wyjaśnienia:
+  \begin{itemize}
+  \item co znaczy ,,suma $X$''?
+  \item co znaczy ,,kwadraty $Y$''
+  \item \sout{co znaczy ,,siedem początkowych liczb pierwszych''?}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Kwadrat liczby}
+  \textit{kwadratem} liczby nazwiemy tę liczbę pomnożoną przez siebie samą\pause\\
+  \texttt{
+(define (square x)\\*
+\ \ (* x x))\\*
+\ \\*    
+  }
+  \pause
+  jak należy rozumieć \textit{kwadraty ciągu liczb}?\\ \pause
+  \texttt{(sum (squares (prime-numbers 7 0)))} \\ \pause
+  {\tiny czym jest \texttt{squares}?}
+\end{frame}
+
+\begin{frame}{Kwadraty ciągu}
+  \begin{enumerate}
+  \item wiemy, że dowolny ciąg może być albo \textit{ciągiem pustym},
+    albo posiada \textit{pierwszy element} oraz
+    \textit{pozostałe elementy} \pause
+    
+  \item kwadraty pustego ciągu to ciąg pusty \pause
+    
+  \item kwadraty ciągu złożonego z pierwszego elementu oraz pozostałych
+    elementów to ciąg, którego pierwszym elementem jest kwadrat pierwszego
+    elementu oryginalnego ciągu, a którego pozostałe elementy to kwadraty
+    pozostałch elementów oryginalnego ciągu \pause
+
+  \end{enumerate}
+  \texttt{
+(define (squares sequence)\\*
+\ \ (if (equal?\ sequence '())\\*
+\ \ \ \ '()\\*
+\ \ \ \ (cons (square (car sequence))\\*
+\ \ \ \ \ \ \ \ \ \ (squares (cdr numbers)))))
+  }
+  
+\end{frame}
+
+\begin{frame}{Liczba mnoga}
+  gdybyśmy chcieli policzyć sumę sześcianów jakiegoś ciągu... \pause
+  musielibyśmy definiować funkcje \texttt{cube} oraz \texttt{cubes}? \\ \pause
+  przecież w języku dysponujemy \textit{liczbą mnogą} \pause \\
+  \texttt{
+    (define (map attribute sequence)\\*
+    \ \ (if (equal? sequence '())\\*
+    \ \ \ \ '()\\*
+    \ \ \ \ (cons (attribute (car sequence))\\*
+    \ \ \ \ \ \ \ \ (map attribute (cdr sequence)))))\\*\pause
+  } 
+  \textbf{\texttt{(sum (map square (prime-numbers 7 0)))}}
+  
+\end{frame}
+
+\begin{frame}
+  \textbf{\texttt{(sum (map square (prime-numbers 7 0)))}}\\
+
+  Do wyjaśnienia:
+  \begin{itemize}
+  \item co znaczy ,,suma $X$''?
+  \item \sout{co znaczy ,,kwadraty $Y$''}
+  \item \sout{co znaczy ,,siedem początkowych liczb pierwszych''?}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Suma}
+  \texttt{
+(define (sum sequence) \\*\pause
+\ \ (if (equal? sequence '()) \\*\pause
+\ \ \ \ 0 \\*\pause
+\ \ \ \ (+ (car sequence)\\*
+\ \ \ \ \ \ (sum (cdr sequence)))))\\*
+  }
+\end{frame}
+
+\begin{frame}
+  \textbf{\texttt{(sum (map square (prime-numbers 7 0)))}}\\
+
+  Do wyjaśnienia:
+  \begin{itemize}
+  \item \sout{co znaczy ,,suma $X$''?}
+  \item \sout{co znaczy ,,kwadraty $Y$''}
+  \item \sout{co znaczy ,,siedem początkowych liczb pierwszych''?}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  Jak inaczej można pomyśleć ,,siedem początkowych liczb pierwszych''? \\ \pause
+  \uncover<7->{\texttt{\#lang lazy\\*}}
+  \texttt{(define (numbers-from n)\\* \pause
+    \ \ (cons n (numbers-from (+ n 1))))}\\ \pause
+  \texttt{(define natural-numbers (numbers-from 0))} \\ \pause
+  \texttt{(define primes\\*\ \  (filter prime?\ natural-numbers))} \\ \pause
+  \texttt{(sum (map square (take 7 primes)))} \pause
+\end{frame}
+
+\begin{frame}
+  \pause
+  \texttt{(define \textbf{(filter condition sequence)} \\*
+    \ \ (if (equal?\ sequence '()) \\*
+    \ \ \ \ '()\\*
+    \ \ \ \ (if (condition (car sequence))\\*
+    \ \ \ \ \ \ (cons (car sequence)\\*
+    \ \ \ \ \ \ \ \ \ \ (filter condition (cdr sequence)))\\*
+    \ \ \ \ \ \ (filter condition (cdr sequence)))))} \\ \pause
+  \texttt{(define \textbf{(take n l)}\\*
+    \ \ (if (equal?\ n 0)\\*
+    \ \ \ \ '()\\*
+    \ \ \ \ (cons (car l)\\*
+    \ \ \ \ \ \ \ \ (take (- n 1) (cdr l)))))}
+\end{frame}
+
+\section{Podsumowanie}
+
+\begin{frame}
+  Czy nie łatwiej pozostać przy programowaniu imperatywnym? \pause
+  \begin{itemize}
+  \item za dużo sposobów przekazywania informacji pomiędzy
+    modułami (zmienne globalne, argumenty wynikowe, parametry
+    konfiguracyjne) -- duża entropia kodu \pause
+  \item konieczność specyfikowania szczegółów, które nie są
+    istotne dla problemu (przepływ sterowania, kolejność
+    wykonywania obliczeń)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Lisp}
+  Czy te dziwne nawiasy są konieczne? \\ \pause
+  Odnoszenie się do wyrażeń językowych\pause, np. \\
+  \begin{displayquote}
+    ,,znaczenie wyrażenia <<$0$ najmniejszych liczb pierwszych
+    większych od $M$>> jest tożsame ze znaczeniem wyrażenia <<pusty ciąg>>''
+  \end{displayquote} \pause
+  \begin{displayquote}
+    ,,zdanie <<śnieg jest biały>> jest prawdziwe wtedy i tylko wtedy,
+    gdy śnieg jest biały''
+  \end{displayquote}
+\end{frame}
+
+\begin{frame}{Operator \texttt{quote}}
+  Operator \texttt{quote} w Lispie zapobiega ewaluacji wyrażenia. \pause \\
+  Na przykład wartością wyrażenia \\
+  \texttt{(quote (sum (map square (prime-numbers 7 0))))}
+  jest sekwencja dwuelementowa, której pierwszym elementem jest symbol
+  \texttt{sum}, a drugim sekwencja trójelementowa, której
+  pierwszym elementem...\pause\\
+  \texttt{(quote x)} skracamy jako \texttt{'x}\pause\\
+
+  Zauważmy, że:\pause
+  \begin{enumerate}
+  \item programy, z którymi mieliśmy do tej pory styczność,
+    opierały się na przetwarzaniu sekwencji \pause
+  \item teksty programów, które pisaliśmy, same są
+    (pozagnieżdżanymi) sekwencjami \pause (homoikoniczność)
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Homoikoniczność}
+  Co nam to daje? \pause
+  \begin{itemize}
+  \item składnia uniwersalna\pause
+  \item opisywanie języków \pause
+  \item pisanie \textit{programów, które piszą programy}\pause
+  \item rozszerzanie składni języka \pause
+  \item lepsze narzędzia \pause
+  \item możliwość wykomentowywania pojedynczych wyrażeń
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  Co dalej? \pause
+  \begin{itemize}
+  \item \textbf{Struktura i Interpretacja Programów Komputerowych} \\
+    \url{https://mitpress.mit.edu/sicp} \pause
+  \item \textbf{A Pamphlet against R}\\
+    \url{http://panicz.github.io/pamphlet/} \pause
+    \begin{itemize}
+    \item algorytmy genetyczne \pause
+    \item logika rozmyta \pause
+    \item drzewa decyzyjne \pause
+    \item klasteryzacja \pause
+    \end{itemize}
+    \item warsztaty?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Koniec?}
+  Dziękuję za uwagę.
+\end{frame}
 
 \end{document}

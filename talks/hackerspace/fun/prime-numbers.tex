@@ -1,0 +1,91 @@
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if (equal?\ amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if (prime?\ lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(\textbf{define (prime-numbers amount lowest)}\\*
+\ \ (if (equal?\ amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if (prime?\ lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ \textbf{(if (equal?\ amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if (prime?\ lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1))))})\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if \textbf{(equal?\ amount 0)\\*
+\ \ \ \ '()}\\*
+\ \ \ \ (if (prime?\ lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
+  }
+\end{frame}
+
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if (equal?\ amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ \textbf{(if (prime?\ lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))}))\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if (equal?\ amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if \textbf{(prime?\ lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))}\\*
+\ \ \ \ \ \ (prime-numbers amount (+ lowest 1)))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Język Scheme}
+  \texttt{
+(define (prime-numbers amount lowest)\\*
+\ \ (if (equal?\ amount 0)\\*
+\ \ \ \ '()\\*
+\ \ \ \ (if (prime?\ lowest)\\*
+\ \ \ \ \ \ (cons lowest (prime-numbers (- amount 1)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (+ lowest 1)))\\*
+\ \ \ \ \ \ \textbf{(prime-numbers amount (+ lowest 1))})))\\*
+  }
+\end{frame}

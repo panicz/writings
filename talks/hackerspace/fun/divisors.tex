@@ -1,0 +1,1013 @@
+\begin{frame}{Podzielniki liczby}
+  Liczba $1 \le k \le n$ jest \emph{podzielnikiem} liczby $n$ wtedy i tylko wtedy,
+  gdy reszta z dzielenia $n$ przez $k$ wynosi zero\\
+  \texttt{
+(define (divisors n)\\*
+\ \ (define (divisors n k)\\*
+\ \ \ \ (if (> k n)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder n k) 0)\\*
+\ \ \ \ \ \ \ \ (cons k (divisors n (+ k 1)))\\*
+\ \ \ \ \ \ \ \ (divisors n (+ k 1)))))\\*
+\ \ (divisors n 1))
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Podzielniki liczby}
+  Liczba $1 \le k \le n$ jest podzielnikiem liczby $n$ wtedy i tylko wtedy,
+  gdy reszta z dzielenia $n$ przez $k$ wynosi zero\\
+  \texttt{
+(define (divisors n)\\*
+\ \ \textbf{(define (divisors n k)\\*
+\ \ \ \ (if (> k n)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder n k) 0)\\*
+\ \ \ \ \ \ \ \ (cons k (divisors n (+ k 1)))\\*
+\ \ \ \ \ \ \ \ (divisors n (+ k 1)))))}\\*
+\ \ (divisors n 1))
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Podzielniki liczby}
+  Liczba $1 \le k \le n$ jest podzielnikiem liczby $n$ wtedy i tylko wtedy,
+  gdy reszta z dzielenia $n$ przez $k$ wynosi zero\\
+  \texttt{
+(define (divisors n)\\*
+\ \ (define (divisors n k)\\*
+\ \ \ \ (if \textbf{(> k n)\\*
+\ \ \ \ \ \ '()}\\*
+\ \ \ \ \ \ (if (equal?\ (remainder n k) 0)\\*
+\ \ \ \ \ \ \ \ (cons k (divisors n (+ k 1)))\\*
+\ \ \ \ \ \ \ \ (divisors n (+ k 1)))))\\*
+\ \ (divisors n 1)
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Podzielniki liczby}
+  Liczba $1 \le k \le n$ jest podzielnikiem liczby $n$ wtedy i tylko wtedy,
+  gdy reszta z dzielenia $n$ przez $k$ wynosi zero\\
+  \texttt{
+(define (divisors n)\\*
+\ \ (define (divisors n k)\\*
+\ \ \ \ (if (> k n)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ \textbf{(if (equal?\ (remainder n k) 0)\\*
+\ \ \ \ \ \ \ \ (cons k (divisors n (+ k 1)))\\*
+\ \ \ \ \ \ \ \ (divisors n (+ k 1)))}))\\*
+\ \ (divisors n 1))
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Podzielniki liczby}
+  Liczba $1 \le k \le n$ jest podzielnikiem liczby $n$ wtedy i tylko wtedy,
+  gdy reszta z dzielenia $n$ przez $k$ wynosi zero\\
+  \texttt{
+(define (divisors n)\\*
+\ \ (define (divisors n k)\\*
+\ \ \ \ (if (> k n)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if \textbf{(equal?\ (remainder n k) 0)\\*
+\ \ \ \ \ \ \ \ (cons k (divisors n (+ k 1)))}\\*
+\ \ \ \ \ \ \ \ (divisors n (+ k 1)))))\\*
+\ \ (divisors n 1))
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Podzielniki liczby}
+  Liczba $1 \le k \le n$ jest podzielnikiem liczby $n$ wtedy i tylko wtedy,
+  gdy reszta z dzielenia $n$ przez $k$ wynosi zero\\
+  \texttt{
+(define (divisors n)\\*
+\ \ (define (divisors n k)\\*
+\ \ \ \ (if (> k n)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder n k) 0)\\*
+\ \ \ \ \ \ \ \ (cons k (divisors n (+ k 1)))\\*
+\ \ \ \ \ \ \ \ \textbf{(divisors n (+ k 1))})))\\*
+\ \ (divisors n 1))
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Podzielniki liczby}
+  Liczba $1 \le k \le n$ jest podzielnikiem liczby $n$ wtedy i tylko wtedy,
+  gdy reszta z dzielenia $n$ przez $k$ wynosi zero\\
+  \texttt{
+(define (divisors n)\\*
+\ \ (define (divisors n k)\\*
+\ \ \ \ (if (> k n)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder n k) 0)\\*
+\ \ \ \ \ \ \ \ (cons k (divisors n (+ k 1)))\\*
+\ \ \ \ \ \ \ \ (divisors n (+ k 1)))))\\*
+\ \ \textbf{(divisors n 1)})
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\pause\\
+  \texttt{(divisors 4 1)}\pause\\
+  \texttt{
+(if (> 1 4)\\*
+\ \ '()\\*
+\ \ (if (equal?\ (remainder 4 1) 0)\\*
+\ \ \ \ (cons 1 (divisors 4 (+ 1 1)))\\*
+\ \ \ \ (divisors 4 (+ 1 1))))\\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(if \textbf{(> 1 4)}\\*
+\ \ '()\\*
+\ \ (if (equal?\ (remainder 4 1) 0)\\*
+\ \ \ \ (cons 1 (divisors 4 (+ 1 1)))\\*
+\ \ \ \ (divisors 4 (+ 1 1))))\\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(if \#false\\*
+\ \ '()\\*
+\ \ \textbf{(if (equal?\ (remainder 4 1) 0)\\*
+\ \ \ \ (cons 1 (divisors 4 (+ 1 1)))\\*
+\ \ \ \ (divisors 4 (+ 1 1)))})\\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+\textbf{(if (equal?\ (remainder 4 1) 0)\\*
+\ \ (cons 1 (divisors 4 (+ 1 1)))\\*
+\ \ (divisors 4 (+ 1 1)))}\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(if \textbf{(equal?\ (remainder 4 1) 0)}\\*
+\ \ (cons 1 (divisors 4 (+ 1 1)))\\*
+\ \ (divisors 4 (+ 1 1)))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(if (equal?\ \textbf{(remainder 4 1)} 0)\\*
+\ \ (cons 1 (divisors 4 (+ 1 1)))\\*
+\ \ (divisors 4 (+ 1 1)))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(if (equal?\ \textbf{0} 0)\\*
+\ \ (cons 1 (divisors 4 (+ 1 1)))\\*
+\ \ (divisors 4 (+ 1 1)))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(if \textbf{(equal?\ 0 0)}\\*
+\ \ (cons 1 (divisors 4 (+ 1 1)))\\*
+\ \ (divisors 4 (+ 1 1)))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(if \#true\\*
+\ \ \textbf{(cons 1 (divisors 4 (+ 1 1)))}\\*
+\ \ (divisors 4 (+ 1 1)))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+}
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \textbf{(divisors 4 (+ 1 1))})\\*
+\ \\*    
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (divisors 4 \textbf{(+ 1 1)}))\\*
+\ \\*    
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (divisors 4 \textbf{2}))\\*
+\ \\*    
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \textbf{(divisors 4 2)})\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \textbf{(if (> 2 4)\\*
+\ \ \ \ \ \ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ \ \ \ \ \ (if (equal?\ (remainder 4 2) 0)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ (cons 2 (divisors 4 (+ 2 1)))\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1))))})
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (if \textbf{(> 2 4)}\\*
+\ \ \ \ \ \ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ \ \ \ \ \ (if (equal?\ (remainder 4 2) 0)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ (cons 2 (divisors 4 (+ 2 1)))\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1)))))
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (if \#false\\*
+\ \ \ \ \ \ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ \ \ \ \ \ \textbf{(if (equal?\ (remainder 4 2) 0)\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ (cons 2 (divisors 4 (+ 2 1)))\\*
+\ \ \ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1)))}))
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \textbf{(if (equal?\ (remainder 4 2) 0)\\*
+\ \ \ \ \ \ \ \ \ \ \ (cons 2 (divisors 4 (+ 2 1)))\\*
+\ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1)))})\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (if \textbf{(equal?\ (remainder 4 2) 0)}\\*
+\ \ \ \ \ \ \ \ \ \ \ (cons 2 (divisors 4 (+ 2 1)))\\*
+\ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1))))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (if (equal?\ \textbf{(remainder 4 2)} 0)\\*
+\ \ \ \ \ \ \ \ \ \ \ (cons 2 (divisors 4 (+ 2 1)))\\*
+\ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1))))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (if (equal?\ \textbf{0} 0)\\*
+\ \ \ \ \ \ \ \ \ \ \ (cons 2 (divisors 4 (+ 2 1)))\\*
+\ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1))))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (if \textbf{(equal?\ 0 0)}\\*
+\ \ \ \ \ \ \ \ \ \ \ (cons 2 (divisors 4 (+ 2 1)))\\*
+\ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1))))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (if \#true\\*
+\ \ \ \ \ \ \ \ \ \ \ \textbf{(cons 2 (divisors 4 (+ 2 1)))}\\*
+\ \ \ \ \ \ \ \ \ \ \ (divisors 4 (+ 2 1))))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \textbf{(cons 2 (divisors 4 (+ 2 1)))})\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (cons 2 (divisors 4 \textbf{(+ 2 1)})))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 (cons 2 (divisors 4 \textbf{3})))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ \textbf{(divisors 4 3)}))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ \textbf{(if (> 3 4)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder 4 3) 0)\\*
+\ \ \ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 4 (+ 3 1))))}))\\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \textbf{(> 3 4)}\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder 4 3) 0)\\*
+\ \ \ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 4 (+ 3 1))))))\\*
+  }
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \#false\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ \textbf{(if (equal?\ (remainder 4 3) 0)\\*
+\ \ \ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 4 (+ 3 1)))})))\\*
+  }
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ \textbf{(if (equal?\ (remainder 4 3) 0)\\*
+\ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 3 1)))}))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \textbf{(equal?\ (remainder 4 3) 0)}\\*
+\ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 3 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \textbf{(equal?\ (remainder 4 3) 0)}\\*
+\ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 3 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if (equal?\ \textbf{(remainder 4 3)} 0)\\*
+\ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 3 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if (equal?\ \textbf{1} 0)\\*
+\ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 3 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \texttt{(equal?\ 1 0)}\\*
+\ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 3 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \#false\\*
+\ \ \ \ \ \ (cons 3 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ \textbf{(divisors 4 (+ 3 1))})))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ \textbf{(divisors 4 (+ 3 1))}))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (divisors 4 \textbf{(+ 3 1)})))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (divisors 4 \textbf{4})))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ \textbf{(divisors 4 4)}))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ \textbf{(if (> 4 4)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder 4 4) 0)\\*
+\ \ \ \ \ \ \ \ (cons 4 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 4 (+ 4 1))))}))\\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \textbf{(> 4 4)}\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder 4 4) 0)\\*
+\ \ \ \ \ \ \ \ (cons 4 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 4 (+ 4 1))))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \#false\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ \textbf{(if (equal?\ (remainder 4 4) 0)\\*
+\ \ \ \ \ \ \ \ (cons 4 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 4 (+ 4 1)))})))\\*
+  }
+\end{frame}
+
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \textbf{(equal?\ (remainder 4 4) 0)}\\*
+\ \ \ \ \ \ (cons 4 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 4 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if (equal?\ \textbf{(remainder 4 4)} 0)\\*
+\ \ \ \ \ \ (cons 4 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 4 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if (equal?\ \textbf{0} 0)\\*
+\ \ \ \ \ \ (cons 4 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 4 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \textbf{(equal?\ 0 0)}\\*
+\ \ \ \ \ \ (cons 4 (divisors 4 (+ 4 1)))\\*
+\ \ \ \ \ \ (divisors 4 (+ 4 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (if \#true\\*
+\ \ \ \ \ \ \textbf{(cons 4 (divisors 4 (+ 4 1)))}\\*
+\ \ \ \ \ \ (divisors 4 (+ 4 1)))))\\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ \textbf{(cons 4 (divisors 4 (+ 4 1)))}))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (cons 4 (divisors 4 \textbf{(+ 4 1)}))))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (cons 4 (divisors 4 \textbf{5}))))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (cons 4 \textbf{(divisors 4 5)})))\\*
+\ \\*
+\ \\*
+\ \\*
+\ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (cons 4 \textbf{(if (> 5 4)\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder 4 5) 0)\\*
+\ \ \ \ \ \ \ \ (cons 5 (divisors 4 (+ 5 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 5 (+ 4 1))))})))\\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (cons 4 (if \textbf{(> 5 4)}\\*
+\ \ \ \ \ \ '()\\*
+\ \ \ \ \ \ (if (equal?\ (remainder 4 5) 0)\\*
+\ \ \ \ \ \ \ \ (cons 5 (divisors 4 (+ 5 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 5 (+ 4 1)))))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+(cons 1 \\*
+\ \ (cons 2 \\*
+\ \ \ \ (cons 4 (if \#true\\*
+\ \ \ \ \ \ \textbf{'()}\\*
+\ \ \ \ \ \ (if (equal?\ (remainder 4 5) 0)\\*
+\ \ \ \ \ \ \ \ (cons 5 (divisors 4 (+ 5 1)))\\*
+\ \ \ \ \ \ \ \ (divisors 5 (+ 4 1)))))))\\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+    (cons 1 (cons 2 (cons 4 \textbf{'()})))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+    (cons 1 (cons 2 \textbf{(cons 4 '())}))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+    (cons 1 (cons 2 \textbf{'(4))}))\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+    (cons 1 \textbf{(cons 2 '(4))})\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+    (cons 1 \textbf{'(2 4)})\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+    \textbf{(cons 1 '(2 4))}\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+    \textbf{'(1 2 4)}\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
+
+\begin{frame}{Analiza}
+  Rozważmy \texttt{(divisors 4)}. Na mocy definicji mamy\\
+  \texttt{(divisors 4 1)}\\
+  \texttt{
+    (1 2 4)\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+  }
+\end{frame}
