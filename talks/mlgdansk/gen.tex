@@ -1,0 +1,329 @@
+\documentclass{beamer}
+
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+\mode<presentation>
+{
+  \usetheme{Copenhagen}
+  %%\usecolortheme[RGB={173,222,25}]{structure}
+  \usecolortheme[RGB={94,23,90}]{structure}
+  \setbeamertemplate{items}[circle]
+  \setbeamercovered{transparent}
+}
+
+%% zooart binia85
+
+\usepackage[polish]{babel}
+\usepackage{chessfss}
+\usepackage{hyperref}
+\usepackage{qtree}
+\usepackage{mathtools}
+\usepackage{dirtytalk}
+\usepackage{epigraph}
+\usepackage{textgreek}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{ulem}
+\usepackage{adjustbox}
+
+\newenvironment{Snippet}{\Verbatim[samepage=true]}{\endVerbatim}
+
+\title{\textbf{Scheme + Machine Learning}}
+
+\author{Panicz Maciej Godek}
+
+\institute{
+  \tiny{\href{mailto:godek.maciek@gmail.com}{\textbf{godek.maciek@gmail.com}}}
+}
+
+\date{\textbf{ML Gdańsk}, 07.02.2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Scheme for Python programmers}
+
+\begin{frame}{Lisp vs. convention}
+  \begin{tabular}{ l r }
+    \textbf{conventional} & \textbf{Lisp} \\ \pause
+    \texttt{2 + 2} & \texttt{(+ 2 2)} \\ \pause
+    \texttt{f(X, Y)} & \texttt{(f X Y)} \\ \pause
+    \texttt{[1, 2, 3]} & \texttt{'(1 2 3)} \\ \pause
+    \texttt{a = X; b = Y; ...} & \texttt{(let* ((a X) (b Y)) ...)} \\ \pause
+    \texttt{a, b = X, Y; ...} & \texttt{(let ((a X) (b Y)) ...)} \\
+  \end{tabular}
+\end{frame}
+
+\section{Genetic Programming}
+
+\begin{frame}{Crossing-over}
+  \texttt{
+(define (cross-over daddy mommy)\\ \pause
+\ \ \ (assert (= (length daddy) (length mommy)))\\ \pause
+\ \ \ (let* ((position (random (length daddy)))\\ \pause
+\ \ \ \ \ \ \ \ \ \ (sperm (take daddy position))\\ \pause
+\ \ \ \ \ \ \ \ \ \ (ovum (drop mommy position)))\\ \pause
+\ \ \ \ \ \ `(,@sperm ,@ovum))) \\ \pause
+\ \\
+(cross-over '(\textbf{a b c d e}) '(\textit{v w x y z})) \\ \pause
+\ ===> '(\textbf{a b c} \textit{y z})
+}
+\end{frame}
+
+\begin{frame}{Social ceremony}
+  \texttt{\scriptsize
+(define (procreate population social-status)\\ \pause
+\ \ \ (let* ((census (map (lambda (specimen)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+`(,(social-status specimen)\,.\,\,,specimen))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ population))\\ \pause
+\ \ \ \ \ \ \ \ \ \ (social-ladder (sort census \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+(lambda ((a .\,\,\_) (b .\,\,\_))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(> a b))))\\ \pause
+\ \ \ \ \ \ \ \ \ \ (population (map (lambda ((status .\,\,specimen))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ specimen)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ social-ladder))\\ \pause
+\ \ \ \ \ \ \ \ \ \ (size (length population))\\ \pause
+\ \ \ \ \ \ \ \ \ \ (males (biased-random-indices size))\\ \pause
+\ \ \ \ \ \ \ \ \ \ (females (shuffle (biased-random-indices size)))\\ \pause
+\ \ \ \ \ \ \ \ \ \ (offspring (map (lambda (man woman)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(cross-over \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(list-ref population man)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(list-ref population woman)))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+males females)))\\ \pause
+\ \ \ \ \ \ \ (map (on-average-once-in size (mutate not)) offspring)))
+}
+\end{frame}
+
+\begin{frame}{Social ceremony}
+  \texttt{\scriptsize
+(define (procreate population social-status)\\ 
+\ \ \ (let* ((census (map (lambda (specimen)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+`(,(social-status specimen)\,.\,\,,specimen))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ population))\\ 
+\ \ \ \ \ \ \ \ \ \ (social-ladder (sort census \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+(lambda ((a .\,\,\_) (b .\,\,\_))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(> a b))))\\ 
+\ \ \ \ \ \ \ \ \ \ (population (map (lambda ((status .\,\,specimen))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ specimen)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ social-ladder))\\ 
+\ \ \ \ \ \ \ \ \ \ (size (length population))\\ 
+\ \ \ \ \ \ \ \ \ \ (males (\textbf{biased-random-indices} size))\\ 
+\ \ \ \ \ \ \ \ \ \ (females (\textbf{shuffle}
+(\textbf{biased-random-indices} size)))\\ 
+\ \ \ \ \ \ \ \ \ \ (offspring (map (lambda (man woman)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(cross-over \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(list-ref population man)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(list-ref population woman)))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+males females)))\\ 
+\ \ \ \ \ \ \
+(map (\textbf{on-average-once-in} size (\textbf{mutate} not)) offspring)))
+}
+\end{frame}
+
+\begin{frame}{Lottery}
+  \texttt{(define (biased-random-indices size)\\ \pause
+\ \ \ (if (= size 0)\\
+\ \ \ \ \ \ '()\\ \pause
+\ \ \ \ \ \ `(,(random size)\\
+\ \ \ \ \ \ \ \ .\,\,,(biased-random-indices (- size\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1)))))
+  }
+\end{frame}
+
+\begin{frame}{Shuffling}
+  \texttt{
+(define (shuffle l)\\ \pause
+\ \ \ (match (length l)\\ \pause
+\ \ \ \ \ (0 '())\\ \pause
+\ \ \ \ \ (1 l)\\ \pause
+\ \ \ \ \ (n (let ((left right (split-at l \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+(random n))))\\ \pause
+\ \ \ \ \ \ \ \ \ \ \ (if (= (random 2) 1)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ `(,@(shuffle right)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,@(shuffle left))\\ \pause
+\ \ \ \ \ \ \ \ \ \ \ \ \ `(,@(shuffle left) \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,@(shuffle right)))))))
+  }
+\end{frame}
+
+\begin{frame}{Mutations}
+\texttt{\\
+(define ((on-average-once-in n action) arg)\\ \pause
+\ \ (assert (and (integer? n) (> n 0)))\\ \pause
+\ \ (if (= (random n) 0)\\
+\ \ \ \ \ (action arg)\\ \pause
+\ \ \ \ \ arg))\\
+\ \\ \pause
+(define ((mutate how) specimen)\\ \pause
+\ \ (let* ((n (random (length specimen)))\\ \pause
+\ \ \ \ \ \ \ \ \ (mutation (how (list-ref specimen \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+n)))) \\ \pause
+\ \ \ \ \ (alter \#;element-number n \#;in specimen\\
+\ \ \ \ \ \ \ \ \ \ \ \ \#;with mutation)))
+}
+\end{frame}
+
+\begin{frame}{Natural selection}
+  \texttt{\\
+(define (evolve population \#;towards criterion\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#;for iterations)\\ \pause
+\ \ (assert (and (integer? iterations)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (>= iterations 0)))\\ \pause
+\ \ (if (<= iterations 0)\\
+\ \ \ \ \ population\\ \pause
+\ \ \ \ \ (evolve (procreate population criterion)\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \#;towards criterion \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \#;for (- iterations 1))))
+  }
+\end{frame}
+
+\begin{frame}{Making history}\texttt{(define (optimize dimension population-size\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iterations criterion)\\ \pause
+\ \ (let* ((population (generate-population \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ population-size \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dimension))\\ \pause
+\ \ \ \ \ \ \ \ \ (modern-society (evolve population \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\#;towards criterion \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\#;for iterations))) \\ \pause
+\ \ \ \ (argmax criterion modern-society)))\\ \pause
+\ \\
+(define (generate-population size dimension)\\ \pause
+\ \ (generate-list size \\
+\ \ \ \ \ \ \ \ \ \ (lambda ()\\
+\ \ \ \ \ \ \ \ \ \ \ (generate-specimen dimension))))
+}
+\end{frame}
+
+
+\begin{frame}{Genetics}\texttt{(define (generate-specimen dimension)\\ \pause
+\ \ (generate-list dimension \\
+\ \ \ \ \ \  (lambda () (= (random 2) 0))))\\ \pause
+\ \\
+(define (generate-list n generator)\\ \pause
+\ \ (assert (and (integer? size) (>= size 0)))\\ \pause
+\ \ (if (= n 0)\\
+\ \ \ \ '()\\ \pause
+\ \ \ \ `(,(generator)\\
+\ \ \ \ \ \ . ,(generate-list (- n 1) generator))))
+}
+\end{frame}
+
+\begin{frame}{SAT problem}\texttt{\footnotesize
+(define (satisfied? formula \#;under valuation)\\
+\ \ \pause (match formula \\ \pause
+\ \ \ \ (('and . clauses) \\ \pause
+\ \ \ \ \ (every (lambda (clause) \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (satisfied? clause \#;under valuation))\\
+\ \ \ \ \ \ \ \ \ \ \ clauses))\\ \pause
+\ \ \ \ (('or . clauses) \\ \pause
+\ \ \ \ \ (any (lambda (clause)\\
+\ \ \ \ \ \ \ \ \ \ \ \ (satisfied? clause \#;under valuation))\\
+\ \ \ \ \ \ \ \ \ \ clauses))\\ \pause
+\ \ \ \ (('not clause) \\ \pause
+\ \ \ \ \ (not (satisfied? clause \#;under valuation))) \\ \pause
+\ \ \ \ (\_ \\ \pause
+\ \ \ \ \ (assert (symbol? formula))\\
+\ \ \ \ \ (lookup formula \#;in valuation))))
+}
+\end{frame}
+
+\begin{frame}{Dictionary lookup}
+\texttt{(define (lookup key \#;in mapping)\\ \pause
+\ \ (let* ((((name value)\,.\,remaining)\,mapping))\\ \pause
+\ \ \ \ (if (eq? name key)\\
+\ \ \ \ \ \ \ value\\ \pause
+\ \ \ \ \ \ \ (lookup key remaining))))\\ \pause
+\ \\
+(lookup 'y '((x 1) (y 2) (z 3)))\\ \pause
+===> 2
+}
+\end{frame}
+
+\begin{frame}{SAT problem continued}\texttt{\pause(satisfied? '(and p q) \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ '((p \#true) (q \#true))) \\ \pause
+    (satisfied? '(and p q) \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ '((p \#true) (q \#false))) \\ \pause
+    (satisfied? '(and p (not p)) '((p \#true))) \\ \pause
+    (satisfied? '(and p (not p)) '((p \#false))) \\ \pause
+    (satisfied? '(and (or x1 (not x3))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (or x2 x3 (not x1)))\,???)
+  }
+\end{frame}
+
+\begin{frame}{Atomic formulas}\texttt{(define (atomic-formulas proposition)
+    \\ \pause
+\ \ (match proposition\\ \pause
+\ \ \ \ ((operator . clauses)\\ \pause
+\ \ \ \ \ (delete-duplicates (append-map \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ atomic-formulas \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ clauses)))\\ \pause
+\ \ \ \ (\_ \\ \pause
+\ \ \ \ \ (assert (symbol? proposition)) \\
+\ \ \ \ \ `(,proposition)))) \\ \pause
+\ \\
+(atomic-formulas '(and (or x1 (not x3))\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (or x2 x3 (not x1)))) \\ \pause
+===> (x1 x3 x2)
+  }
+\end{frame}
+
+\begin{frame}{Conjunctive Normal Form}
+  \texttt{(define (number-of-satisfied-subformulas \\ 
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#;of cnf \#;for chromosome) \\ \pause
+\ \ (let* ((variables (atomic-formulas cnf)) \\ \pause
+\ \ \ \ \ \ \ \ \ (valuation (map list variables \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chromosome)) \\ \pause
+\ \ \ \ \ \ \ \ \ (('and . or-clauses) cnf)) \\ \pause
+\ \ \ \ (count (lambda (subformula) \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ (satisfied?\,\,subformula \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#;under valuation)) \\
+\ \ \ \ \ \ \ \ \ \ \ or-clauses)))}
+\end{frame}
+
+\begin{frame}{Applying genetic strategy}
+  \texttt{\footnotesize
+    (define (solve-SAT formula/cnf population iterations) \\ \pause
+\ \ (let* ((dimension (length (atomic-formulas \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ formula/cnf)))\\ \pause
+\ \ \ \ \ \ \ \ \ (measure (lambda (chromosome) \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (number-of-satisfied-subformulas \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#;of formula \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#;for chromosome)))) \\ \pause
+\ \ \ \ (optimize dimension population iterations measure)))}
+\end{frame}
+
+%\section{Humanoid robots}
+
+\end{document}
