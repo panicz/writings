@@ -324,6 +324,60 @@ n)))) \\ \pause
 \ \ \ \ (optimize dimension population iterations measure)))}
 \end{frame}
 
+\begin{frame}{Matrix operations}
+  \texttt{(define (transpose M) \\ \pause
+    \ \ (apply map list M)) \\ \pause
+    \ \\
+    (define (M*2 A B) \\ \pause
+    \ \ (let ((B\^{}T (transpose B))) \\ \pause
+    \ \ \ \ (map (lambda (rA) \\
+    \ \ \ \ \ \ \ \ \ \ \ (map (lambda (cB) \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (sum (map * rA cB)))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ B\^{}T))\\
+    \ \ \ \ \ \ \ \ \ A)))\\ \pause
+    \ \\
+    (define (M* M . MM)\\ \pause
+    \ \ (fold-left M*2 M MM))
+  }
+\end{frame}
+
+\begin{frame}{Neural network}
+  \texttt{(define ((neural-network . layers) input) \\ \pause
+    \ \ (fold-left \\
+    \ \ \ \ (lambda (feed (activate weights)) \\ \pause
+    \ \ \ \ \ \ \ \ (let* ((biased-input `((1 . ,feed))) \\ \pause
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((output) (M* biased-input \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weights))) \\ \pause
+    \ \ \ \ \ \ \ \ \ \ (map activate output))) \\ \pause
+    \ \ \ \ input \\
+    \ \ \ \ layers))\\ \pause
+    \ \\
+    (define (sigmoid x) \\
+    \ \ (/ 1 (+ 1 (exp (- x)))))
+  }
+\end{frame}
+
+
+\begin{frame}{Neural network}
+  \texttt{
+    (map (neural-network `(,sigmoid \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (( 0.80109  0.43529) \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-0.46122  0.78548)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ( 0.97314  2.10584)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-0.39203 -0.57847)))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ `(,identity \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((-0.23680)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-0.81546)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ( 1.03775))))\\
+    \ \ \ \ '((23  75 176) \\
+    \ \ \ \ \ \ (25  67 180) \\
+    \ \ \ \ \ \ (28 120 175))) \\ \pause
+    ===> ((0.798) (0.801) (-0.014))
+  }
+\end{frame}
+
+
+
 %\section{Humanoid robots}
 
 \end{document}
