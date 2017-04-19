@@ -44,10 +44,11 @@
 \author{Panicz Maciej Godek}
 
 \institute{
-  \tiny{\href{mailto:godek.maciek@gmail.com}{\textbf{godek.maciek@gmail.com}}}
+  \tiny{\href{mailto:godek.maciek@gmail.com}{\textbf{godek.maciek@gmail.com}}} \\
+  \normalsize{\url{https://github.com/panicz/writings/tree/master/talks/mlgdansk}}
 }
 
-\date{\textbf{ML Gdańsk}, 07.02.2017}
+\date{\textbf{ML Gdańsk}, 24.04.2017}
 
 \begin{document}
 
@@ -56,6 +57,18 @@
 \end{frame}
 
 \section{Scheme for Python programmers}
+
+\begin{frame}{Agenda}
+  \begin{itemize} \pause
+  \item Lisp syntax \pause
+  \item genetic programming framework \pause
+  \item functional programming \pause
+  \item neural networks \pause
+  \item Emacs + Geiser \pause
+  \item humanoid robots
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}{Lisp vs. convention}
   \begin{tabular}{ l r }
@@ -232,7 +245,7 @@ n)))) \\ \pause
 \ \ \ \ \ \  (lambda () (= (random 2) 0))))\\ \pause
 \ \\
 (define (generate-list n generator)\\ \pause
-\ \ (assert (and (integer? size) (>= size 0)))\\ \pause
+\ \ (assert (and (integer? n) (>= n 0)))\\ \pause
 \ \ (if (= n 0)\\
 \ \ \ \ '()\\ \pause
 \ \ \ \ `(,(generator)\\
@@ -374,6 +387,14 @@ n)))) \\ \pause
     \ \ \ \ \ \ (28 120 175))) \\ \pause
     ===> ((0.798) (0.801) (-0.014))
   }
+\end{frame}
+
+\begin{frame}{Resources}
+  \textit{A Pamphlet against R} \\
+  \url{https://github.com/panicz/pamphlet/} \\ \pause
+  \ \\
+  \textit{SLAYER framework} \\ 
+  \url{https://bitbucket.org/panicz/slayer}
 \end{frame}
 
 
