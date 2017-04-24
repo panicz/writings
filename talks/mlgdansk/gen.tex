@@ -75,12 +75,12 @@
     \textbf{conventional} & \textbf{Lisp} \\ \pause
     \texttt{2 + 2} & \texttt{(+ 2 2)} \\ \pause
     \texttt{f(X, Y)} & \texttt{(f X Y)} \\ \pause
+    \texttt{a = X; b = Y; ...} & \texttt{(let* ((a X) (b Y)) ...)} \\ \pause
+    \texttt{a, b = X, Y; ...} & \texttt{(let ((a X) (b Y)) ...)} \\ \pause
     \texttt{[1, 2, 3]} & \texttt{'(1 2 3)} \\ \pause
     \texttt{[X, Y, Z]} & \texttt{`(,X ,Y ,Z)} \\ \pause
     \texttt{[X, Y, Z]} & \texttt{(list X Y Z)} \\ \pause
-    \texttt{['X', 'Y', 'Z']?} & \texttt{'(X Y Z)} \\ \pause
-    \texttt{a = X; b = Y; ...} & \texttt{(let* ((a X) (b Y)) ...)} \\ \pause
-    \texttt{a, b = X, Y; ...} & \texttt{(let ((a X) (b Y)) ...)} \\
+    \texttt{['X', 'Y', 'Z']?} & \texttt{'(X Y Z)} \\
   \end{tabular}
 \end{frame}
 
