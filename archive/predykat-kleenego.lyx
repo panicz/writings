@@ -1,0 +1,1307 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass amsart
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language polish
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Maszyna RAM i Predykat Kleenego
+\end_layout
+
+\begin_layout Author
+Opracowanie przygotowane na podstawie wykładu prof.
+\begin_inset space ~
+\end_inset
+
+Marcina
+\begin_inset space ~
+\end_inset
+
+Mostowskiego 
+\begin_inset Quotes pld
+\end_inset
+
+Wprowadzenie do Teorii Obliczeń
+\begin_inset Quotes prd
+\end_inset
+
+ przez jego skromnego studenta, panicza Macieja Godka
+\end_layout
+
+\begin_layout Section
+Maszyna RAM
+\end_layout
+
+\begin_layout Standard
+Maszyna RAM jest pewnym teoretycznym uogólnieniem rzeczywistej maszyny obliczeni
+owej zaprojektowanej przez Johna Von Neumanna.
+ Abstrakcyjna maszyna RAM składa się z dowolnie dużej skończonej liczby
+ rejestrów (komórek pamięci) 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+, mogących zapamiętać dowolnie dużą liczbę naturalną.
+ Maszyna RAM w trakcie swojej pracy wykonuje jedną z czterech dostępnych
+ instrukcji.
+ (Instrukcję można pojmować jako funkcję przejścia ze stanu pamięci maszyny
+ w pewnym kroku obliczenia 
+\begin_inset Formula $t$
+\end_inset
+
+ do stanu w kroku 
+\begin_inset Formula $t+1$
+\end_inset
+
+, gdzie 
+\begin_inset Formula $t\in\mathbb{\mathbb{N}}$
+\end_inset
+
+.)
+\end_layout
+
+\begin_layout Definition
+Przez instrukcję maszyny RAM rozumieć będziemy jedną z następujących instrukcji:
+\begin_inset Formula 
+\[
+I\in\left\{ \begin{array}{c}
+r_{i}:=0,\\
+r_{i}:=r_{i}+1,\\
+r_{i}:=r_{j},\\
+\mbox{if }r_{i}=r_{j}\mbox{ goto }k
+\end{array}\right\} ,\mbox{ gdzie \ensuremath{i,j,k\in\mathbb{N}}.}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W dalszej części tekstu semantyka powyższych instrukcji zostanie szczegółowo
+ wyjaśniona.
+ Na razie możemy nieformalnie powiedzieć, że 
+\end_layout
+
+\begin_layout Itemize
+instrukcja 
+\begin_inset Formula $r_{i}:=0$
+\end_inset
+
+ (zerowanie) każe maszynie zapamiętać liczbę 
+\begin_inset Formula $0$
+\end_inset
+
+ w 
+\begin_inset Formula $i$
+\end_inset
+
+-tym rejestrze pamięci, 
+\end_layout
+
+\begin_layout Itemize
+instrukcja 
+\begin_inset Formula $r_{i}:=r_{i}+1$
+\end_inset
+
+ (zwiększanie o 1) każe maszynie zwiększyć zawartość rejestru 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+ o jeden, 
+\end_layout
+
+\begin_layout Itemize
+instrukcja 
+\begin_inset Formula $r_{i}:=r_{j}$
+\end_inset
+
+ (przypisanie) każe maszynie przepisać zawartość komórki 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+ do rejestru 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+, zaś 
+\end_layout
+
+\begin_layout Itemize
+instrukcja 
+\begin_inset Formula $\mbox{if \ensuremath{r_{i}=r_{j}}goto \ensuremath{k}}$
+\end_inset
+
+ (skok) każe maszynie wykonać skok do 
+\begin_inset Formula $k$
+\end_inset
+
+-tej instrukcji programu, jeśli zawartości rejestrów 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+ i 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+ są sobie równe.
+ W przeciwnym razie maszyna przejdzie do wykonania kolejnej instrukcji.
+\end_layout
+
+\begin_layout Definition
+Programem 
+\begin_inset Formula $P$
+\end_inset
+
+ na maszynę RAM nazwiemy skończony ciąg instrukcji maszyny RAM,
+\begin_inset Formula 
+\[
+P=(I_{1},I_{2},...,I_{n}),\mbox{ gdzie }n\in\mathbb{N}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Maszyna RAM różni się koncepcyjnie od rozpowszechnionych współcześnie komputerów
+, ponieważ w przypadku maszyny RAM wykonywane instrukcje nie znajdują się
+ w pamięci roboczej, przez co programy nie mają możliwości modyfikacji swojego
+ kodu.
+ W przypadku popularnych komputerów osobistych poszczególne komórki pamięci
+ mogą być interpretowane jako kod programu, ponieważ zarówno kod, jak i
+ dane są reprezentowane przez pewne ciągi zer i jedynek.
+ O tym, czy dana komórka jest interpretowana jako program, decyduje specjalny
+ rejestr, zwany 
+\emph on
+wskaźnikiem instrukcji
+\emph default
+ albo 
+\emph on
+licznikiem rozkazów
+\emph default
+, zawierający adres
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Omówienie maszyny RAM nie wymaga wprowadzenia pojęcia adresu, ponieważ używamy
+ tylko pewnych systematycznych nazw komórek, lub też -- w terminologii stosowane
+j przez informatyków -- adresowania bezpośredniego.
+ Dla wyjaśnienia, czym jest adres w pamięci, możemy jednak przyjąć, że adresem
+ komórki 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+ jest 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ kolejnej instrukcji do wykonania.
+\end_layout
+
+\begin_layout Standard
+Chociaż na maszynie RAM program i dane są tworami odmiennej natury, opis
+ działania maszyny RAM również wymaga wprowadzenia wskaźnika instrukcji,
+ który przechowuje numer bieżącej instrukcji, a którego zawartość jest zwiększan
+a o 1 po każdej instrukcji (oprócz instrukcji skoku).
+\end_layout
+
+\begin_layout Definition
+Konfiguracją (stanem) maszyny RAM ze względu na rejestry 
+\begin_inset Formula $r_{1},r_{2},...,r_{n}$
+\end_inset
+
+ nazwiemy ciąg 
+\begin_inset Formula $(k,a_{1},a_{2},...,a_{n})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Powyższą definicję można rozumieć w ten sposób, że stan maszyny w dowolnej
+ chwili jest jednoznacznie wyznaczony przez pewien skończony ciąg 
+\begin_inset Formula $n+1$
+\end_inset
+
+ liczb.
+ Liczby 
+\begin_inset Formula $a_{1},a_{2},...,a_{n}$
+\end_inset
+
+ stanowią zawartości rejestrów 
+\begin_inset Formula $r_{1},r_{2},...,r_{n}$
+\end_inset
+
+, zaś liczba 
+\begin_inset Formula $k$
+\end_inset
+
+ odpowiada zawartości wskaźnika instrukcji.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+można dać przykład programu, którego rejestry dwukrotnie przyjmują te same
+ wartości przy różnych instrukcjach
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "obliczenie-programu"
+
+\end_inset
+
+Niech będzie dany program wykorzystujący rejestry 
+\begin_inset Formula $r_{1},r_{2},...,r_{n}$
+\end_inset
+
+, 
+\begin_inset Formula $P=(I_{1},I_{2},...,I_{t})$
+\end_inset
+
+.
+ Obliczeniem programu 
+\begin_inset Formula $P$
+\end_inset
+
+ dla wejścia 
+\begin_inset Formula $b_{1},b_{2},...,b_{s},s\leq n$
+\end_inset
+
+ nazywamy ciąg konfiguracji 
+\begin_inset Formula $(c_{0},c_{1},...,c_{m-1})$
+\end_inset
+
+ takich, że
+\begin_inset Formula 
+\[
+c_{j}=(k_{j},a_{1,j},a_{2,j},...,a_{n,j})\mbox{ dla }j=0,1,...,m\mbox{, gdzie}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+k_{0}=1,
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+a_{i,0}=\begin{cases}
+b_{i} & \mbox{dla }i=1,2,...,s\\
+0 & \mbox{dla }i=s+1,...,n
+\end{cases},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+a ponadto dla dowolnego 
+\begin_inset Formula $j=0,1,...,m-1$
+\end_inset
+
+ oraz dla dowolnych naturalnych 
+\begin_inset Formula $x,y\in[1,n]$
+\end_inset
+
+ oraz 
+\begin_inset Formula $z\in[1,t]$
+\end_inset
+
+, przyjmując 
+\begin_inset Formula $i=1,2,...,n$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+jeśli 
+\begin_inset Formula $I_{k_{j}}$
+\end_inset
+
+ jest 
+\begin_inset Formula $\text{„}\ensuremath{r_{x}:=0}\text{”}$
+\end_inset
+
+, to
+\begin_inset Formula 
+\[
+k_{j+1}=k_{j}+1,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+a_{i,j+1}=\begin{cases}
+0 & \mbox{dla }i=x\\
+a_{i,j} & \mbox{dla }i\neq x
+\end{cases};
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+jeśli 
+\begin_inset Formula $I_{k_{j}}$
+\end_inset
+
+ jest 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $r_{x}:=r_{x}+1$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+, to
+\begin_inset Formula 
+\[
+k_{j+1}=k_{j}+1,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+a_{i,j+1}=\begin{cases}
+a_{i,j}+1 & \mbox{dla }i=x\\
+a_{i,j} & \mbox{dla }i\neq x
+\end{cases};
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+jeśli 
+\begin_inset Formula $I_{k_{j}}$
+\end_inset
+
+ jest 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $r_{x}:=r_{y}$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+, to
+\begin_inset Formula 
+\[
+k_{j+1}=k_{j}+1,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+a_{i,j+1}=\begin{cases}
+a_{y,j} & \mbox{dla }i=x\\
+a_{i,j} & \mbox{dla }i\neq x
+\end{cases};
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+jeśli 
+\begin_inset Formula $I_{j_{k}}$
+\end_inset
+
+ jest 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $\mbox{if }r_{x}:=r_{y}\mbox{ goto }z$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+, to
+\begin_inset Formula 
+\[
+a_{i,j+1}=a_{i,j},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+k_{j+1}=\begin{cases}
+z, & \mbox{jeśli }a_{x,j}=a_{y,j}\\
+k_{j}+1, & \mbox{jeśli }a_{x,j}\neq a_{y,j}
+\end{cases}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Powyższa definicja określa w sposób formalny semantykę instrukcji maszyny
+ RAM.
+\end_layout
+
+\begin_layout Fact
+Dla dowolnego programu 
+\begin_inset Formula $P$
+\end_inset
+
+ wykorzystującego rejestry 
+\begin_inset Formula $r_{1},r_{2},...,r_{n}$
+\end_inset
+
+, z wejściem 
+\begin_inset Formula $b_{1},b_{2},...,b_{s}$
+\end_inset
+
+ 
+\begin_inset Formula $(s\leq n)$
+\end_inset
+
+ istnieje co najwyżej jedno obliczenie.
+ 
+\end_layout
+
+\begin_layout Section*
+Kodowanie maszyny RAM i Predykat T Kleenego
+\end_layout
+
+\begin_layout Standard
+Dowolne skończone ciągi liczb naturalnych można zakodować jako pojedynczą
+ liczbę naturalną.
+ Do kodowania pomocne jest zasadnicze twierdzenie arytmetyki.
+\end_layout
+
+\begin_layout Theorem*
+(Zasadnicze twierdzenie arytmetyki) Dla każdej liczby naturalnej 
+\begin_inset Formula $n>1$
+\end_inset
+
+ istnieje 
+\begin_inset Formula $k<n$
+\end_inset
+
+ takie, że dla rosnącego ciągu 
+\begin_inset Formula $(p_{(1)},p_{(2)},...,p_{(k)})$
+\end_inset
+
+ 
+\begin_inset Formula $k$
+\end_inset
+
+ początkowych liczb pierwszych oraz dla pewnego jedynego ciągu liczb naturalnych
+ 
+\begin_inset Formula $(q_{1},q_{2},...,q_{k})$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+n=p_{(1)}^{q_{1}}\cdot p_{(2)}^{q_{2}}\cdot...\cdot p_{(k)}^{q_{k}}=\prod_{i=1}^{k}p_{(i)}^{q_{i}},
+\]
+
+\end_inset
+
+ Innymi słowy, każdą liczbę naturalną większą od 1 można jednoznacznie przedstaw
+ić w postaci iloczynu naturalnych potęg liczb pierwszych.
+\end_layout
+
+\begin_layout Standard
+Zasadnicze twierdzenie arytmetyki nie tylko stwierdza o możliwości kodowania
+ ciągu, ale -- co więcej -- daje wskazówkę, jak można takie kodowanie przeprowad
+zić.
+ Pomysł będzie polegał na tym, aby zadany ciąg liczb zakodować w wykładnikach
+ kolejnych liczb pierwszych.
+\end_layout
+
+\begin_layout Definition
+Niech dany będzie ciąg 
+\begin_inset Formula $(a_{1},a_{2},...,a_{n})$
+\end_inset
+
+ liczb naturalnych.
+ 
+\emph on
+Kodowaniem
+\emph default
+ tego ciągu nazwiemy liczbę 
+\begin_inset Formula $l$
+\end_inset
+
+ taką, że
+\begin_inset Formula 
+\[
+l=c((a_{i})_{i=1}^{n})=p_{(1)}^{a_{1}+1}\cdot p_{(2)}^{a_{2}+1}\cdot...\cdot p_{(n)}^{a_{n}+1},
+\]
+
+\end_inset
+
+ gdzie 
+\begin_inset Formula $p_{(i)}$
+\end_inset
+
+ oznacza 
+\begin_inset Formula $i$
+\end_inset
+
+-tą liczbę pierwszą.
+ Funkcję 
+\begin_inset Formula $c:\mathbb{N}^{n}\mapsto\mathbb{N}$
+\end_inset
+
+ nazwiemy zaś 
+\emph on
+funkcją kodującą
+\emph default
+.
+ Dodatkowo moglibyśmy przyjąć, że liczba 1 koduje ciąg pusty (co jednak
+ wymagałoby modyfikacji poniższych definicji).
+ Zamiast tego będziemy zakładać, że operujemy na ciągach niepustych.
+\end_layout
+
+\begin_layout Standard
+Zakodowawszy ciąg do postaci liczby, możemy mówić o jego własnościach w
+ oparciu o własności liczb.
+ 
+\end_layout
+
+\begin_layout Standard
+Możemy na przykład określić długość ciągu jako numer największej liczby
+ pierwszej, która dzieli kod ciągu
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+jeżeli ktoś martwi się własnościami obliczeniowymi zdefiniowanej w ten sposób
+ funkcji długości, może ją alternatywnie zdefiniować jako 
+\begin_inset Formula $ln(c)=min\{i:p_{(i+1)}\nmid c\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+lh(l)=\max\{i<l:(p_{(i)}\mid l)\}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zauważmy ponadto, że nie każda liczba naturalna koduje jakiś ciąg.
+ W szczególności żadna niezerowa potęga naturalna liczby pierwszej większej
+ od 2 nie koduje żadnego ciągu, ponieważ kod każdego ciągu musi zawierać
+ w swoim rozkładzie na liczby pierwsze wszystkie liczby pierwsze mniejsze
+ od największej liczby pierwszej występującej w rozkładzie (tj.
+ 
+\begin_inset Formula $p_{(ln(l))}$
+\end_inset
+
+):
+\begin_inset Formula 
+\[
+SEQ(l)\equiv\forall_{0<i\leq ln(l)}(p_{(i)}|l).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Co więcej, możemy nasz ciąg zdekodować, czyli zdefiniować funkcję, której
+ wartością jest 
+\begin_inset Formula $i$
+\end_inset
+
+-ty wyraz ciągu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(l)_{i}=s\equiv(p_{(i)}^{s+1})\mid(l\wedge p_{(i)}^{s+2}\nmid l).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Na mocy twierdzenia, dla 
+\begin_inset Formula $i=1,...,n$
+\end_inset
+
+ zachodzi 
+\begin_inset Formula $a_{i}=(c((a_{k})_{k=1}^{n}))_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Skoro możemy kodować skończone ciągi liczb naturalnych, to możemy zapewne
+ również kodować skończone ciągi skończonych ciągów liczb naturalnych.
+ W szczególności zaś możemy zakodować obliczenia dowolnego obliczalnego
+ programu 
+\begin_inset Formula $P$
+\end_inset
+
+ na maszynę RAM.
+\end_layout
+
+\begin_layout Standard
+Taka operacja pozwala nam mówić o programach w języku arytmetyki, co osobom
+ przyzwyczajonym do języka arytmetyki zapewne wydaje się wygodne, a może
+ nawet eleganckie.
+\end_layout
+
+\begin_layout Standard
+Prawdopodobnie taką właśnie osobą był Stephen Kleene, który zdefiniował
+ predykat określający, czy dana liczba naturalna koduje obliczenie:
+\end_layout
+
+\begin_layout Definition
+Powiemy, że 
+\begin_inset Formula $l$
+\end_inset
+
+ jest kodem zakończonego obliczenia programu kodowanego przez 
+\begin_inset Formula $e$
+\end_inset
+
+ z wejściem 
+\begin_inset Formula $a_{1},a_{2},...,a_{n}$
+\end_inset
+
+ wtedy i tylko wtedy, gdy spełnione są następujące warunki:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $e$
+\end_inset
+
+ jest kodowaniem ciągu,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $e$
+\end_inset
+
+ jest kodowaniem programu,
+\end_layout
+
+\begin_layout Itemize
+liczba 
+\begin_inset Formula $l$
+\end_inset
+
+ koduje warunki początkowe obliczenia programu 
+\begin_inset Formula $e$
+\end_inset
+
+ dla wejścia 
+\begin_inset Formula $a_{1},a_{2},...,a_{n}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+liczba 
+\begin_inset Formula $l$
+\end_inset
+
+ koduje warunek końcowy dla programu 
+\begin_inset Formula $e$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+wszystkie kolejne konfiguracje są zgodne z określoną w definicji 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "obliczenie-programu"
+
+\end_inset
+
+ funkcją przejścia
+\end_layout
+
+\begin_layout Standard
+Innymi krzaki,
+\begin_inset Formula 
+\[
+T_{n}(e,a_{1},a_{2},...,a_{n},l)\equiv\left(\begin{array}{c}
+SEQ(e)\wedge PROG(e)\\
+\wedge\\
+START(e,a_{1},a_{2},...,a_{n},l)\\
+\wedge\\
+FINISH(e,l)\\
+\wedge\\
+\forall_{0<i<lh(l)}STEP(e,i,l)
+\end{array}\right).
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula $PROG(e)$
+\end_inset
+
+ oznacza, że 
+\begin_inset Formula $e$
+\end_inset
+
+ jest kodem programu, czyli że 
+\begin_inset Formula $i$
+\end_inset
+
+-ty element ciągu kodowanego przez 
+\begin_inset Formula $e$
+\end_inset
+
+ jest kodem instrukcji maszyny RAM: 
+\begin_inset Formula 
+\[
+PROG(e)\equiv_{df}\forall_{0<i\leq lh(e)}\left(Zero((e)_{i})\vee Increase((e)_{i})\vee Assign((e)_{i})\vee Jump((e)_{i})\right).
+\]
+
+\end_inset
+
+ Nieco uwagi należy poświęcić sposobowi kodowania instrukcji.
+ Spośród czterech prezentowanych tu instrukcji, dwie (zerowanie i inkrementacja)
+ przyjmują jeden argument (indeks rejestru docelowego), jedna (przypisanie)
+ przyjmuje dwa argumenty (indeks rejestru docelowego i źródłowego), i jedna
+ (skok) przyjmuje trzy argumenty (dwa indeksy porównywanych rejestrów oraz
+ numer instrukcji docelowej).
+ Oznacza to, że będziemy musieli zakodować łącznie siedem wartości.
+ Do ich zakodowania użyjemy kolejnych początkowych liczb pierwszych 
+\begin_inset Formula $p_{(1)},p_{(2)},...,p_{(7)}$
+\end_inset
+
+ (wybór zestawu liczb pierwszych użytych do kodowania instrukcji jest całkowicie
+ arbitralny).
+\end_layout
+
+\begin_layout Standard
+Oznaczając przez 
+\begin_inset Formula $\ulcorner\alpha\urcorner$
+\end_inset
+
+ kod instrukcji 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, możemy określić:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\ulcorner r_{i}:=0\urcorner=p_{(1)}^{i+1}=2^{i+1}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\ulcorner r_{i}:=r_{i}+1\urcorner=p_{(2)}^{i+1}=3^{i+1}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\ulcorner r_{i}:=r_{j}\urcorner=p_{(3)}^{i+1}\cdot p_{(4)}^{j+1}=5^{i+1}\cdot7^{j+1}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\ulcorner\mbox{if }r_{i}=r_{j}\mbox{ goto }k\urcorner=p_{(5)}^{i+1}\cdot p_{(6)}^{j+i}\cdot p_{(7)}^{k+1}=11^{i+1}\cdot13^{j+1}\cdot17^{k+1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Wówczas predykaty określające, czy dana liczba jest kodem instrukcji, możemy
+ zdefiniować następująco:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Zero(w)\equiv_{df}(p_{(1)}|w)\wedge\forall_{i<w}(p_{(i)}|w\rightarrow i=1);
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Increase(w)\equiv_{df}(p_{(2)}|w)\wedge\forall_{i<w}(p_{(i)}|w\rightarrow i=2);
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Assign(w)\equiv_{df}(p_{(3)}|w)\wedge(p_{(4)}|w)\wedge\forall_{i<w}(p_{(i)}|w\rightarrow i\in\{3,4\});
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Jump(w)\equiv_{df}(p_{(5)}|w)\wedge(p_{(6)}|w)\wedge(p_{(7)}|w)\wedge\forall_{i<w}(p_{(i)}|w\rightarrow i\in\{5,6,7\}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zakładając, że 
+\begin_inset Formula $w$
+\end_inset
+
+ jest kodem instrukcji, możemy określić wartości argumentów tych instrukcji:
+\end_layout
+
+\begin_layout Itemize
+dla zerowania:
+\begin_inset Formula 
+\[
+Reg_{Z}(w)=s\equiv(Zero(w)\wedge(p_{(1)}^{s+1}\mid w)\wedge(p_{(1)}^{s+2}\nmid w));
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+dla inkrementacji:
+\begin_inset Formula 
+\[
+Reg_{I}(w)=s\equiv(Increase(w)\wedge(p_{(2)}^{s+1}\mid w)\wedge(p_{(2)}^{s+2}\nmid w));
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+dla przypisania:
+\begin_inset Formula 
+\[
+Reg_{A}^{1}(w)=s\equiv(Assign(w)\wedge(p_{(3)}^{s+1}\mid w)\wedge(p_{(3)}^{s+2}\nmid w)),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Reg_{A}^{2}(w)=s\equiv(Assign(w)\wedge(p_{(4)}^{s+1}\mid w)\wedge(p_{(4)}^{s+2}\nmid w));
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+dla skoku:
+\begin_inset Formula 
+\[
+Reg_{J}^{1}(w)=s\equiv(Jump(w)\wedge(p_{(5)}^{s+1}|w)\wedge(p_{(5)}^{s+2}\nmid w)),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Reg_{J}^{2}(w)=s\equiv(Jump(w)\wedge(p_{(6)}^{s+1}\mid w)\wedge(p_{(6)}^{s+2}\nmid w)),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Goto(w)=s\equiv(Jump(w)\wedge(p_{(7)}^{s+1}\mid w)\wedge(p_{(7)}^{s+2}\nmid w)).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ponadto możemy zdefiniować funkcję określającą maksymalny indeks rejestru
+ użyty w programie 
+\begin_inset Formula $e$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+Regmax(w)=\begin{cases}
+Reg_{Z}(w), & \mbox{jeśli }Zero(w)\\
+Reg_{I}(w), & \mbox{jeśli }Increase(w)\\
+\max\{Reg_{A}^{1}(w),Reg_{A}^{2}(w)\}, & \mbox{jeśli }Assing(w)\\
+\max\{Reg_{J}^{1}(w),Reg_{J}^{2}(w)\}, & \mbox{jeśli }Jump(w)
+\end{cases},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Regs(e)=\max_{i=1}^{lh(e)}\{Regmax((e)_{i})\}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dysponując funkcją 
+\begin_inset Formula $Regs$
+\end_inset
+
+, możemy doprecyzować znaczenie pozostałych predykatów użytych w definicji
+ 
+\begin_inset Formula $T_{n}$
+\end_inset
+
+.
+ Przede wszystkim musimy pamiętać, że 
+\begin_inset Formula $l$
+\end_inset
+
+ jest kodowaniem ciągu ciągów o stałej długości, mianowicie ciągów konfiguracji
+ określonych w definicji 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "obliczenie-programu"
+
+\end_inset
+
+.
+ Odnosząc się do użytych tam oznaczeń, zapis 
+\begin_inset Formula $(l)_{j}$
+\end_inset
+
+ będzie desygnował konfigurację 
+\begin_inset Formula $c_{j-1}$
+\end_inset
+
+, zaś zapis 
+\begin_inset Formula $((l)_{j})_{i}$
+\end_inset
+
+ będzie oznaczał 
+\begin_inset Formula $k_{j-1}$
+\end_inset
+
+ dla 
+\begin_inset Formula $i=1$
+\end_inset
+
+, oraz 
+\begin_inset Formula $a_{i-1,j-1}$
+\end_inset
+
+ dla 
+\begin_inset Formula $i>1$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\[
+START(e,a_{1},a_{2},...,a_{n},l)\equiv\left(\begin{array}{c}
+\forall_{0<i\leq lh(l)}lh((l)_{i})=max(n,Regs(e))\\
+\wedge\\
+((l)_{1})_{1}=1\\
+\wedge\\
+\forall_{1<i\leq lh((l)_{1})}((l)_{1})_{i}=\begin{cases}
+a_{i-1}, & \mbox{jeżeli }i\leq n\\
+0, & \mbox{jeżeli }i>n
+\end{cases}
+\end{array}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Powyższe sformułowanie odpowiada określeniu konfiguracji początkowej z definicji
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "obliczenie-programu"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Program 
+\begin_inset Formula $e$
+\end_inset
+
+ kończy się, jeśli licznik rozkazów w ostatnim korku (w ostatniej konfiguracji)
+ przekroczy długość programu:
+\begin_inset Formula 
+\[
+FINISH(e,l)\equiv((l)_{lh(l)})_{1}\geq lh(e).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wreszcie, należy zapewnić, że kody kolejnych stanów maszyny będą zgodne
+ ze sformułowaną w definicji 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "obliczenie-programu"
+
+\end_inset
+
+ semantyką:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+STEP(e,i,l)\equiv\left(\begin{array}{c}
+Zero((e)_{t})\wedge Trans_{Z}((l)_{i},(l)_{i+1},Reg_{Z}((e{}_{t}))\\
+\vee\\
+Increase((e)_{t})\wedge Trans_{I}((l)_{i},(l)_{i+1},Reg_{I}((e)_{t}))\\
+\vee\\
+Assing((e)_{t})\wedge Trans_{A}((l)_{i},(l)_{i+1},Reg_{A}^{1}((e)_{t}),Reg_{A}^{2}((e)_{t}))\\
+\vee\\
+Jump((e)_{t})\wedge Trans_{J}((l)_{i},(l)_{i+1},Reg_{J}^{1}((e)_{t}),Reg_{J}^{2}((e)_{t}),Goto((e)_{t}))
+\end{array}\right)_{t=((l)_{i})_{0}},
+\]
+
+\end_inset
+
+ gdzie:
+\begin_inset Formula 
+\[
+Trans_{Z}(a,b,x)\equiv\left(\begin{array}{c}
+(b)_{1}=(a)_{1}+1\\
+\wedge\\
+\forall_{1<i\leq lh(b)}(b)_{i}=\begin{cases}
+0, & \mbox{jeśli }i=x+1\\
+(a)_{i}, & \mbox{jeśli }i\neq x+1
+\end{cases}
+\end{array}\right),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Trans_{I}(a,b,x)\equiv\left(\begin{array}{c}
+(b)_{1}=(a)_{1}+1\\
+\wedge\\
+\forall_{1<i\leq lh(b)}(b)_{i}=\begin{cases}
+(a)_{i}+1, & \mbox{jeśli }i=x+1\\
+(a)_{i}, & \mbox{jeśli }i\neq x+1
+\end{cases}
+\end{array}\right),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Trans_{A}(a,b,x,y)\equiv\left(\begin{array}{c}
+(b)_{1}=(a)_{1}+1\\
+\wedge\\
+\forall_{1<i\leq lh(b)}(b)_{i}=\begin{cases}
+(a)_{y}, & \mbox{jeśli }i=x+1\\
+(a)_{i}, & \mbox{jeśli }i\neq x+1
+\end{cases}
+\end{array}\right),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Trans_{J}(a,b,x,y,z)\equiv\left(\begin{array}{c}
+\forall_{1<i\leq lh(b)}(b)_{i}=(a)_{i}\\
+\wedge\\
+(b)_{1}=\begin{cases}
+z, & \mbox{jeśli }(a)_{x+1}=(a)_{y+1}\\
+(a)_{1}+1, & \mbox{jeśli }(a)_{x+1}\neq(a)_{y+1}
+\end{cases}
+\end{array}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
