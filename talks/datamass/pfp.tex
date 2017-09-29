@@ -221,7 +221,7 @@
 \begin{frame}{Why functional programming?} \pause
   Myth \#5: you need to understand Category Theory to use
   functional programming \\ \pause
-  \ \\ \pause
+  \ \\
   {\large Imperative programs explain how to \textbf{do} things
   (perform \textit{actions}), while
   functional programs \textbf{mean} things (refer to \textit{objects}).}
@@ -236,7 +236,7 @@ while(counter > 0):\\* \pause
 \ \ \ \ if is\_prime(number):\\* \pause
 \ \ \ \ \ \ \ \ sum := sum + number\^{}2\\* \pause
 \ \ \ \ \ \ \ \ counter := counter - 1\\* \pause
-\ \ \ \ counter := counter + 1\\* 
+\ \ \ \ number := number + 1\\* 
   } \ \\ \pause
   After its execution, the \texttt{sum} variable contains the
   desired value
@@ -251,8 +251,8 @@ while(counter > 0):\\* \pause
 \end{frame}
 
 \begin{frame}{Sum of squares of initial 7 prime numbers (definitions)} \pause
-  \texttt{(define (numbers-from first)\\
-    \ \ `(,first .\,\,,(numbers-from (+ first 1))))\\
+  \texttt{(define (numbers-from n)\\
+    \ \ `(,n .\,\,,(numbers-from (+ n 1))))\\
     \ \\ \pause
     (define numbers (numbers-from 0))\\
     \ \\ \pause
@@ -355,7 +355,7 @@ while(counter > 0):\\* \pause
     \texttt{(define variable value)}\pause
   \item \textbf{assignment} -- changes the value bound by
     a variable in the current scope \\ \pause
-    \texttt{(set!\,\,variable new-value)}
+    \texttt{(set!\,\,variable new-value)} \pause
   \item \textbf{binding} -- creates a new scope,
     possibly shadowing some existing binding \\ \pause
     \texttt{(let ((variable some-value)) \\
@@ -374,14 +374,6 @@ while(counter > 0):\\* \pause
   \item by modifying the structure of the brains of all the people \pause
   \end{itemize}
   {\footnotesize What about the previous usages of that word?}
-\end{frame}
-
-\begin{frame}{Other examples of immutable systems} \pause
-  \begin{itemize}
-    \item functional package managers (NIX, Guix) \pause
-    \item Git \pause
-    \item history (can't be undone)
-  \end{itemize}
 \end{frame}
 
 \begin{frame}{Problems with mutation} 
@@ -506,6 +498,17 @@ while(counter > 0):\\* \pause
   \end{small}
 \end{frame}
 
+\begin{frame}{Other examples of immutable systems} \pause
+  \begin{itemize}
+    \item functional package managers (NIX, Guix) \pause
+    \item Git \pause
+    \item history (can't be undone)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{No silver bullets} \pause
+  Myth \#7: Functional Programming is a silver bullet
+\end{frame}
 
 \begin{frame}{Pros and cons} \pause
   \textbf{Advantages:} \pause
@@ -513,7 +516,7 @@ while(counter > 0):\\* \pause
   \item code is easier to read and refactor and less prone to errors \pause
   \item no control flow means more flexible interpretation \pause
   \item better multicore optimization \pause
-  \item we don't care what the computer do will \pause
+  \item we don't care what the computer will do \pause
   \end{itemize}
 
   \textbf{Disadvantages:} \pause
@@ -525,5 +528,11 @@ while(counter > 0):\\* \pause
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Thanks for your attention!}
+  \begin{center}
+    \huge{Questions?}\\%
+    \normalsize{@PaniczGodek}\\*
+  \end{center}
+\end{frame}
 
 \end{document}
