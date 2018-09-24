@@ -1,0 +1,414 @@
+\documentclass{beamer}
+
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+\mode<presentation>
+{
+  \usetheme{Copenhagen}
+  %%\usecolortheme[RGB={173,222,25}]{structure}
+  \usecolortheme[RGB={66,134,244}]{structure}
+  \setbeamertemplate{items}[circle]
+  \setbeamercovered{transparent}
+}
+
+\usepackage[polish]{babel}
+\usepackage{chessfss}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
+\usepackage{qtree}
+\usepackage{mathtools}
+\usepackage{dirtytalk}
+\usepackage{epigraph}
+\usepackage{textgreek}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{ulem}
+\usepackage{adjustbox}
+
+\newcommand{\prompt}{\phantom{}>\phantom{}>\phantom{}>\ }
+
+\newenvironment{Snippet}{\Verbatim[samepage=true]}{\endVerbatim}
+
+\title{\textbf{The Hassle with Monads}}
+
+\author{Panicz Maciej Godek}
+
+\institute{
+  \tiny{\href{mailto:godek.maciek@gmail.com}{\textbf{godek.maciek@gmail.com}}} \\
+  \normalsize{\url{https://github.com/panicz/writings/tree/master/talks/datamass}}
+}
+
+\date{\textbf{datamass.io summit}, 28.09.2018}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Before we begin - questions to the audience:}
+  \begin{itemize} \pause
+  \item do you program? \pause
+  \item do you not program?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Which languages do you know?}
+  \begin{itemize} \pause
+  \item Java/C\# \pause
+  \item Python \pause
+  \item JavaScript \pause
+  \item C/C++ \pause
+  \item Scala \pause
+  \item Erlang/Elixir \pause
+  \item OCaml/F\# \pause
+  \item Haskell \pause
+  \item some other?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{On to the topic}
+  \begin{itemize} \pause
+  \item do you know functional programming? \pause
+  \item have you heard about monads? \pause
+  \item do you understand monads? \pause
+  \item did you try to understand monads and failed?
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Why learn monads?}
+
+  \begin{displayquote}
+    Yes, monads seem to be a form of AspectOrientedProgramming,
+    since they serve to isolate a generalized computational
+    strategy from the specifics of an algorithm. For example,
+    in HaskellLanguage you can write a graph-searching
+    procedure that can either do a depth-first search
+    and return the first result, or do a breadth-first
+    search and return a list of results, merely by running
+    it in a different monad.
+  \end{displayquote}
+
+  \begin{flushright}
+    {\footnotesize \url{http://wiki.c2.com/?AspectOrientedProgramming}}
+  \end{flushright}
+  
+\end{frame}
+
+\begin{frame}{Why learn monads?}
+  \includegraphics[width=\textwidth]{hello-haskell.jpg}
+\end{frame}
+
+
+\begin{frame}{Why (lazy) functional programming?}
+  \includegraphics[width=\textwidth]{recursive-centaur.png}
+\end{frame}
+
+\begin{frame}{Why (lazy) functional programming?}
+  \texttt{numbersFrom n = n:numbersFrom(n+1)}\\ \pause
+  \texttt{numbersFrom 0 = [0,1,2,3,4,5,6,7,8,9,10,...]}\\ \pause
+  \ \\
+  \texttt{sieve (h:t) = h:(sieve [x|x<-t,x`mod`h/=0])} \\ \pause
+  \texttt{primes = sieve (numbersFrom 2)} \\ \pause
+  \texttt{primes = [2,3,5,7,11,13,17,19,23,29,31,37,...]} \\ \pause
+  \ \\ \
+  \\ Jerzy Karczmarczuk, \textit{Generating Power of Lazy Semantics} \\ \pause  John Hughes, \textit{Why Functional Programming Matters}
+\end{frame}
+
+\begin{frame}{The essence of laziness}
+  \texttt{square x = x * x} \\ \pause
+  \ \\
+  Applicative order (evaluate arguments before expansion): \\ \pause
+  \texttt{square (2*3) \pause = square 6 \pause =$_{def}$ 6 * 6 \pause = 36} \\ \pause
+  \ \\
+  Normal order (evaluate arguments after expansion): \\ \pause
+  \texttt{square (2*3) \pause =$_{def}$ (2*3) * (2*3) \pause = 6 * 6 \pause = 36}
+\end{frame}
+
+\begin{frame}{Lambda the Ultimate}
+  \texttt{square x = x * x} \\ \pause
+  \texttt{square = λ x -> x * x} \\ \pause
+  \texttt{square = function(x) \{ return x * x; \} } \\ \pause
+  \ \\
+  \texttt{\textbf{let} name = value \textbf{in} expression} \\ \pause
+  \texttt{(λ name -> expression) value}
+\end{frame}
+
+\begin{frame}{The problem with I/O}
+  \texttt{1*3 + 2*0} \\ \pause
+  \ \\
+  \texttt{readNumber()*3 + 2*readNumber()} \\ \pause
+  \texttt{\phantom{}< 1} \\
+  \texttt{\phantom{}< 0} \\
+\end{frame}
+
+\begin{frame}{Attempted solution}
+  \texttt{ \\ \ \\
+    let \ a\ \ \ \ \  = readNumber(\ \ ) in \\ \pause
+    \ \ let \ b\ \ \ \ \ = readNumber(\ \ ) in \\ \pause
+    \ \ \ \ \ a*2 + 3*b
+  } \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Actual solution}
+  \texttt{ \\ \ \\
+    let (a,w1) = readNumber(w0) in \\
+    \ \ let (b,w2) = readNumber(w1) in \\
+    \ \ \ \ \ a*2 + 3*b
+  } \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Better (composable) solution}
+  \texttt{ \\ \ \\
+    let (a,w1) = readNumber(w0) in \\
+    \ \ let (b,w2) = readNumber(w1) in \\
+    \ \ \ \ (a*2 + 3*b, w2)
+  } \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{A function}
+  \texttt{ \\
+    myOperation w0 = \\
+    let (a,w1) = readNumber(w0) in \\
+    \ \ let (b,w2) = readNumber(w1) in \\
+    \ \ \ \ (a*2 + 3*b, w2)
+  } \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{A function}
+  \texttt{myOperation ::\ RealWorld -> (Int, RealWorld)
+    myOperation w0 = \\
+    let (a,w1) = readNumber(w0) in \\
+    \ \ let (b,w2) = readNumber(w1) in \\
+    \ \ \ \ (a*2 + 3*b, w2)
+  } \\ \ \\ \ \\ \url{https://wiki.haskell.org/IO_inside}
+\end{frame}
+
+\begin{frame}{Downsides}
+  \pause
+  \begin{itemize}
+  \item need to pass additional parameter \pause
+  \item prone to errors (e.g. \texttt{w0} instead of \texttt{w1}) \pause
+  \item nesting level increases \pause
+  \end{itemize} \ \\ Could we do something to make \texttt{w0} passed implicitly?
+\end{frame}
+
+
+\begin{frame}{How could this look like?}
+  \texttt{pass readNumber \\
+    \ \ \ \ \ (λ a \pause -> pass readNumber \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (λ b \pause -> give a*2 + 3*b)) \\
+    \ \\ \pause
+    give value world = (value, world) \\ \pause
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{pass readNumber\\
+    \ \ \ \ \ (λ a -> pass readNumber\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (λ b -> \textbf{give a*2 + 3*b}))\\
+    \ \\ \pause
+    \textbf{give value world = (value, world)} \\ \pause
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{pass readNumber\\
+    \ \ \ \ \ (λ a -> pass readNumber\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (λ b -> \textbf{λ w -> (a*2 + 3*b, w)}))\\
+    \ \\
+    \textbf{give value world = (value, world)} \\
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{pass readNumber\\
+    \ \ \ \ \ (λ a -> \textbf{pass readNumber\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ (λ b -> λ w -> (a*2 + 3*b, w))})\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    \textbf{pass value continuation w0 = \\
+      \ \ let (result, w1) = value w0 in \\
+      \ \ \ \ \ continuation result w1}
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{pass readNumber (λ a -> \textbf{λ w1 -> \\
+      \ \ let (y, w2) = readNumber(w1) in\\
+      \ \ \ \ \ \ \ \ (λ b -> λ w -> (a*2 + 3*b, w)) y w2})\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    \textbf{pass value continuation w0 = \\
+      \ \ let (result, w1) = value w0 in \\
+      \ \ \ \ \ continuation result w1}
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{pass readNumber (λ a -> λ w1 -> \\
+    \ \ let (y, w2) = readNumber(w1) in\\
+    \ \ \ \ \ \ \ \ \ \textbf{(λ b -> λ w -> (a*2 + 3*b, w)) y w2})\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{pass readNumber (λ a -> λ w1 -> \\
+    \ \ let (y, w2) = readNumber(w1) in\\
+    \ \ \ \ \ \ \ \ \ \textbf{(λ w -> (a*2 + 3*y, w)) w2})\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{pass readNumber (λ a -> λ w1 -> \\
+    \ \ let (y, w2) = readNumber(w1) in\\
+    \ \ \ \ \ \ \ \ \ \textbf{(a*2 + 3*y, w2)})\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{\textbf{pass readNumber (λ a -> λ w1 ->\\
+      \ \ let (y, w2) = readNumber(w1) in\\
+      \ \ \ \ \ \ \ \ (a*2 + 3*y, w2))}\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    \textbf{pass value continuation w0 = \\
+      \ \ let (result, w1) = value w0 in \\
+      \ \ \ \ \ continuation result w1}
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{\textbf{λ w0 -> let (x,w3) = readNumber(w0) in\\
+      \ \ (λ a -> λ w1 -> let (y, w2) = readNumber(w1) \\
+      \ \ \ \ \ \ in (a*2 + 3*y, w2)) x w3}\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    \textbf{pass value continuation w0 = \\
+      \ \ let (result, w1) = value w0 in \\
+      \ \ \ \ \ continuation result w1}
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{λ w0 -> let (x,w3) = readNumber(w0) in\\
+    \ \ \textbf{(λ a -> λ w1 -> let (y, w2) = readNumber(w1)\\
+      \ \ \ \ \ \ in (a*2 + 3*y, w2)) x w3}\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{λ w0 -> let (x,w3) = readNumber(w0) in\\
+    \ \ \textbf{(λ w1 -> let (y, w2) = readNumber(w1) in\\
+      \ \ \ \ \ \ \ \ \ (x*2 + 3*y, w2)) w3}\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+\begin{frame}{Does this really work?}
+  \texttt{λ w0 -> let (x,w3) = readNumber(w0) in\\
+    \ \ \textbf{let (y, w2) = readNumber(w3) in\\
+      \ \ \ \ \ \ \ \ \ (x*2 + 3*y, w2)}\\
+    \ \\
+    give value world = (value, world) \\
+    \ \\
+    pass value continuation w0 = \\
+    \ \ let (result, w1) = value w0 in \\
+    \ \ \ \ \ continuation result w1
+  }
+\end{frame}
+
+
+\begin{frame}{It works!}
+  \texttt{pass readNumber \\
+    \ \ \ \ \ (λ a -> pass readNumber \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (λ b -> give a*2 + 3*b))
+  } \\ \pause
+  But typing λ and the increased indentation level is annoying! \\ \pause
+  \ \\ Introduce new syntax (\texttt{do}-notation): \\
+  \texttt{
+    \ \ do x <- action1 \\
+    \ \ \ \ \ \ action2 \\
+    \ \ \ \ \ \ ...
+  } \ \\ \pause
+  can be interpreted as: \\ \pause
+  \texttt{
+    \ \ pass action1 (λ x -> do action2 ...)
+  }
+\end{frame}
+
+\begin{frame}{Caveat emptor}
+  In Haskell, \texttt{pass} function is spelled \texttt{>>=} and pronounced ``bind''.
+  The \texttt{give} function is called \texttt{return}.
+\end{frame}
+
+
+\begin{frame}{Emperor's new clothes}
+  Now we can write our program as:
+  \texttt{
+    do a <- readNumber
+       b <- readNumber
+       return a*2 + 3*b
+  }
+\end{frame}
+
+
+
+\end{document}
