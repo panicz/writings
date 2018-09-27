@@ -558,7 +558,7 @@
   \pause \textit{-- associativity of (.)} \\ \pause
   \ \\
   \texttt{(f\ .\ (g\ .\ h)) x \pause = f ((g\ .\ h) x) \pause = f (g (h x))} \\ \pause
-  \texttt{(((f\ .\ g) h)) x \pause = (f\ .\ g) (h x) \pause = f (g (h x))} 
+  \texttt{((f\ .\ g)\ .\ h) x \pause = (f\ .\ g) (h x) \pause = f (g (h x))} 
   
 \end{frame}
 
@@ -603,18 +603,19 @@
 \end{frame}
 
 \begin{frame}{Functors, Applicatives, Monads}\pause
-  \texttt{class Functor f where\\
-    \ \ fmap :: (a -> b) -> f a -> f b}\\
+  \texttt{class Applicative m => Monad m where\\
+    \ \ (>>=) :: m a -> (a -> m b) -> m b\\
+    \ \ return :: a -> m a\\
+    \ \ return = pure}\\
   \ \\ \pause
+
   \texttt{class Functor f => Applicative f where\\
     \ \ pure  :: a -> f a\\
     \ \ (<*>) :: f (a -> b) -> f a -> f b}\\
   \ \\ \pause
 
-  \texttt{class Applicative m => Monad m where\\
-    \ \ (>>=) :: m a -> (a -> m b) -> m b\\
-    \ \ return :: a -> m a\\
-    \ \ return = pure}
+  \texttt{class Functor f where\\
+    \ \ fmap :: (a -> b) -> f a -> f b}
 \end{frame}
 
 \begin{frame}{Free monads} \pause
