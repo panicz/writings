@@ -1,0 +1,362 @@
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+    }
+\end{frame}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color \textbf{color}\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [\textbf{draggable?} \#true] . \textbf{elements})\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (\textbf{hovered-element} \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+    }
+\end{frame}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (\textbf{`(position)} `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+    }
+\end{frame}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-down ,x ,y)\\
+      \ \ \ \ \ \ \ \ \ (if hovered-element\\
+      \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-down (- x left) (- y top))\\
+      \ \ \ \ \ \ \ \ \ \ (when draggable?\\
+      \ \ \ \ \ \ \ \ \ \ \ \ (set!\ dragged? \#true)))})\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+    }
+\end{frame}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-up ,x ,y)\\
+      \ \ \ \ \ \ \ \ \ (when hovered-element\\
+      \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-up (- x left) (- y top)))\\
+      \ \ \ \ \ \ \ \ \ (set! dragged? \#false)})\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+    }
+\end{frame}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-move ,x ,y ,dx ,dy)\\
+      \ \ \ \ \ \ \ \ \ (cond (dragged?\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (else\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((hovered (find (\_ 'embraces?\ (- x left) (- y top))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elements)))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (unless (eq?\ hovered hovered-element)\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered-element (hovered-element 'mouse-out))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered (hovered 'mouse-over))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ hovered-element hovered))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered \\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-move (- x left) (- y top) dx dy))))})\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))
+    }
+\end{frame}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(embraces? ,x ,y)\\
+      \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height)))})\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+    }
+\end{frame}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(as-image)\\
+      \ \ \ \ \ \ \ \ \ (fill-image!\ image 0)\\
+      \ \ \ \ \ \ \ \ \ (fold-right (lambda (e i)\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (e 'position)))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (draw-image!\ (e 'as-image) x y i)\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image elements)\\
+      \ \ \ \ \ \ \ \ \ image})\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+  }
+\end{frame}
+
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-over) \#false})\\
+    \ \ \ \ \ \ \ \ (`(mouse-out) ...)))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+    }
+\end{frame}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable? [draggable? \#true] . elements)\\
+    \ \ (let ((dragged? \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-over) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-out) (set!\ dragged?\ \#false)})))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+    }
+\end{frame}
+
+\definecolor{topleftbox}{RGB}{119,204,0}
+\definecolor{innertopleft}{RGB}{0,119,204}
+
+\definecolor{innerbottomright}{RGB}{204,0,119}
+
+\definecolor{bottomrightbox}{RGB}{119,0,204}
+
+\definecolor{innerbottomright2}{RGB}{204,119,0}
+
+\begin{frame}{Recursion on the notion of the computer}
+  \scriptsize
+  \texttt{\textbf{(define stage\\
+    \ \ (let ((`(,w ,h) (screen-size)))\\
+    \ \ \ \ (box \#:left 0 \#:top 0 \#:width w \#:height h\\
+    \ \ \ \ \ \ \ \ \ \#:background-color \#x000000 \#:draggable?\ \#false\\
+    \ \ \ \ \ \ \ \ \textcolor{topleftbox}{(box \#:left 10 \#:top 10 \#:width 200 \#:height 200\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color \#x77cc00\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{innertopleft}{(box \#:left 10 \#:top 10 \#:width 50 \#:height 50\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color \#x0077cc\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{red}{(box \#:left 5 \#:top 5 \#:width 20 \#:height 20\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color \#xff0000)})}\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{innerbottomright}{(box \#:left 140 \#:top 140 \#:width 50 \#:height 50\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color \#xcc0077\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#:draggable?\ \#false)})}\\
+    \ \ \ \ \ \ \ \ \textcolor{bottomrightbox}{(box \#:left (- w 210) \#:top (- h 210) \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:width 200 \#:height 200\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color \#x7700cc\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{innerbottomright2}{(box \#:left 140 \#:top 140 \#:width 50 \#:height 50\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color \#xcc7700)})})))}}
+\end{frame}

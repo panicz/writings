@@ -1,0 +1,411 @@
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ \\
+  \ \\
+  \ \\
+  \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle \textbf{left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color})\\
+    \ (let ((\textbf{dragged?} \#false)\\
+  \ \ \ \ \ \ \ (\textbf{image} (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ \\
+  \ \\
+  \ \\
+  \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (\textbf{`(position) `(,left ,top)})\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ \\
+  \ \\
+  \ \\
+  \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (\textbf{`(mouse-down ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (set! dragged? \#true)})\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ \\
+  \ \\
+  \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (\textbf{`(mouse-up ,x ,y) \\
+    \ \ \ \ \ \ \ \ \ (set! dragged? \#false)})\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ \\
+  \ \\
+  \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (\textbf{`(mouse-move ,x ,y ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (when dragged?\\
+    \ \ \ \ \ \ \ \ \ \ \ (set! left (+ left dx)) \\  
+    \ \ \ \ \ \ \ \ \ \ \ (set! top (+ top dy)))})\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ 
+}
+\end{frame}
+
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (\textbf{`(embraces? ,x ,y) \\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height)))})\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ \\
+  \ 
+}
+\end{frame}
+
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (\textbf{`(as-image) image})\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ \\
+  \ \\
+  \ \\
+  \ 
+}
+\end{frame}
+
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (\textbf{`(mouse-out) \\
+  \ \ \ \ \ \ \ \ \ (set! dragged? \#false)})\\
+  \ \ \ \ \ \ \ \ (\_ \#false)))))\\
+  \ \\
+  \ \\
+  \ 
+}
+\end{frame}
+
+
+\begin{frame}{The notion of the computer}
+  \small
+  \texttt{(define (draggable-rectangle left top width \\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height color)\\
+    \ (let ((dragged? \#false)\\
+  \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+  \ \ \ \ (lambda message\\
+  \ \ \ \ \ \ (match message\\
+  \ \ \ \ \ \ \ \ (`(position) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+  \ \ \ \ \ \ \ \ (`(embraces? ,x ,y) ...)\\
+  \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+  \ \ \ \ \ \ \ \ (`(mouse-out) ...)\\
+  \ \ \ \ \ \ \ \ (\textbf{\_ \#false})))))\\
+  \ \\
+  \ \\
+  \ \\
+  \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \scriptsize
+  \texttt{(define stage\\
+    \ \ (let* ((`(,width ,height) (screen-size))\\
+    \ \ \ \ \ \ \ \ \ (elements ...)\\
+    \ \ \ \ \ \ \ \ \ (image (rectangle width height 0))\\
+    \ \ \ \ \ \ \ \ \ (hovered-element \#false))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ ))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \scriptsize
+  \texttt{(define stage\\
+    \ \ (let* ((`(,width ,height) (screen-size))\\
+    \ \ \ \ \ \ \ \ \ (\textbf{elements (map (lambda (\_)\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (draggable-rectangle\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (random (- width 50))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (random (- height 50))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 50 50 (random color)))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (range 10))})\\
+    \ \ \ \ \ \ \ \ \ (image (rectangle width height 0))\\
+    \ \ \ \ \ \ \ \ \ (hovered-element \#false))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ ))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+}
+\end{frame}
+
+
+\begin{frame}{The notion of the computer}
+  \scriptsize
+  \texttt{(define stage\\
+    \ \ (let* ((`(,width ,height) (screen-size))\\
+    \ \ \ \ \ \ \ \ \ (elements ...)\\
+    \ \ \ \ \ \ \ \ \ (image (rectangle width height 0))\\
+    \ \ \ \ \ \ \ \ \ (hovered-element \#false))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (\textbf{`(as-image)\\
+      \ \ \ \ \ \ \ \ \ (fill-image!\ image 0)\\
+      \ \ \ \ \ \ \ \ \ (fold-right (lambda (e i)\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (e 'position)))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (draw-image!\ (e 'as-image) x y i)\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i))\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image elements)\\
+      \ \ \ \ \ \ \ \ \ image})\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ ))))\\
+    \ \\
+    \ \\
+    \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \scriptsize
+  \texttt{(define stage\\
+    \ \ (let* ((`(,width ,height) (screen-size))\\
+    \ \ \ \ \ \ \ \ \ (elements ...)\\
+    \ \ \ \ \ \ \ \ \ (image (rectangle width height 0))\\
+    \ \ \ \ \ \ \ \ \ (hovered-element \#false))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-down ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (when hovered-element\\
+    \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-down x y))})\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ ))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+}
+\end{frame}
+
+
+\begin{frame}{The notion of the computer}
+  \scriptsize
+  \texttt{(define stage\\
+    \ \ (let* ((`(,width ,height) (screen-size))\\
+    \ \ \ \ \ \ \ \ \ (elements ...)\\
+    \ \ \ \ \ \ \ \ \ (image (rectangle width height 0))\\
+    \ \ \ \ \ \ \ \ \ (hovered-element \#false))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-up ,x ,y) \\
+    \ \ \ \ \ \ \ \ \ (when hovered-element\\
+    \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-up x y))})\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ ))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+}
+\end{frame}
+
+\begin{frame}{The notion of the computer}
+  \scriptsize
+  \texttt{(define stage\\
+    \ \ (let* ((`(,width ,height) (screen-size))\\
+    \ \ \ \ \ \ \ \ \ (elements ...)\\
+    \ \ \ \ \ \ \ \ \ (image (rectangle width height 0))\\
+    \ \ \ \ \ \ \ \ \ (hovered-element \#false))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-move ,x ,y ,dx ,dy)\\
+      \ \ \ \ \ \ \ \ \ (let ((hovered (find (lambda (\_)\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\_ 'embraces? x y)) \\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elements)))\\
+    \ \ \ \ \ \ \ \ \ \ \ (unless (eq? hovered hovered-element)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered-element (hovered-element 'mouse-out))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered (hovered 'mouse-over))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (set! hovered-element hovered))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered (hovered 'mouse-move x y dx dy)))})\\
+    \ \ \ \ \ \ ))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+}
+\end{frame}
