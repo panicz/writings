@@ -65,6 +65,18 @@
   \end{description}
 \end{frame}
 
+{ % all template changes are local to this group.
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[at=(current page.center)] {
+        \includegraphics[width=\paperwidth]{map-compass-flashlight.jpg}
+      };
+    \end{tikzpicture}
+  \end{frame}
+}
+
+
 \section{Functional programming}
 
 \subsection{Definition}
@@ -73,15 +85,15 @@
   \begin{description}
   \item [functional programming] -- a style of programming
     where a programmer is allowed only to define pure functions,
-    by composing them from other pure functions [me]
+    by composing them from other pure functions
   \end{description}
 \end{frame}
 
-%\input{sicp.tex}
+\input{sicp.tex}
 
-%\input{opacity.tex}
+\input{opacity.tex}
 
-%\input{nondet.tex}
+\input{nondet.tex}
 
 \subsection{Purity}
 
@@ -95,6 +107,8 @@ main = do \{ \\
 }
 \end{frame}
 
+\section{Object Oriented Programming}
+
 \begin{frame}{FP vs OOP}
   \begin{center}
     \Huge
@@ -106,11 +120,21 @@ main = do \{ \\
   \texttt{2.+(2)}
 \end{frame}
 
-\section{Object Oriented Programming}
+{ % all template changes are local to this group.
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[at=(current page.center)] {
+        \includegraphics[width=\paperwidth]{feathers.png}
+      };
+    \end{tikzpicture}
+  \end{frame}
+}
+
 
 \subsection{Definition}
 
-%\input{alan-kay.tex}
+\input{alan-kay.tex}
 
 \begin{frame}{The notion of the computer (live demo)}
   \begin{center}
@@ -120,7 +144,7 @@ main = do \{ \\
   \url{https://github.com/panicz/sracket}
 \end{frame}
 
-%\input{demo1.tex}
+\input{demo1.tex}
 
 \begin{frame}{Recursion on the notion of the computer (live demo)}
   \begin{center}
@@ -130,7 +154,7 @@ main = do \{ \\
   \url{https://github.com/panicz/sracket}
 \end{frame}
 
-% \input{demo2.tex}
+\input{demo2.tex}
 
 \begin{frame}{Beyond the computer (live demo)}
   \begin{center}
@@ -140,7 +164,7 @@ main = do \{ \\
   \url{https://github.com/panicz/sracket}
 \end{frame}
 
-%\input{demo3.tex}
+\input{demo3.tex}
 
 { % all template changes are local to this group.
   \setbeamertemplate{navigation symbols}{}
@@ -205,9 +229,29 @@ main = do \{ \\
 \end{frame}
 
 
-%\input{abs.tex}
+\input{abs.tex}
 
-%\input{text.tex}
+\input{inh.tex}
+
+\begin{frame}{Lagging (live demo)}
+  \begin{center}
+    \Huge
+    \texttt{4.rkt}
+  \end{center}
+  \url{https://github.com/panicz/sracket}
+\end{frame}
+
+\input{demo4.tex}
+
+\input{text.tex}
+
+\begin{frame}{LIMB (live demo)}
+  \begin{center}
+    \Huge
+    \texttt{5.rkt}
+  \end{center}
+  \url{https://github.com/panicz/sracket}
+\end{frame}
 
 
 \end{document}

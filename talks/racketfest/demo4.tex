@@ -1,0 +1,667 @@
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (`(size) `(,width ,height))\\
+    \ \ \ \ \ \ \ \ (`(extents) `(,left ,top ,(+ left width) ,(+ top height)))\\
+    \ \ \ \ \ \ \ \ (`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color)))\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+    \ \ \ \ \ \ \ \ (`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (\textbf{`(position) `(,left ,top)})\\
+    \ \ \ \ \ \ \ \ (`(size) `(,width ,height))\\
+    \ \ \ \ \ \ \ \ (`(extents) `(,left ,top ,(+ left width) ,(+ top height)))\\
+    \ \ \ \ \ \ \ \ (`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color)))\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+    \ \ \ \ \ \ \ \ (`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (\textbf{`(size) `(,width ,height)})\\
+    \ \ \ \ \ \ \ \ (`(extents) `(,left ,top ,(+ left width) ,(+ top height)))\\
+    \ \ \ \ \ \ \ \ (`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color)))\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+    \ \ \ \ \ \ \ \ (`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (`(size) `(,width ,height))\\
+    \ \ \ \ \ \ \ \ (\textbf{`(extents) `(,left ,top ,(+ left width) ,(+ top height))})\\
+    \ \ \ \ \ \ \ \ (`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color)))\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+    \ \ \ \ \ \ \ \ (`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (`(size) `(,width ,height))\\
+    \ \ \ \ \ \ \ \ (`(extents) `(,left ,top ,(+ left width) ,(+ top height)))\\
+    \ \ \ \ \ \ \ \ (\textbf{`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color))})\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+    \ \ \ \ \ \ \ \ (`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (`(size) `(,width ,height))\\
+    \ \ \ \ \ \ \ \ (`(extents) `(,left ,top ,(+ left width) ,(+ top height)))\\
+    \ \ \ \ \ \ \ \ (`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color)))\\
+    \ \ \ \ \ \ \ \ (\textbf{`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy))})\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+    \ \ \ \ \ \ \ \ (`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (`(size) `(,width ,height))\\
+    \ \ \ \ \ \ \ \ (`(extents) `(,left ,top ,(+ left width) ,(+ top height)))\\
+    \ \ \ \ \ \ \ \ (`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color)))\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+    \ \ \ \ \ \ \ \ (\textbf{`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height)))})\\
+    \ \ \ \ \ \ \ \ (`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (`(size) `(,width ,height))\\
+    \ \ \ \ \ \ \ \ (`(extents) `(,left ,top ,(+ left width) ,(+ top height)))\\
+    \ \ \ \ \ \ \ \ (`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color)))\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+    \ \ \ \ \ \ \ \ (\textbf{`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image})\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+\begin{frame}{Lagging}
+  \tiny
+  \texttt{(define (bit \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ (let ((image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+    \ \ \ \ \ \ \ \ (`(size) `(,width ,height))\\
+    \ \ \ \ \ \ \ \ (`(extents) `(,left ,top ,(+ left width) ,(+ top height)))\\
+    \ \ \ \ \ \ \ \ (`(resize-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ width (max 0 (+ width dx)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ height (max 0 (+ height dy)))\\
+    \ \ \ \ \ \ \ \ \ (set!\ image (rectangle width height color)))\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+    \ \ \ \ \ \ \ \ (`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ image)\\
+    \ \ \ \ \ \ \ \ (\textbf{\_ \#false})))\\
+    \ \ \ \ self))
+  }
+\end{frame}
+
+\begin{frame}{Lagging}
+  \footnotesize
+  \texttt{(define (containing origin elements)\\
+    \ \ (let ((hovered-element \#false))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+    \ \ \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(add!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(remove!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (\_ (apply origin message))\\
+    )))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+  }
+\end{frame}
+
+
+\begin{frame}{Lagging}
+  \footnotesize
+  \texttt{(define (containing \textbf{origin} elements)\\
+    \ \ (let ((hovered-element \#false))\\
+    \ \ \ \ (lambda message\\
+    \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+    \ \ \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(add!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(remove!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ \ \ (\textbf{\_ (apply origin message)})\\
+    )))))\\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \ 
+  }
+\end{frame}
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (containing origin elements)\\
+%%     \ \ (let ((hovered-element \#false))\\
+%%     \ \ \ \ (lambda message\\
+%%     \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+%%     \ \ \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ \ \ (\textbf{`(mouse-down ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (if hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-down (- x left) (- y top))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \#false)})\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(add!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(remove!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\_ .(apply origin message))\\
+%%     )))))\\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ 
+%%   }
+%% \end{frame}
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (containing origin elements)\\
+%%     \ \ (let ((hovered-element \#false))\\
+%%     \ \ \ \ (lambda message\\
+%%     \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+%%     \ \ \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\textbf{`(mouse-up ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (when hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-up (- x left) (- y top)))})\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(add!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(remove!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\_ (apply origin message))\\
+%%     )))))\\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ 
+%%   }
+%% \end{frame}
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (containing origin elements)\\
+%%     \ \ (let ((hovered-element \#false))\\
+%%     \ \ \ \ (lambda message\\
+%%     \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+%%     \ \ \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\textbf{`(mouse-move ,x ,y ,dx ,dy)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (let ((hovered (find (\_ 'embraces?\ (- x left) (- y top))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elements)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (unless (eq?\ hovered hovered-element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-out))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-over))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ hovered-element hovered))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-move (- x left) (- y top) dx dy))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ hovered-element)})\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(add!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(remove!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\_ (apply origin message))\\
+%%     )))))
+%%   }
+%% \end{frame}
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (containing origin elements)\\
+%%     \ \ (let ((hovered-element \#false))\\
+%%     \ \ \ \ (lambda message\\
+%%     \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+%%     \ \ \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\textbf{`(add!\ ,element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (set!\ elements `(,element .\ ,elements))})\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(remove!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\_ (apply origin message))\\
+%%     )))))\\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ 
+%%   }
+%% \end{frame}
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (containing origin elements)\\
+%%     \ \ (let ((hovered-element \#false))\\
+%%     \ \ \ \ (lambda message\\
+%%     \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+%%     \ \ \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(add!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\textbf{`(remove!\ ,element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (set!\ elements (filter (isnt \_ eq?\ element) elements))})\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\_ (apply origin message))\\
+%%     )))))\\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ 
+%%   }
+%% \end{frame}
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (containing origin elements)\\
+%%     \ \ (let ((hovered-element \#false))\\
+%%     \ \ \ \ (lambda message\\
+%%     \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+%%     \ \ \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(add!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(remove!\ ,element) ...)\\
+%%     \ \ \ \ \ \ \ \ \ \ (\textbf{`(as-image)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (let ((image (origin 'as-image)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (fold-right (lambda (e i)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (e 'position)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (draw-image!\ (e 'as-image) x y i)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image elements))})\\
+%%     \ \ \ \ \ \ \ \ \ \ (\_ (apply origin message))\\
+%%     )))))\\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ \\
+%%     \ 
+%%   }
+%% \end{frame}
+
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (containing origin elements)\\
+%%     \ \ (let ((hovered-element \#false))\\
+%%     \ \ \ \ (lambda message\\
+%%     \ \ \ \ \ \ (let ((`(,left ,top) (origin 'position)))\\
+%%     \ \ \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (if hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-down (- x left) (- y top))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \#false))\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (when hovered-element\\
+%% `    \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-up (- x left) (- y top))))\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (let ((hovered (find (\_ 'embraces?\ (- x left) (- y top))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elements)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (unless (eq?\ hovered hovered-element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-out))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-over))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ hovered-element hovered))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-move (- x left) (- y top) dx dy))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ hovered-element))\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(add!\ ,element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (set!\ elements `(,element .\ ,elements)))\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(remove!\ ,element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (set!\ elements (filter (isnt \_ eq?\ element) elements)))\\
+%%     \ \ \ \ \ \ \ \ \ \ (`(as-image)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (let ((image (origin 'as-image)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (fold-right (lambda (e i)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (e 'position)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (draw-image!\ (e 'as-image) x y i)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image elements)))\\
+%%     \ \ \ \ \ \ \ \ \ \ (\_ (apply origin message))\\
+%%     )))))
+%%   }
+%% \end{frame}
+
+
+\begin{frame}{Lagging}
+  \texttt{(define (transferable origin)\\
+    \ \ (let ((hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (dragged-element \#false))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (\_ (apply origin message))))\\
+    self))
+  }
+\end{frame}
+
+
+\begin{frame}{Lagging}
+  \texttt{(define (transferable \textbf{origin})\\
+    \ \ (let ((hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (dragged-element \#false))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{\_ (apply origin message)})))\\
+    self))
+  }
+\end{frame}
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (transferable origin)\\
+%%     \ \ (let ((hovered-element \#false)\\
+%%     \ \ \ \ \ \ \ \ (dragged-element \#false))\\
+%%     \ \ \ \ (define (self .\ message)\\
+%%     \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+%%     \ \ \ \ \ \ \ \ (\textbf{`(acquire-element!) ...})\\
+%%     \ \ \ \ \ \ \ \ (\textbf{`(install-element!\ ,element) ...})\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+%%     \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+%%     \ \ \ \ \ \ \ \ (\_ (apply origin message))))\\
+%%     self))
+%%   }
+%% \end{frame}
+
+\begin{frame}{Lagging}
+  \texttt{(define (box \#:left left \#:top top\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ .\ elements)\\
+    \ \ \\
+    \ \ \ (transferable\\
+    \ \ \ \ (containing\\
+    \ \ \ \ \ (bit \#:left left \#:top top\\
+    \ \ \ \ \ \ \ \ \ \ \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ \ \ \ elements)))}
+\end{frame}
+
+\begin{frame}{Lagging}
+  \texttt{(define (box \#:left left \#:top top\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ .\ elements)\\
+    \ \ \textbf{(resizable}\\
+    \ \ \ (transferable\\
+    \ \ \ \ (containing\\
+    \ \ \ \ \ (bit \#:left left \#:top top\\
+    \ \ \ \ \ \ \ \ \ \ \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \#:background-color color)\\
+    \ \ \ \ \ elements))\textbf{)})}
+\end{frame}
+
+
+%% \begin{frame}{Lagging}
+%%   \tiny
+%%   \texttt{(define (transferable origin)\\
+%%     \ \ (let ((hovered-element \#false)\\
+%%     \ \ \ \ \ \ \ \ (dragged-element \#false))\\
+%%     \ \ \ \ (define (self .\ message)\\
+%%     \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ (let ((acquired (self 'acquire-element!)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (cond ((procedure?\ acquired)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ dragged-element acquired))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (else\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (origin 'mouse-down x y)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (self 'mouse-move x y 0 0 )))\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ (when dragged-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (self 'install-element!\ dragged-element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (set!\ dragged-element \#false))\\
+%%     \ \ \ \ \ \ \ \ \ (origin 'mouse-up x y)\\
+%%     \ \ \ \ \ \ \ \ \ (self 'mouse-move x y 0 0 ))\\
+%%     \ \ \ \ \ \ \ \ (`(acquire-element!)\\
+%%     \ \ \ \ \ \ \ \ \ (and hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ (or (let ((acquired (hovered-element 'acquire-element!)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (and acquired\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (begin\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (when (procedure?\ acquired)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (if (eq?\ acquired hovered-element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (origin 'remove! acquired)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (hovered-element 'position)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (acquired 'move-by! x y))))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ acquired)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (begin\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (origin 'remove! hovered-element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hovered-element))))\\
+%%     \ \ \ \ \ \ \ \ (`(install-element!\ ,element)\\
+%%     \ \ \ \ \ \ \ \ \ (if hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (hovered-element 'position)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (element 'move-by!\ (- x) (- y))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'install-element! element))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ (origin 'add! element)))\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy)\\
+%%     \ \ \ \ \ \ \ \ \ (when dragged-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (dragged-element 'move-by!\ dx dy))\\
+%%     \ \ \ \ \ \ \ \ \ (set!\ hovered-element (origin 'mouse-move x y dx dy))\\
+%%     \ \ \ \ \ \ \ \ \ hovered-element)\\
+%%     \ \ \ \ \ \ \ \ (`(as-image)\\
+%%     \ \ \ \ \ \ \ \ \ (let ((image (origin 'as-image)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (when dragged-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (dragged-element 'position)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (draw-image! (dragged-element 'as-image) x y image)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ image))\\
+%%     \ \ \ \ \ \ \ \ (\_ (apply origin message))))\\
+%%     self))
+%%   }
+%% \end{frame}
