@@ -1,0 +1,400 @@
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((\textbf{dragged-element} \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (\textbf{`(position) `(,left ,top)})\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-down ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (let ((acquired (self 'acquire-hovered-element!)))\\
+    \ \ \ \ \ \ \ \ \ \ \ (when acquired\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ dragged-element acquired)))})\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-up ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (when dragged-element\\
+    \ \ \ \ \ \ \ \ \ \ \ (self 'install-element!\ dragged-element)\\
+    \ \ \ \ \ \ \ \ \ \ \ (set!\ dragged-element \#false))\\
+    \ \ \ \ \ \ \ \ \ (self 'mouse-move x y 0 0)\\
+    \ \ \ \ \ \ \ \ \ (when hovered-element\\
+    \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-up (- x left) (- y top)))})\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(mouse-move ,x ,y ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (when dragged-element\\
+    \ \ \ \ \ \ \ \ \ \ \ (dragged-element 'move-by!\ dx dy))\\
+    \ \ \ \ \ \ \ \ \ (let ((hovered (find (\_ 'embraces?\ (- x left) (- y top))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elements)))\\
+    \ \ \ \ \ \ \ \ \ \ \ (unless (eq?\ hovered hovered-element)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered-element\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-out))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-over))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ hovered-element hovered))\\
+    \ \ \ \ \ \ \ \ \ \ \ (when hovered\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-move (- x left) (- y top) dx dy)))})\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))}
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(embraces?\ ,x ,y)\\
+    \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height)))})\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(as-image)\\
+    \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+    \ \ \ \ \ \ \ \ \ (fold-right (lambda (element image)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (element 'position)))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (draw-image!\ (element 'as-image) x y image)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ `(,@(if dragged-element\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ `(,dragged-element)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '())\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,@elements))})\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(move-by!\ ,dx ,dy)\\
+    \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+    \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy))})\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(acquire-hovered-element!)\\
+    \ \ \ \ \ \ \ \ \ (and hovered-element\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (or (and-let* ((acquired (hovered-element\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 'acquire-hovered-element!))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (`(,x ,y) (hovered-element 'position)))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (acquired 'move-by!\ x y)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ acquired)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((acquired hovered-element))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ elements (filter (isnt \_ eq?\ acquired)\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elements))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ acquired)))})\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))}
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{`(install-element!\ ,element)\\
+    \ \ \ \ \ \ \ \ \ (if hovered-element\\
+    \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (hovered-element 'position)))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (element 'move-by!\ (- x) (- y))\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'install-element!\ element))\\
+    \ \ \ \ \ \ \ \ \ \ \ (set!\ elements `(,element .\ ,elements)))})\\
+    \ \ \ \ \ \ \ \ (\_ \#false)))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+\begin{frame}{Beyond the computer}
+  \tiny
+  \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+    \ \ (let ((dragged-element \#false)\\
+    \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+    \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+    \ \ \ \ (define (self .\ message)\\
+    \ \ \ \ \ \ (match message\\
+    \ \ \ \ \ \ \ \ (`(position) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y) ...)\\
+    \ \ \ \ \ \ \ \ (`(as-image) ...)\\
+    \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy) ...)\\
+    \ \ \ \ \ \ \ \ (`(acquire-hovered-element!) ...)\\
+    \ \ \ \ \ \ \ \ (`(install-element!\ ,element) ...)\\
+    \ \ \ \ \ \ \ \ (\textbf{\_ \#false})))\\
+    \ \ \ \ self))} \\
+  \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ 
+\end{frame}
+
+
+%% \begin{frame}{Beyond the computer}
+%%   \tiny
+%%   \texttt{(define (box \#:left left \#:top top \#:width width \#:height height\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \#:background-color color .\ elements)\\
+%%     \ \ (let ((dragged-element \#false)\\
+%%     \ \ \ \ \ \ \ \ (hovered-element \#false)\\
+%%     \ \ \ \ \ \ \ \ (image (rectangle width height color)))\\
+%%     \ \ \ \ (define (self .\ message)\\
+%%     \ \ \ \ \ \ (match message\\
+%%     \ \ \ \ \ \ \ \ (`(position) `(,left ,top))\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-down ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ (let ((acquired (self 'acquire-hovered-element!)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (when acquired\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ dragged-element acquired))))\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-up ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ (when dragged-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (self 'install-element!\ dragged-element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (set!\ dragged-element \#false))\\
+%%     \ \ \ \ \ \ \ \ \ (self 'mouse-move x y 0 0)\\
+%%     \ \ \ \ \ \ \ \ \ (when hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-up (- x left) (- y top))))\\
+%%     \ \ \ \ \ \ \ \ (`(mouse-move ,x ,y ,dx ,dy)\\
+%%     \ \ \ \ \ \ \ \ \ (when dragged-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (dragged-element 'move-by!\ dx dy))\\
+%%     \ \ \ \ \ \ \ \ \ (let ((hovered (find (\_ 'embraces?\ (- x left) (- y top))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elements)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (unless (eq?\ hovered hovered-element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'mouse-out))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (when hovered\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-over))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ hovered-element hovered))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (when hovered\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered 'mouse-move (- x left) (- y top) dx dy))))\\
+%%     \ \ \ \ \ \ \ \ (`(embraces?\ ,x ,y)\\
+%%     \ \ \ \ \ \ \ \ \ (and (is left <= x <= (+ left width))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ (is top <= y <= (+ top height))))\\
+%%     \ \ \ \ \ \ \ \ (`(as-image)\\
+%%     \ \ \ \ \ \ \ \ \ (fill-image!\ image color)\\
+%%     \ \ \ \ \ \ \ \ \ (fold-right (lambda (element image)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (element 'position)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (draw-image!\ (element 'as-image) x y image)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ image\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ `(,@(if dragged-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ `(,dragged-element)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '())\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,@elements)))\\
+%%     \ \ \ \ \ \ \ \ (`(move-by!\ ,dx ,dy)\\
+%%     \ \ \ \ \ \ \ \ \ (set!\ left (+ left dx))\\
+%%     \ \ \ \ \ \ \ \ \ (set!\ top (+ top dy)))\\
+%%     \ \ \ \ \ \ \ \ (`(acquire-hovered-element!)\\
+%%     \ \ \ \ \ \ \ \ \ (and hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ (or (and-let* ((acquired (hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 'acquire-hovered-element!))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (`(,x ,y) (hovered-element 'position)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (acquired 'move-by!\ x y)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ acquired)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (let ((acquired hovered-element))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ hovered-element \#false)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (set!\ elements (filter (isnt \_ eq?\ acquired)\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elements))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ acquired))))\\
+%%     \ \ \ \ \ \ \ \ (`(install-element!\ ,element)\\
+%%     \ \ \ \ \ \ \ \ \ (if hovered-element\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ (let ((`(,x ,y) (hovered-element 'position)))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ (element 'move-by!\ (- x) (- y))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ \ \ \ (hovered-element 'install-element!\ element))\\
+%%     \ \ \ \ \ \ \ \ \ \ \ (set!\ elements `(,element .\ ,elements))))\\
+%%     \ \ \ \ \ \ \ \ (\_ \#false)))\\
+%%     \ \ \ \ self))}
+%% \end{frame}

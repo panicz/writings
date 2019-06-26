@@ -1,0 +1,257 @@
+\documentclass{beamer}
+
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+\mode<presentation>
+{
+  \usetheme{Copenhagen}
+  %%\usecolortheme[RGB={173,222,25}]{structure}
+  \usecolortheme[RGB={255,0,0}]{structure}
+  \setbeamertemplate{items}[circle]
+  \setbeamercovered{transparent}
+}
+
+%% \usepackage[polish]{babel}
+%% \usepackage{chessfss}
+\usepackage{hyperref}
+%\usepackage{qtree}
+\usepackage{mathtools}
+\usepackage{dirtytalk}
+\usepackage{epigraph}
+%\usepackage{textgreek}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{ulem}
+\usepackage{adjustbox}
+\usepackage{pbox}
+\usepackage{tabularx}
+
+\newenvironment{Snippet}{\Verbatim[samepage=true]}{\endVerbatim}
+
+\title{\textbf{FP vs. OOP: case studies in misunderstandings}}
+
+\author{Panicz Maciej Godek}
+
+\institute{
+  \tiny{\href{mailto:godek.maciek@gmail.com}{\textbf{godek.maciek@gmail.com}}}
+}
+\date{\textbf{Functional Tricity}, 27.06.2019}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Paradigms}
+
+\begin{frame}{Definition of a paradigm}
+  \begin{description}
+  \item [paradigm] -- a distinct set of concepts or thought
+    patterns, including theories, research methods, postulates,
+    and standards for what constitutes a legitimate contribution
+    to a field. [Wikipedia]
+  \end{description}
+\end{frame}
+
+{ % all template changes are local to this group.
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[at=(current page.center)] {
+        \includegraphics[width=\paperwidth]{map-compass-flashlight.jpg}
+      };
+    \end{tikzpicture}
+  \end{frame}
+}
+
+
+\section{Functional programming}
+
+\subsection{Definition}
+
+\begin{frame}{Definition of functional programming}
+  \begin{description}
+  \item [functional programming] -- a style of programming
+    where a programmer is allowed only to define pure functions,
+    by composing them from other pure functions
+  \end{description}
+\end{frame}
+
+\input{sicp.tex}
+
+\input{opacity.tex}
+
+\input{nondet.tex}
+
+\subsection{Purity}
+
+\begin{frame}{Purity}
+\texttt{main :: IO () \\
+main = do \{ \\ 
+\ \ name <- getLine; \\ 
+\ \ putStrLn "Hello "++name; \\
+\} \\
+  \
+}
+\end{frame}
+
+\section{Object Oriented Programming}
+
+\begin{frame}{FP vs OOP}
+  \begin{center}
+    \Huge
+    \texttt{2 + 2} \\ \pause
+  \end{center}
+  \large
+  \texttt{(+) :: Num a => a -> a -> a\\
+    \ } \\ \pause
+  \texttt{2.+(2)}
+\end{frame}
+
+{ % all template changes are local to this group.
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[at=(current page.center)] {
+        \includegraphics[width=\paperwidth]{feathers.png}
+      };
+    \end{tikzpicture}
+  \end{frame}
+}
+
+
+\subsection{Definition}
+
+\input{alan-kay.tex}
+
+\begin{frame}{The notion of the computer (live demo)}
+  \begin{center}
+    \Huge
+    \texttt{1.rkt}
+  \end{center}
+  \url{https://github.com/panicz/sracket}
+\end{frame}
+
+%% \input{demo1.tex}
+
+\begin{frame}{Recursion on the notion of the computer (live demo)}
+  \begin{center}
+    \Huge
+    \texttt{2.rkt}
+  \end{center}
+  \url{https://github.com/panicz/sracket}
+\end{frame}
+
+%% \input{demo2.tex}
+
+\begin{frame}{Beyond the computer (live demo)}
+  \begin{center}
+    \Huge
+    \texttt{3.rkt}
+  \end{center}
+  \url{https://github.com/panicz/sracket}
+\end{frame}
+
+%% \input{demo3.tex}
+
+{ % all template changes are local to this group.
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[at=(current page.center)] {
+        \includegraphics[width=\paperwidth]{grady-booch.jpg}
+      };
+    \end{tikzpicture}
+  \end{frame}
+}
+
+{ % all template changes are local to this group.
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[at=(current page.center)] {
+        \includegraphics[width=\paperwidth]{grady-booch-oop.jpg}
+      };
+    \end{tikzpicture}
+  \end{frame}
+}
+
+\begin{frame}{The four pillars of OOP}
+  \begin{tabularx}{\textwidth}{ X X }
+    \textbf{``Pillars'':} \pause \newline
+    \begin{itemize}
+    \item abstraction \pause
+    \item encapsulation \pause
+    \item inheritance \pause
+    \item polymorphism \pause
+    \end{itemize}
+    &
+    \textbf{Principles (Booch et al.)}: \pause \newline
+    \begin{itemize}
+    \item abstraction \pause
+    \item encapsulation \pause
+    \item modularity \pause
+    \item hierarchy
+    \end{itemize}
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{The four pillars of OOP}
+  \begin{tabularx}{\textwidth}{ X X }
+    \textbf{``Pillars'':} \newline
+    \begin{itemize}
+    \item abstraction
+    \item \sout{encapsulation}
+    \item inheritance
+    \item \sout{polymorphism}
+    \end{itemize}
+    &
+    \textbf{Principles (Booch et al.)}: \newline
+    \begin{itemize}
+    \item abstraction
+    \item \sout{encapsulation}
+    \item \sout{modularity}
+    \item \sout{hierarchy}
+    \end{itemize}
+  \end{tabularx}
+\end{frame}
+
+
+\input{abs.tex}
+
+\input{inh.tex}
+
+\begin{frame}{Lagging (live demo)}
+  \begin{center}
+    \Huge
+    \texttt{4.rkt}
+  \end{center}
+  \url{https://github.com/panicz/sracket}
+\end{frame}
+
+%% \input{demo4.tex}
+
+\input{text.tex}
+
+\begin{frame}{LIMB (live demo)}
+  \begin{center}
+    \Huge
+    \texttt{5.rkt}
+  \end{center}
+  \url{https://github.com/panicz/sracket}
+\end{frame}
+
+
+\end{document}

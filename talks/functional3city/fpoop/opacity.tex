@@ -1,0 +1,273 @@
+
+\subsection{Referential opacity}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define (compile expression result) \\*
+    \ \ (match expression \\*
+    \ \ \ \ (`(,<*> ,a ,b) \\*
+    \ \ \ \ \ (let ((a+ (name a)) \\*
+    \ \ \ \ \ \ \ \ \ \ \ (b+ (name b))) \\*
+    \ \ \ \ \ \ \ `(,@(compile a a+)\\*
+    \ \ \ \ \ \ \ \ \ ,@(compile b b+)\\*
+    \ \ \ \ \ \ \ \ \ (,result = ,a+ ,<*> ,b+))))\\*
+    \ \ \ \ (\_\\*
+    \ \ \ \ \ '())))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define (compile expression result) \\*
+    \ \ (match expression \\*
+    \ \ \ \ (\textbf{`(,<*> ,a ,b)} \\*
+    \ \ \ \ \ (let ((a+ (name a)) \\*
+    \ \ \ \ \ \ \ \ \ \ \ (b+ (name b))) \\*
+    \ \ \ \ \ \ \ `(,@(compile a a+)\\*
+    \ \ \ \ \ \ \ \ \ ,@(compile b b+)\\*
+    \ \ \ \ \ \ \ \ \ (,result = ,a+ ,<*> ,b+))))\\*
+    \ \ \ \ (\_\\*
+    \ \ \ \ \ '())))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define (compile expression result) \\*
+    \ \ (match expression \\*
+    \ \ \ \ (`(,<*> ,a ,b) \\*
+    \ \ \ \ \ (let (\textbf{(a+ (name a)) \\*
+    \ \ \ \ \ \ \ \ \ \ \ (b+ (name b))}) \\*
+    \ \ \ \ \ \ \ `(,@(compile a a+)\\*
+    \ \ \ \ \ \ \ \ \ ,@(compile b b+)\\*
+    \ \ \ \ \ \ \ \ \ (,result = ,a+ ,<*> ,b+))))\\*
+    \ \ \ \ (\_\\*
+    \ \ \ \ \ '())))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define (compile expression result) \\*
+    \ \ (match expression \\*
+    \ \ \ \ (`(,<*> ,a ,b) \\*
+    \ \ \ \ \ (let ((a+ (name a)) \\*
+    \ \ \ \ \ \ \ \ \ \ \ (b+ (name b))) \\*
+    \ \ \ \ \ \ \ \textbf{`(,@(compile a a+)\\*
+    \ \ \ \ \ \ \ \ \ ,@(compile b b+)\\*
+    \ \ \ \ \ \ \ \ \ (,result = ,a+ ,<*> ,b+))}))\\*
+    \ \ \ \ (\_\\*
+    \ \ \ \ \ '())))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define (compile expression result) \\*
+    \ \ (match expression \\*
+    \ \ \ \ (`(,<*> ,a ,b) \\*
+    \ \ \ \ \ (let ((a+ (name a)) \\*
+    \ \ \ \ \ \ \ \ \ \ \ (b+ (name b))) \\*
+    \ \ \ \ \ \ \ `(,@(compile a a+)\\*
+    \ \ \ \ \ \ \ \ \ ,@(compile b b+)\\*
+    \ \ \ \ \ \ \ \ \ (,result = ,a+ ,<*> ,b+))))\\*
+    \ \ \ \ \textbf{(\_\\*
+    \ \ \ \ \ '())}))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define name \\*
+    \ \ (let ((counter 0)) \\*
+    \ \ \ \ (lambda (expression)\\*
+    \ \ \ \ \ \ (cond ((symbol? expression)\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ expression)\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ (else\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (set! counter (+ counter 1))\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (symbol-append 't\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (number->symbol counter)))))))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define name \\*
+    \ \ (let (\textbf{(counter 0)}) \\*
+    \ \ \ \ (lambda (expression)\\*
+    \ \ \ \ \ \ (cond ((symbol? expression)\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ expression)\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ (else\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (set! counter (+ counter 1))\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (symbol-append 't\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (number->symbol counter)))))))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define name \\*
+    \ \ (let ((counter 0)) \\*
+    \ \ \ \ (lambda (expression)\\*
+    \ \ \ \ \ \ (cond (\textbf{(symbol? expression)\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ expression})\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ (else\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (set! counter (+ counter 1))\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (symbol-append 't\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (number->symbol counter)))))))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (define name \\*
+    \ \ (let ((counter 0)) \\*
+    \ \ \ \ (lambda (expression)\\*
+    \ \ \ \ \ \ (cond ((symbol? expression)\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ expression)\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ (\textbf{else\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (set! counter (+ counter 1))\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ (symbol-append 't\\*
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (number->symbol counter))})))))
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{(compile \textbf{'(* (+ x y) (/ z w)) 'result})\\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (match \textbf{'(* (+ x y) (/ z w))}\\*
+    \ \ (`(,<*> ,a ,b)\\*
+    \ \ \ (let ((a+ (name a))\\*
+    \ \ \ \ \ \ \ \ \ (b+ (name b)))\\*
+    \ \ \ \ \ `(,@(compile a a+)\\*
+    \ \ \ \ \ \ \ ,@(compile b b+)\\*
+    \ \ \ \ \ \ \ (\textbf{result} = ,a+ ,<*> ,b+))))\\*
+    \ \ (\_\\*
+    \ \ \ '()))
+}
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    (match '(\textbf{*} \textbf{(+ x y)} \textbf{(/ z w)})\\*
+    \ \ (`(,\textbf{<*>} ,\textbf{a} ,\textbf{b})\\*
+    \ \ \ (let ((a+ (name \textbf{a}))\\*
+    \ \ \ \ \ \ \ \ \ (b+ (name \textbf{b})))\\*
+    \ \ \ \ \ `(,@(compile \textbf{a} a+)\\*
+    \ \ \ \ \ \ \ ,@(compile \textbf{b} b+)\\*
+    \ \ \ \ \ \ \ (result = ,a+ ,\textbf{<*>} ,b+))))\\*
+    \ \ (\_\\*
+    \ \ \ '()))
+}
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    \ \\*
+    \ \\*
+    \ \ \ (let ((a+ (name \textbf{'(+ x y)}))\\*
+    \ \ \ \ \ \ \ \ \ (b+ (name \textbf{'(/ z w)})))\\*
+    \ \ \ \ \ `(,@(compile \textbf{'(+ x y)} a+)\\*
+    \ \ \ \ \ \ \ ,@(compile \textbf{'(/ z w)} b+)\\*
+    \ \ \ \ \ \ \ (result = ,a+ \textbf{*} ,b+))) \\*
+    \ \\*
+    \ 
+  }
+\end{frame}
+
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    \ \\*
+    \ \\*
+    \ \ \ (let ((a+ (name '(+ x y)))\\*
+    \ \ \ \ \ \ \ \ \ (b+ (name '(/ z w))))\\*
+    \ \ \ \ \ `(,@(compile '(+ x y) a+)\\*
+    \ \ \ \ \ \ \ ,@(compile '(/ z w) b+)\\*
+    \ \ \ \ \ \ \ (result = ,a+ * ,b+))) \\*
+    \ \\*
+    \ 
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    \ \\*
+    \ \\*
+    \ \ \ (let (\textbf{(a+ (name '(+ x y))) \\*
+      \ \ \ \ \ \ \ \ \ (b+ (name '(/ z w)))})\\*
+    \ \ \ \ \ `(,@(compile '(+ x y) a+)\\*
+    \ \ \ \ \ \ \ ,@(compile '(/ z w) b+)\\*
+    \ \ \ \ \ \ \ (result = ,a+ * ,b+))) \\*
+    \ \\*
+    \ 
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    \ \\*
+    \ \\*
+    \ \ \ (let (\textbf{(a+ 't1)\\*
+      \ \ \ \ \ \ \ \ \  (b+ 't2)})\\*
+    \ \ \ \ \ `(,@(compile '(+ x y) \textbf{a+})\\*
+    \ \ \ \ \ \ \ ,@(compile '(/ z w) \textbf{b+})\\*
+    \ \ \ \ \ \ \ (result = ,\textbf{a+} * ,\textbf{b+}))) \\*
+    \ \\*
+    \ 
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \ \ \ \ `(,@(compile '(+ x y) \textbf{'t1})\\*
+    \ \ \ \ \ \ \ ,@(compile '(/ z w) \textbf{'t2})\\*
+    \ \ \ \ \ \ \ (result = \textbf{t1} * \textbf{t2})) \\*
+    \ \\*
+    \ 
+  }
+\end{frame}
+
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \ \ \ \ `(,@\textbf{(compile '(+ x y) 't1)}\\*
+    \ \ \ \ \ \ \ ,@\textbf{(compile '(/ z w) 't2)}\\*
+    \ \ \ \ \ \ \ (result = t1 * t2)) \\*
+    \ \\*
+    \ 
+  }
+\end{frame}
+
+\begin{frame}{Referential opacity}
+  \texttt{
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \\*
+    \ \ \ \ \ '((t1 = x + y)\\*
+    \ \ \ \ \ \ \ (t2 = z / w)\\*
+    \ \ \ \ \ \ \ (result = t1 * t2)) \\*
+    \ \\*
+    \ 
+  }
+\end{frame}
