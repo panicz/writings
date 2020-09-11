@@ -437,3 +437,188 @@ which seems to be a non-trivial problem in general,
 and as such it should have a fundamental support
 from our system.
 
+This is all important to remember, but perhaps
+we should also consider another question:
+we have seen, how visualizing data can be helpful
+and I believe that nobody's questioning that.
+But what about visualuzing code? That is, visualizing
+in non-textual form?
+
+I don't think that anyone here, seeing a nested box
+representation, finds it appealing. Perhaps one could
+get used to it over time, but I don't think there's
+any point to this: we should be looking for
+representations that we find appealing and efficient,
+rather than merely workable.
+
+There are of course other visual representations of
+code already available, like Scratch or LabView or
+flowcharts. But these tend to be domain-specific,
+and don't seem to allow arbitrary DSLing.
+
+Perhaps one of the easiest approach in conceiving
+a visual notation is to move away from the computer
+and to use a pen and a piece of paper and the synthesis
+strategy devised in 'Structure and Interpretation of
+Computer Programs', namely - wishful thinking.
+
+Let me give you an example of this. Here's an example
+piece of code from one approach to designing an editor
+based on nesting boxes:
+
+(define (extract #;from box #;at position)
+  (let ((hovered unhovered
+		 (partition (lambda (child)
+			      (is position within?
+				  (field #:area child)))
+			    (field #:elements box))))
+    (match hovered
+      ('()
+       (values box box))
+      (`(,target . ,obscured)
+       (let* ((`(,x ,y) position)
+	      (`(,l ,t ,r ,b) (field #:area target))
+	      (position* `(,(- x l) ,(- y t)))
+	      (extracted context
+			 (extract #;from target
+					 #;at position*)))
+	 (if (eq? extracted target)
+	     (values target
+		     (replace-in box
+				 #:elements
+				 (union unhovered
+					obscured)))
+	     (let* ((`(,l* ,t* ,r* ,b*) (field #:area
+					       extracted))
+		    (area* `(,(- l* l) ,(- t* t)
+			     ,(- r* l) ,(- b* t))))
+	       (values
+		(replace-in extracted #:area area*)
+		(replace-in box #:element (union
+					   unhovered
+					   `(,context)
+					   obscured)))))))
+      )))
+
+I don't expect you to read this code. I expect you
+to feel intimidated.
+
+I can also show you an example, so that you don't
+feel any better:
+
+(e.g.
+ (let* ((stage
+	 (record
+	  #:area '(0 0 100 100)
+	  #:elements
+	  `(,(record
+	      #:id 'top-left
+	      #:area '(5 5 45 45)
+	      #:elements
+	      `(,(record #:id 'a #:area '(5 5 15 15)
+			 #:elements '())
+		,(record #:id 'b #:area '(25 5 35 15)
+			 #:elements '())
+		,(record #:id 'c #:area '(5 25 15 35)
+			 #:elements '())
+		,(record #:id 'd #:area '(25 25 35 35)
+			 #:elements '())))
+	    ,(record #:id 'top-right #:area '(55 5 95 45)
+		     #:elements '())
+	    ,(record #:id 'bottom-left
+ 		     #:area '(5 55 45 95) #:elements '())
+	    ,(record #:id 'bottom-right
+		     #:area '(55 55 95 95)
+		     #:elements '()))))
+	(extracted leftover
+		   (extract stage '(16 16))))
+   (values
+    (dump extracted)
+    (dump leftover)))
+ ===>
+ (#:area (0 0 10 10) #:elements () #:id a)
+ (#:elements
+  ((#:elements
+    ((#:id b #:area (25 5 35 15) #:elements ())
+     (#:id c #:area (5 25 15 35) #:elements ())
+     (#:id d #:area (25 25 35 35) #:elements ()))
+    #:area (5 5 45 45) #:id top-left)
+   (#:id top-right #:area (55 5 95 45) #:elements ())
+   (#:id bottom-left #:area (5 55 45 95) #:elements ())
+   (#:id bottom-right #:area (55 55 95 95) #:elements ()))
+  #:area (0 0 100 100)))
+
+It's a fairly mimimalistic example. It describes
+four rectangles, with one of the rectangles containing
+four smaller rectangles. You can read that from
+indentation and from numbers, or - to say it differently
+- you just cannot see that.
+
+I took this code, and translated it to the following
+semi-visual pseudocode (it's in Polish, because I am
+Polish, sorry)
+
+[image]
+
+But I also translated it to Scheme-style pseudocode,
+which should already look fairly straightforward
+
+[image]
+
+The argument box actually represents 'two arguments',
+or a compound argument - a position laid over a box.
+
+We consider two cases: when the positiin is over
+some inner box, and when there is no inner box at that
+position.
+
+In the first case, we call the defined function
+recursively, passing the inner box as an argument,
+and if it returned the argument repeated twice, then
+we return a pair consisting of an inner box and the
+ourter box devoid of the inner one.
+
+If it returned something else than the argument repeated
+twice, then we return a pair whose first element
+is the first element of the value returned, and whose
+second element is the original argument, with the
+inner box replaced with the second value from
+the recursive call.
+
+When no inner box is hovered, then we just return
+the original argument repeated twice.
+
+This replication of values is just an ad-hoc convention.
+The first value is the box extracted from the context,
+and the second value means the context after extraction.
+
+Instead of repeating the same argument twice, we could
+as well use some 'nil' value from the second argument.
+
+I don't expect you to getbeverything out of this
+explanation, but I hope that you're at least getting
+the 'rough idea'.
+
+I have experimented a bit more with this notation,
+and rewrore it to a Haskell-inspired style:
+
+[image]
+
+What you may find a bit uncanny is that there are
+some names that appear bpyh in patterns and
+in the external scope, and that they're meant
+to refer to the same thing.
+
+Moreover, the name 'extract', although not misleading,
+isn't particularly helpful either: it could mean
+just about anything.
+
+So, since we're drawing on paper, we could perhaps
+drop textual name in favor of s symbolic one.
+
+I experimented with a funny arrow, which is supposed
+to mean 'sucking something out'.
+
+When I did that, I ended up with something that looks
+pretty much like a Prolog program.
+
