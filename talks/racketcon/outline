@@ -622,3 +622,96 @@ to mean 'sucking something out'.
 When I did that, I ended up with something that looks
 pretty much like a Prolog program.
 
+And even though the notation is very domain-specific,
+and even if the domain is fairly small and limited,
+I believe it's still worth developing, especially
+if it's just a sub-goal of a larger quest, i.e,
+a development of general tools for handling visual
+notations of different kinds, like Ikea furniture
+assembly manuals and other things like that.
+
+Which leads us to the last question, namely the
+architecture of a tool that would support such
+notations.
+
+It seems like a good idea to require that tool
+to store the data in a text-based format, because
+that would initially facilitate integration with existing
+workflows. This is, for example, what Wolfram's
+Mathematica does with its notebooks.
+
+However, the most important trait of such system
+would be its self-extensibility. The notable systems
+that possess this trait are editors like Emacs
+or environments such as Glamorous Toolkit built
+on Pharo Smalltalk.
+
+One of the first prototypes of the environment
+that I've been working on contained a special form
+`define-interaction`, which took a symbol as its first
+argument.
+
+(define-interaction (digraph . neighbour-list)
+  (Graph neighbour-list))
+
+If that symbol was encountered in a head of some
+expression, then instead of following the normal
+rules for constructing nested box, it constructed
+a special object, according to the given rule.
+
+(define (Graph neighbour-list)
+  (let* ((vertices (in-circle
+		    (map (lambda (`(,node . ,neigbours))
+			   (Vertex node))
+			 neighbour-list)))
+	 (collection (Collection vertices)))
+      (lambda message
+	(match message
+	  (`(as-image)
+	   (let ((image (collection 'as-image)))
+	     (for `(,source (,node . ,neighbours))
+		 in (zip vertices neighbour-list)
+	       (for neighbour in neighbours
+		 (let ((target (find (is neighbour eq?
+				       (_ 'as-expression))
+				vertices)))
+		   (draw-edge! source target image))))
+	     image))
+	  (`(as-expression)
+	   `(digraph . ,neighbour-list))
+	  
+	  (`(acquire-element!)
+	   #false)
+	  
+	  (_
+	   (apply collection message))))))
+
+In this case, the extension mechanism assumes that
+an expression is a mutable object which reacts in its
+own way to events, and which is able to present itself
+as an image or as an expression.
+
+While it is a simple and general mechanism, I don't
+think it's a good one: it allows the visual
+representation to depart from the textual one completely.
+
+I earlier mentioned the "equation":
+
+source code = AST + formatting/comments
+
+where AST is the essential information, and
+formatting/comments are things that are related
+only to presentation.
+
+I believe that a good design of a versatile
+system for programmable interactions would
+be a homomorphism:
+
+v(source code) = v1(ast) v2(+) v3(formatting/comments)
+
+For each domain, we also need a 'pretty-print'
+function that would work for this particular domain.
+
+Perhaps it would also make sense if all the data
+that is interpreted visually could also be interpreted
+textually.
