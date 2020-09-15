@@ -1,0 +1,268 @@
+
+
+
+
+1. syntacric tree
+2. s-expressions
+3. dr racket's images
+4. rich program in cat
+5. my face
+6. twitter thread with
+7. my face
+8. blank screen -> big revelation
+
+IT IS EASIER FOR US TO UNDERSTAND CONCRETE THINGS
+THAN ABSTRACT THINGS.
+
+WE FORM ABSTRACTIONS BY LOOKING AT CONCRETE EXAMPLES.
+
+9. my face
+
+10. man select
+
+11. ruby tests
+
+12. (e.g. <expression> ===> <result>)
+
+13.
+
+
+(define (insertions x l)
+  (match l
+    (`()
+     `((,x)))
+    (`(,h . ,t)
+     `((,x ,h . ,t) . ,(map (lambda (y)
+		              `(,h . ,y))
+		            (insertions x t))))))
+(e.g.
+ (insertions 'A '(x y z))
+ ===> ((A x y z) (x A y z) (x y A z) (x y z A)))
+
+(define (permutations l)
+  (match l
+    ('()
+     '(()))
+    (`(,h . ,t)
+     (append-map (lambda (sub)
+		   (insertions h sub))
+		 (permutations t)))))
+
+(e.g.
+ (permutations '(a b c))
+ ===> ((a b c) (b a c) (b c a) (a c b) (c a b) (c b a)))
+
+14.
+
+(define (f lol)
+  (apply map list lol))
+
+15.
+
+(e.g.
+  (f '((a b c)
+       (d e f)))  ===> ((a d)
+                        (b e)
+	                (c f)))
+
+16.
+
+
+(e.g.
+ (g '(0.63+0.27i 0.60+0.87i 0.74+0.92i 0.37+0.81i
+      0.30+0.59i 0.94+0.75i 0.56+0.19i 0.52+0.23i
+      0.58+0.07i 0.28+0.11i 0.71+0.65i 0.83+0.11i
+      0.21+0.95i 0.09+0.56i 0.08+0.43i 0.38+0.48i
+      0.10+0.96i 0.64+0.33i 0.49+0.90i 0.63+0.45i
+      0.25+0.05i 0.73+0.19i 0.58+0.85i 0.24+0.67i
+      0.65+0.25i 0.63+0.42i 0.48+0.46i 0.59+0.40i
+      0.97+0.88i 0.81+0.17i 0.14+0.22i 0.83+0.02i
+      0.62+0.45i 0.57+0.45i 0.94+0.68i 0.96+0.01i
+      0.14+0.74i 0.21+0.36i 0.10+0.60i 0.38+0.55i
+      0.68+0.52i 0.37+0.93i 0.27+0.45i 0.05+0.80i
+      0.25+0.33i 0.15+0.95i 0.18+0.97i 0.29+0.70i
+      0.82+0.45i 0.79+0.50i))
+ ===> (0.83+0.02i 0.25+0.05i 0.14+0.22i 0.08+0.43i
+       0.05+0.8i 0.1+0.96i 0.18+0.97i 0.74+0.92i
+       0.97+0.88i 0.96+0.01i))
+
+17. point cloud
+
+18. my face
+
+19. (define (insertions x l) ...)
+
+20. (define (insertions #;of x #;into l) ...)
+
+21. my face
+
+22. Gerry Rzeppa's answer
+
+23. Microsoft's intentional programming
+
+24. orderings of text: sesame street, left to right
+top down
+
+25. editor demo
+
+26. a b c boxes
+
+27. a b c text
+
+28.
+
+source code = AST + formatting/comments
+
+f(AST) = formatting/comments
+
+29. my face
+
+30. autochrome
+
+31. ydiff
+
+32. my face
+
+33. scratch, labview, flowcharts
+
+34. pen&paper
+
+35.
+
+
+(define (extract #;from box #;at position)
+  (let ((hovered unhovered
+		 (partition (lambda (child)
+			      (is position within?
+				  (field #:area child)))
+			    (field #:elements box))))
+    (match hovered
+      ('()
+       (values box box))
+      (`(,target . ,obscured)
+       (let* ((`(,x ,y) position)
+	      (`(,l ,t ,r ,b) (field #:area target))
+	      (position* `(,(- x l) ,(- y t)))
+	      (extracted context
+			 (extract #;from target
+					 #;at position*)))
+	 (if (eq? extracted target)
+	     (values target
+		     (replace-in box
+				 #:elements
+				 (union unhovered
+					obscured)))
+	     (let* ((`(,l* ,t* ,r* ,b*) (field #:area
+					       extracted))
+		    (area* `(,(- l* l) ,(- t* t)
+			     ,(- r* l) ,(- b* t))))
+	       (values
+		(replace-in extracted #:area area*)
+		(replace-in box #:element (union
+					   unhovered
+					   `(,context)
+					   obscured)))))))
+      )))
+
+36.
+
+
+(e.g.
+ (let* ((stage
+	 (record
+	  #:area '(0 0 100 100)
+	  #:elements
+	  `(,(record
+	      #:id 'top-left
+	      #:area '(5 5 45 45)
+	      #:elements
+	      `(,(record #:id 'a #:area '(5 5 15 15)
+			 #:elements '())
+		,(record #:id 'b #:area '(25 5 35 15)
+			 #:elements '())
+		,(record #:id 'c #:area '(5 25 15 35)
+			 #:elements '())
+		,(record #:id 'd #:area '(25 25 35 35)
+			 #:elements '())))
+	    ,(record #:id 'top-right #:area '(55 5 95 45)
+		     #:elements '())
+	    ,(record #:id 'bottom-left
+ 		     #:area '(5 55 45 95) #:elements '())
+	    ,(record #:id 'bottom-right
+		     #:area '(55 55 95 95)
+		     #:elements '()))))
+	(extracted leftover
+		   (extract stage '(16 16))))
+   (values
+    (dump extracted)
+    (dump leftover)))
+ ===>
+ (#:area (0 0 10 10) #:elements () #:id a)
+ (#:elements
+  ((#:elements
+    ((#:id b #:area (25 5 35 15) #:elements ())
+     (#:id c #:area (5 25 15 35) #:elements ())
+     (#:id d #:area (25 25 35 35) #:elements ()))
+    #:area (5 5 45 45) #:id top-left)
+   (#:id top-right #:area (55 5 95 45) #:elements ())
+   (#:id bottom-left #:area (5 55 45 95) #:elements ())
+   (#:id bottom-right #:area (55 55 95 95) #:elements ()))
+  #:area (0 0 100 100)))
+
+37. zeszyt - pseudokt pl
+
+38. zeszyt - pseidokd lisp (video)
+
+39. zesxyt - pseudo haskel
+
+40. zeszyt - pseudo prolpg
+
+41. my face
+
+42. mathematica notebooks
+
+43. glamorous toolkit
+
+44. my face
+
+45.
+
+(define-interaction (digraph . neighbour-list)
+  (Graph neighbour-list))
+
+46.
+
+(define (Graph neighbour-list)
+  (let* ((vertices (in-circle
+		    (map (lambda (`(,node . ,neigbours))
+			   (Vertex node))
+			 neighbour-list)))
+	 (collection (Collection vertices)))
+      (lambda message
+	(match message
+	  (`(as-image)
+	   (let ((image (collection 'as-image)))
+	     (for `(,source (,node . ,neighbours))
+		 in (zip vertices neighbour-list)
+	       (for neighbour in neighbours
+		 (let ((target (find (is neighbour eq?
+				       (_ 'as-expression))
+				vertices)))
+		   (draw-edge! source target image))))
+	     image))
+	  (`(as-expression)
+	   `(digraph . ,neighbour-list))
+	  
+	  (`(acquire-element!)
+	   #false)
+	  
+	  (_
+	   (apply collection message))))))
+
+47.
+
+source code = AST + formatting/comments
+
+v(source code) = v1(ast) v2(+) v3(formatting/comments)
+
+48. my face

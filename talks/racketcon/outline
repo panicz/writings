@@ -26,7 +26,7 @@ To my knowledge, it is usually also significantly
 more difficult to track changes in non-textual
 representations of programs, and the common
 version control systems aren't well suited to
-work with such representations.
+working with such representations.
 
 My name is Maciek Godek, but I usually present myself
 using the nickname "Panicz". I'd like to share with you
@@ -181,9 +181,9 @@ and your task is to name this function.
       0.68+0.52i 0.37+0.93i 0.27+0.45i 0.05+0.80i
       0.25+0.33i 0.15+0.95i 0.18+0.97i 0.29+0.70i
       0.82+0.45i 0.79+0.50i))
- ===> (0.59+0.4i 0.83+0.11i 0.83+0.02i 0.25+0.05i
-       0.14+0.22i 0.08+0.43i 0.05+0.8i 0.1+0.96i
-       0.18+0.97i 0.74+0.92i 0.97+0.88i 0.96+0.01i))
+ ===> (0.83+0.02i 0.25+0.05i 0.14+0.22i 0.08+0.43i
+       0.05+0.8i 0.1+0.96i 0.18+0.97i 0.74+0.92i
+       0.97+0.88i 0.96+0.01i))
 
 Obviously, you can't give me your proposals, because
 the talk's been pre-recorded and I cannot get any feedback
@@ -249,7 +249,7 @@ programming environments", that text is also
 a visual medium.
 
 However, text seems to be
-a privileged representation in the organization
+tge privileged representation in the organization
 of computer systems. To the point that the phrase
 "plain text file" is often associated with
 simplicity and minimalism.
@@ -703,9 +703,13 @@ where AST is the essential information, and
 formatting/comments are things that are related
 only to presentation.
 
-I believe that a good design of a versatile
-system for programmable interactions would
-be a homomorphism:
+I believe that the design of a successful system
+for designing visual notations needs to focus on
+a careful selection of constraints.
+
+One possible constraint is to require that
+the transformation from code to its visual
+or interactive interpretation is a homomorphism:
 
 v(source code) = v1(ast) v2(+) v3(formatting/comments)
 
@@ -715,3 +719,8 @@ function that would work for this particular domain.
 Perhaps it would also make sense if all the data
 that is interpreted visually could also be interpreted
 textually.
+
+But since I am talking to a virtual room full
+of experienced developers, it is perhaps a good
+idea to give the voice to you, which is why the
+pre-recorded part of my talk ends right here.
