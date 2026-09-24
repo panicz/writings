@@ -1,0 +1,113 @@
+\documentclass{beamer}
+
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+\newenvironment{Snippet}{\Verbatim[samepage=true,fontsize=\tiny]}{\endVerbatim}
+
+\mode<presentation>
+{
+  \usetheme{Copenhagen}
+  %%\usecolortheme[RGB={173,222,25}]{structure}
+  % \usecolortheme[RGB={255,0,0}]{structure}
+  \setbeamertemplate{items}[circle]
+  \setbeamercovered{transparent}
+}
+
+\usepackage[polish]{babel}
+\usepackage{chessfss}
+\usepackage{hyperref}
+\usepackage{qtree}
+\usepackage{mathtools}
+\usepackage{dirtytalk}
+\usepackage{epigraph}
+\usepackage{textgreek}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{ulem}
+\usepackage{adjustbox}
+
+
+\title{\textbf{Uogólnione Programowanie Wizualne}}
+
+\author{mgr Maciej Godek}
+
+\institute{
+  \tiny{\href{mailto:m.godek@wi.umg.edu.pl}{\textbf{m.godek@wi.umg.edu.pl}}}
+}
+
+\date{\textbf{Uniwersytet Morski}, 06.03.2026}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  Czym jest \textit{Uogólnione Programowanie Wizualne}?
+  \begin{itemize}
+    \pause \item krótka odpowiedź: nie ma czegoś takiego
+    \pause \item nieco dłuższa odpowiedź: coś co sam sobie wymyśliłem
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  Motywacja: przykłady wydają się prostsze do zrozumienia niż definicje.
+
+  \begin{columns}[T]
+    \begin{column}{.58\textwidth}
+      \only<1->{
+      \begin{Snippet}
+(define (multicombinations A n)
+  (cond
+    ((= n 0)
+     '())
+    ((= n 1)
+     (map list A))
+    (else
+     (append-map
+       (lambda (combination)
+         (map (lambda (a)
+                `(,a . ,combination))
+              A))
+       (multicombinations A (- n 1))))))
+      \end{Snippet}
+      }
+    \end{column}
+
+    \begin{column}{.38\textwidth}
+      \only<2->{
+      \begin{Snippet}
+(e.g.
+ (multicombinations '(a b) 3)
+ ===>
+ ((a a a)
+  (b a a)
+  (a b a)
+  (b b a)
+  (a a b)
+  (b a b)
+  (a b b)
+  (b b b)))
+      \end{Snippet}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+\end{document}
